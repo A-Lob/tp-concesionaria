@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="" />
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/java/com/example/GATEWAY/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apiGw/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/java/com/example/GATEWAY/configuarcion/GWconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apiGw/configuarcion/GWconfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GATEWAY/src/test/java/com/example/GATEWAY/GatewayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/test/java/com/example/apiGw/GatewayApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/main/java/com/example/geolocalizacion/GeolocalizacionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/PruebasApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/test/java/com/example/geolocalizacion/GeolocalizacionApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/test/java/com/example/pruebas/GeolocalizacionApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,9 +45,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2nttHUVftRwU8sCtf5anUGWpoFo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -32,9 +57,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/franc/IdeaProjects/TPback",
+    "last_opened_file_path": "C:/Users/leona/IdeaProjects/TP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,15 +88,8 @@
   </component>
   <component name="RunManager" selected="Spring Boot.GatewayApplication">
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="GATEWAY" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.GATEWAY.GatewayApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GeolocalizacionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="geolocalizacion" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.geolocalizacion.GeolocalizacionApplication" />
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apiGw.GatewayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -82,12 +101,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PruebasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="pruebas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.pruebas.PruebasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.300" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.300" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -100,6 +126,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729804112212</updated>
       <workItem from="1729804113267" duration="2129000" />
+      <workItem from="1729859665624" duration="405000" />
     </task>
     <servers />
   </component>
