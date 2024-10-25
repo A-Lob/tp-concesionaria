@@ -4,31 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Cambio de nombres a directorios">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Empleado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Interesado.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Marca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Modelo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Posicion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Prueba.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/entities/Vehiculo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/java/com/example/GATEWAY/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apiGw/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/java/com/example/GATEWAY/configuarcion/GWconfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/example/apiGw/configuarcion/GWconfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GATEWAY/src/test/java/com/example/GATEWAY/GatewayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/test/java/com/example/apiGw/GatewayApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/main/java/com/example/geolocalizacion/GeolocalizacionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/PruebasApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geolocalizacion/src/test/java/com/example/geolocalizacion/GeolocalizacionApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/test/java/com/example/pruebas/GeolocalizacionApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,11 +45,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.PruebasApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/leona/IdeaProjects/TP",
+    "last_opened_file_path": "C:/Users/leona/Documents/Leo/Sistemas/Materias/Backende de aplicaciones/agencia.db",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,7 +80,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="Spring Boot.PruebasApplication">
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apiGw.GatewayApplication" />
@@ -126,8 +120,17 @@
       <option name="presentableId" value="Default" />
       <updated>1729804112212</updated>
       <workItem from="1729804113267" duration="2129000" />
-      <workItem from="1729859665624" duration="405000" />
+      <workItem from="1729859665624" duration="8895000" />
     </task>
+    <task id="LOCAL-00001" summary="Cambio de nombres a directorios">
+      <option name="closed" value="true" />
+      <created>1729860175231</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729860175231</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,5 +146,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Cambio de nombres a directorios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio de nombres a directorios" />
   </component>
 </project>
