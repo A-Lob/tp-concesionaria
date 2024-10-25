@@ -16,23 +16,26 @@ public class Interesado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    @Column(name = "tipo_documento")
+    @Column(name = "TIPO_DOCUMENTO")
     private int tipoDocumento;
 
+    @Column(name = "DOCUMENTO")
     private String documento;
 
+    @Column(name = "NOMBRE")
     private String nombre;
-
+    @Column(name = "APELLIDO")
     private String apellido;
-
+    @Column(name = "RESTRINGIDO")
     private boolean restringido;
 
-    @Column(name = "numero_licencia")
+    @Column(name = "NRO_LICENCIA")
     private int numeroLicencia;
 
-    @Column(name = "fecha_vencimiento_licencia")
+    @Column(name = "FECHA_VENCIMIENTO_LICENCIA")
     private String fechaVencimientoLicencia;
 
     // Un interesado puede realizar muchas pruebas.

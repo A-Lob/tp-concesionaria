@@ -14,32 +14,33 @@ public class Prueba {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    @Column(name = "fecha_hora_inicio")
+    @Column(name = "FECHA_HORA_INICIO")
     private String fechaHoraInicio;
 
-    @Column(name = "fecha_hora_fin")
+    @Column(name = "FECHA_HORA_FIN")
     private String fechaHoraFin;
-
+    @Column(name = "COMENTARIO")
     private String comentario;
 
     // ------- Relacion: Prueba > Empleado -----------
     // Varias pruebas pueden estar asociadas a un solo empleado.
     @ManyToOne
-    @JoinColumn(name = "id_empleado", referencedColumnName = "legajo")
+    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "LEGAJO")
     private Empleado empleado;
 
     // ------- Relacion: Prueba > Interesado -----------
     // Varias pruebas pueden estar asociadas a un solo interesado
     @ManyToOne
-    @JoinColumn(name = "id_interesado", referencedColumnName = "id")
+    @JoinColumn(name = "ID_INTERESADO", referencedColumnName = "ID")
     private Interesado interesado;
 
     // ------- Relacion: Prueba > Vehiculo -----------
     // Varias pruebas pueden estar asociadas a un solo vehículo
     @ManyToOne
-    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id")
+    @JoinColumn(name = "ID_VEHICULO", referencedColumnName = "ID")
     private Vehiculo vehiculo;
 
 }

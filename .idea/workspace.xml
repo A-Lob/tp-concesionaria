@@ -5,7 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Estructura">
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/EmpleadoRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/InteresadoRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/MarcaRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/ModeloRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/PosicionRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/PruebaRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/VehiculoRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/servicios/EmpleadoServicio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23655667-97ee-40d4-b8bd-33a89708caa6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/23655667-97ee-40d4-b8bd-33a89708caa6/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3952c725-9df4-4302-bb66-03f1423e0d41.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3952c725-9df4-4302-bb66-03f1423e0d41/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4054d8a9-aae8-44c0-8fd7-4a416859de9e.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4054d8a9-aae8-44c0-8fd7-4a416859de9e/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/80b321f5-73f5-4c22-8d54-e9b104a59c49.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/80b321f5-73f5-4c22-8d54-e9b104a59c49/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/98ca8a85-34f5-4cad-a4b2-85f81c19a7f4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/98ca8a85-34f5-4cad-a4b2-85f81c19a7f4/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4a28634-d2fe-4037-a40f-704276c18a6a.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a4a28634-d2fe-4037-a40f-704276c18a6a/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0ddf55f-1c5a-445d-ac7f-f4af0a834f39.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0ddf55f-1c5a-445d-ac7f-f4af0a834f39/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d1e78d95-c6f4-4d64-af09-f7c5f4e4655b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d1e78d95-c6f4-4d64-af09-f7c5f4e4655b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Marca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Modelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Posicion.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Posicion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Prueba.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Prueba.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Vehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +58,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -34,30 +73,40 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2nttHUVftRwU8sCtf5anUGWpoFo" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/franc/IdeaProjects/TPback&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PruebasApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/franc/IdeaProjects/TPback/pruebas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\franc\IdeaProjects\TPback\notificaciones\src\main\java\com\example\notificaciones" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\franc\IdeaProjects\TPback\pruebas\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -70,7 +119,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="Spring Boot.PruebasApplication">
+    <configuration name="GatewayApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apiGw.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="GATEWAY" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.GATEWAY.GatewayApplication" />
@@ -88,6 +144,13 @@
     <configuration name="NotificacionesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="notificaciones" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.notificaciones.NotificacionesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PruebasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="pruebas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.pruebas.PruebasApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +174,7 @@
       <updated>1729804112212</updated>
       <workItem from="1729804113267" duration="3937000" />
       <workItem from="1729877232190" duration="1527000" />
+      <workItem from="1729878796591" duration="12865000" />
     </task>
     <task id="LOCAL-00001" summary="Estructura">
       <option name="closed" value="true" />
@@ -120,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729806289474</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Estructura">
+      <option name="closed" value="true" />
+      <created>1729878836829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729878836829</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -16,10 +16,12 @@ public class Vehiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
+    @Column(name = "PATENTE")
     private String patente;
-
+    @Column(name = "ANIO")
     private int anio;
 
     // ------- Relacion: Vehiculo > Prueba -----------
@@ -35,7 +37,7 @@ public class Vehiculo {
     // ------- Relacion: Vehiculo > Modelo -----------
     // Varios vehículos puede estar asociados a un modelo.
     @ManyToOne
-    @JoinColumn(name = "id_modelo", referencedColumnName = "id")
+    @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID")
     private Modelo modelo;
 
 }

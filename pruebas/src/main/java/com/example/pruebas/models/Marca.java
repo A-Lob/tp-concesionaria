@@ -16,8 +16,9 @@ public class Marca {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
-
+    @Column(name = "NOMBRE")
     private String nombre;
 
     // ------- Relacion: Marca > Modelo -----------

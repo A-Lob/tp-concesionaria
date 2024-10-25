@@ -16,8 +16,9 @@ public class Modelo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
-
+    @Column(name="DESCRIPCION")
     private String descripcion;
 
     // ------- Relacion: Modelo > Vehiculo -----------
@@ -28,7 +29,7 @@ public class Modelo {
     // ------- Relacion: Modelo > Marca -----------
     // Varios modelos estan asociados con una sola marca.
     @ManyToOne
-    @JoinColumn(name = "id_marca", referencedColumnName = "id")
+    @JoinColumn(name = "ID_MARCA", referencedColumnName = "ID")
     private Marca marca;
 
 }

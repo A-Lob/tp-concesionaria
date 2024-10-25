@@ -16,13 +16,14 @@ public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "LEGAJO")
     private int legajo;
-
+    @Column(name = "NOMBRE")
     private String nombre;
-
+    @Column(name = "APELLIDO")
     private String apellido;
 
-    @Column(name = "telefono_contacto")
+    @Column(name = "TELEFONO_CONTACTO")
     private int telefonoContacto;
 
     // ------- Relacion: Empleado > Prueba -----------

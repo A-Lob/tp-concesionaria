@@ -14,19 +14,22 @@ public class Posicion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
     private int id;
 
-    @Column(name = "fecha_hora")
+    @Column(name = "FECHA_HORA")
     private String fechaHora;
 
+    @Column(name = "LATITUD")
     private float latitud;
 
+    @Column(name="LONGITUD")
     private float longitud;
 
     // ------- Relacion: Posicion > Vehiculo -----------
     // Muchas posiciones están asociadas a un solo vehículo
     @ManyToOne
-    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id")
+    @JoinColumn(name = "ID_VEHICULO", referencedColumnName = "ID")
     private Vehiculo vehiculo;
 
 }
