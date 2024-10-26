@@ -1,7 +1,7 @@
-package com.example.pruebas.servicios;
+package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.models.Empleado;
-import com.example.pruebas.repositorios.EmpleadoRepo;
+import com.example.pruebas.repositories.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 public class EmpleadoServicio {
 
-    private final EmpleadoRepo empleado;
+    private final EmpleadoRepository empleado;
     @Autowired
-    public EmpleadoServicio(EmpleadoRepo empleado) {
+    public EmpleadoServicio(EmpleadoRepository empleado) {
         this.empleado = empleado;
     }
     public void guardar(Empleado e){

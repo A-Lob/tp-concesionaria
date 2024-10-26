@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Modificando configuracion de microservicio de pruebas y base de datos">
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Cambio de tipos de datos de fechas en entidades">
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/dtos/InteresadoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/dtos/PruebaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/dtos/VehiculoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/implementations/PruebaServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/implementations/ServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/interfaces/PruebaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/interfaces/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/PruebaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/PruebaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/EmpleadoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/EmpleadoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/InteresadoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/InteresadoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/MarcaRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/MarcaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/ModeloRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/ModeloRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/PosicionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/PosicionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/PruebaRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/PruebaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositorios/VehiculoRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/VehiculoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/servicios/EmpleadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/implementations/EmpleadoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,31 +53,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PruebasApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.PruebasApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/leona/IdeaProjects/TP&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GatewayApplication.executor": "Run",
+    "Application.PruebasApplication.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.GatewayApplication.executor": "Run",
+    "Spring Boot.PruebasApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/leona/IdeaProjects/TP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\franc\IdeaProjects\TPback\notificaciones\src\main\java\com\example\notificaciones" />
@@ -75,7 +93,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GatewayApplication">
+  <component name="RunManager" selected="Application.PruebasApplication">
     <configuration name="GatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.apiGw.GatewayApplication" />
       <module name="api-gateway" />
@@ -125,16 +143,16 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GatewayApplication" />
         <item itemvalue="Application.PruebasApplication" />
+        <item itemvalue="Application.GatewayApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -152,7 +170,9 @@
       <workItem from="1729903374928" duration="2033000" />
       <workItem from="1729905429869" duration="1239000" />
       <workItem from="1729951930019" duration="596000" />
-      <workItem from="1729956000156" duration="1054000" />
+      <workItem from="1729956000156" duration="9875000" />
+      <workItem from="1729973430200" duration="413000" />
+      <workItem from="1729974944392" duration="1803000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio de nombres a directorios">
       <option name="closed" value="true" />
@@ -194,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729956239359</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Cambio de tipos de datos de fechas en entidades">
+      <option name="closed" value="true" />
+      <created>1729957242864</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729957242864</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +244,11 @@
     <MESSAGE value="Creacion de entidades del modelo y relaciones" />
     <MESSAGE value="Configuracion de puertos para microservicio de pruebas" />
     <MESSAGE value="Modificando configuracion de microservicio de pruebas y base de datos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificando configuracion de microservicio de pruebas y base de datos" />
+    <MESSAGE value="Cambio de tipos de datos de fechas en entidades" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio de tipos de datos de fechas en entidades" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

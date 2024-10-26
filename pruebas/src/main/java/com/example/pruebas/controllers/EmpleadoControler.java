@@ -1,7 +1,7 @@
 package com.example.pruebas.controllers;
 
 import com.example.pruebas.models.Empleado;
-import com.example.pruebas.servicios.EmpleadoServicio;
+import com.example.pruebas.services.implementations.EmpleadoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

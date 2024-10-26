@@ -1,9 +1,9 @@
-package com.example.pruebas.repositorios;
+package com.example.pruebas.repositories;
 
 import com.example.pruebas.models.Empleado;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-
-public interface EmpleadoRepo extends CrudRepository<Empleado, Long> {
+@Repository
+public interface EmpleadoRepository extends CrudRepository<Empleado, Long> {
 }
