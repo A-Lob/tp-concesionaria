@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Cambio controlador de empleados">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="add gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +154,7 @@
       <workItem from="1729951930019" duration="596000" />
       <workItem from="1729956000156" duration="9875000" />
       <workItem from="1729973430200" duration="413000" />
-      <workItem from="1729974944392" duration="4619000" />
+      <workItem from="1729974944392" duration="4798000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio de nombres a directorios">
       <option name="closed" value="true" />
@@ -221,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729978841351</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add gitignore">
+      <option name="closed" value="true" />
+      <created>1729979605939</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729979605939</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +253,8 @@
     <MESSAGE value="Cambio de tipos de datos de fechas en entidades" />
     <MESSAGE value="Cambio de nombre a repositorios e implementacion de controlador de pruebas" />
     <MESSAGE value="Cambio controlador de empleados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio controlador de empleados" />
+    <MESSAGE value="add gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gitignore" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
