@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,7 @@ public class Interesado {
     private int numeroLicencia;
 
     @Column(name = "FECHA_VENCIMIENTO_LICENCIA")
-    private String fechaVencimientoLicencia;
+    private LocalDate fechaVencimientoLicencia;
 
     // Un interesado puede realizar muchas pruebas.
     @OneToMany(mappedBy = "interesado")

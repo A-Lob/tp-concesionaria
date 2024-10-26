@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "Posiciones")
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class Posicion {
     private int id;
 
     @Column(name = "FECHA_HORA")
-    private String fechaHora;
+    private LocalDateTime fechaHora;
 
     @Column(name = "LATITUD")
     private float latitud;

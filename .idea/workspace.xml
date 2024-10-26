@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Configuracion de puertos para microservicio de pruebas">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d1e78d95-c6f4-4d64-af09-f7c5f4e4655b.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d1e78d95-c6f4-4d64-af09-f7c5f4e4655b/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Modificando configuracion de microservicio de pruebas y base de datos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/PruebaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/PruebaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Prueba.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Prueba.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/models/Interesado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,6 +152,7 @@
       <workItem from="1729903374928" duration="2033000" />
       <workItem from="1729905429869" duration="1239000" />
       <workItem from="1729951930019" duration="596000" />
+      <workItem from="1729956000156" duration="1054000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio de nombres a directorios">
       <option name="closed" value="true" />
@@ -195,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729870260336</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modificando configuracion de microservicio de pruebas y base de datos">
+      <option name="closed" value="true" />
+      <created>1729956239359</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729956239359</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +215,7 @@
     <MESSAGE value="Cambio de nombres a directorios" />
     <MESSAGE value="Creacion de entidades del modelo y relaciones" />
     <MESSAGE value="Configuracion de puertos para microservicio de pruebas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configuracion de puertos para microservicio de pruebas" />
+    <MESSAGE value="Modificando configuracion de microservicio de pruebas y base de datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificando configuracion de microservicio de pruebas y base de datos" />
   </component>
 </project>
