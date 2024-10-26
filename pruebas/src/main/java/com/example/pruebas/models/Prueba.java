@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Prueba")
+@Table(name = "Pruebas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,7 +22,7 @@ public class Prueba {
 
     @Column(name = "FECHA_HORA_FIN")
     private String fechaHoraFin;
-    @Column(name = "COMENTARIO")
+    @Column(name = "COMENTARIOS")
     private String comentario;
 
     // ------- Relacion: Prueba > Empleado -----------

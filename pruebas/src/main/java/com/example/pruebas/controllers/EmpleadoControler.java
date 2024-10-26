@@ -3,6 +3,7 @@ package com.example.pruebas.controllers;
 import com.example.pruebas.models.Empleado;
 import com.example.pruebas.servicios.EmpleadoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Empleado")
+@RequestMapping("/api/pruebas/empleados")
 public class EmpleadoControler {
     private EmpleadoServicio empleado;
 
@@ -22,8 +23,8 @@ public class EmpleadoControler {
     }
 
     @GetMapping("/funciona")
-    public String funciona(){
-        return "Funciona";
+    public ResponseEntity<String> funciona(){
+        return ResponseEntity.ok("Funciona");
     }
     @GetMapping("/id")
     public Optional<Empleado> empleado(@RequestParam("LEGAJO") long id){
