@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Cambio de nombre a repositorios e implementacion de controlador de pruebas">
-      <change afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/interfaces/EmpleadoService.java" afterDir="false" />
+    <list default="true" id="9856305b-02ec-4954-88b6-fb86f9cfd16f" name="Changes" comment="Cambio controlador de empleados">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/controllers/EmpleadoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/EmpleadoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/repositories/EmpleadoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/implementations/EmpleadoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/java/com/example/pruebas/services/implementations/EmpleadoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas/src/main/resources/agencia.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\leona\IdeaProjects\TP" />
       <recent name="C:\Users\franc\IdeaProjects\TPback\notificaciones\src\main\java\com\example\notificaciones" />
     </key>
   </component>
@@ -158,7 +155,7 @@
       <workItem from="1729951930019" duration="596000" />
       <workItem from="1729956000156" duration="9875000" />
       <workItem from="1729973430200" duration="413000" />
-      <workItem from="1729974944392" duration="3747000" />
+      <workItem from="1729974944392" duration="4619000" />
     </task>
     <task id="LOCAL-00001" summary="Cambio de nombres a directorios">
       <option name="closed" value="true" />
@@ -216,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729977102767</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Cambio controlador de empleados">
+      <option name="closed" value="true" />
+      <created>1729978841351</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729978841351</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +245,8 @@
     <MESSAGE value="Modificando configuracion de microservicio de pruebas y base de datos" />
     <MESSAGE value="Cambio de tipos de datos de fechas en entidades" />
     <MESSAGE value="Cambio de nombre a repositorios e implementacion de controlador de pruebas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio de nombre a repositorios e implementacion de controlador de pruebas" />
+    <MESSAGE value="Cambio controlador de empleados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio controlador de empleados" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
