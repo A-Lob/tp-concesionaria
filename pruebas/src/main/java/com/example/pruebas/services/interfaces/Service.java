@@ -1,5 +1,7 @@
 package com.example.pruebas.services.interfaces;
 
+import com.example.pruebas.models.Empleado;
+
 import java.util.List;
 
 public interface Service<T, K>{
@@ -8,7 +10,7 @@ public interface Service<T, K>{
 
     void update(T t);
 
-    T delete(K id);
+    void delete(K id);
 
     T findById(K id);
 

@@ -3,11 +3,10 @@ package com.example.pruebas.services.implementations;
 import com.example.pruebas.models.Empleado;
 import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.services.interfaces.EmpleadoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implements EmpleadoService {
 
@@ -28,10 +27,10 @@ public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implemen
     }
 
     @Override
-    public Empleado delete(Integer id) {
+    public void delete(Integer id) {
         Empleado empleado = this.empleadoRepository.findById(id).orElseThrow();
         this.empleadoRepository.delete(empleado);
-        return empleado;
+
     }
 
     @Override

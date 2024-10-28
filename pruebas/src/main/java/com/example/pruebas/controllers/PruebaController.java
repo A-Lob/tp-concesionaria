@@ -1,9 +1,10 @@
 package com.example.pruebas.controllers;
 
-import com.example.pruebas.dtos.PruebaDto;
+import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.Interesado;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
+import com.example.pruebas.services.implementations.PruebaServiceImpl;
 import com.example.pruebas.services.interfaces.PruebaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +14,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/api/pruebas/prueba")
+@RequestMapping("/api/pruebas")
 public class PruebaController {
 
-    private final PruebaService pruebaService;
+    private final PruebaServiceImpl pruebaService;
 
-    public PruebaController(PruebaService pruebaService) {
+    public PruebaController(PruebaServiceImpl pruebaService) {
         this.pruebaService = pruebaService;
     }
 
     @PostMapping
-    public ResponseEntity<Object> crearPrueba(@RequestBody PruebaDto prueba) {
+    public ResponseEntity<Object> crearPrueba(@RequestBody PruebaDTO prueba) {
         // Obtengo la fecha actual de la solicitud
         LocalDate fechaActual = LocalDate.now();
 
@@ -64,5 +65,15 @@ public class PruebaController {
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+    @GetMapping(value = "/prueba", params = "id")
+    public PruebaDTO getPruebaById(@RequestParam int id) {
+        try{
+            return pruebaService.buscarPruebaId(id);
+        }
+        catch (Exception exception) {
+            return null;
+        }
+
     }
 }

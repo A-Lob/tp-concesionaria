@@ -1,5 +1,7 @@
 package com.example.pruebas.services.implementations;
 
+import com.example.pruebas.dtos.PruebaDTO;
+import com.example.pruebas.models.Empleado;
 import com.example.pruebas.models.Interesado;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
@@ -35,15 +37,27 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     @Override
-    public Prueba delete(Integer id) {
+    public void delete(Integer id) {
         Prueba prueba = this.pruebaRepository.findById(id).orElseThrow();
         this.pruebaRepository.delete(prueba);
-        return prueba;
+
     }
 
     @Override
     public Prueba findById(Integer id) {
+
+
         return this.pruebaRepository.findById(id).orElseThrow();
+    }
+
+    public PruebaDTO buscarPruebaId(int id){
+        Prueba p = findById(id);
+        PruebaDTO dto = new PruebaDTO(
+                p.getInteresado(),
+                p.getVehiculo(),
+                p.getFechaHoraInicio(),
+                p.getFechaHoraFin());
+        return dto;
     }
 
     @Override
