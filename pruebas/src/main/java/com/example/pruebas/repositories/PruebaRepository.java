@@ -5,9 +5,15 @@ import com.example.pruebas.models.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface PruebaRepository extends JpaRepository<Prueba, Integer> {
+
     List<Prueba> findByVehiculoAndFechaHoraFinIsNull(Vehiculo vehiculo);
+    List<Prueba> findByFechaHoraInicioBeforeAndFechaHoraFinIsNull(LocalDateTime fechaHora);
+    Prueba findByIdAndFechaHoraFinIsNull(Integer id);
+
 }

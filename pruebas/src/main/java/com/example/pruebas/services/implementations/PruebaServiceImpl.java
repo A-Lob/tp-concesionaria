@@ -13,6 +13,7 @@ import jakarta.xml.bind.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -83,6 +84,16 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     @Override
     public Empleado AssignEmpleadoToPrueba(int legajo) {
         return this.empleadoRepository.findByLegajo(legajo);
+    }
+
+    @Override
+    public List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora) {
+        return this.pruebaRepository.findByFechaHoraInicioBeforeAndFechaHoraFinIsNull(fechaHora);
+    }
+
+    @Override
+    public Prueba findPruebaFin(int id) {
+        return this.pruebaRepository.findByIdAndFechaHoraFinIsNull(id);
     }
 
 
