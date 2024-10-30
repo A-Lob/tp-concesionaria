@@ -2,8 +2,9 @@ package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.FinPruebaDTO;
 import com.example.pruebas.dtos.PruebaDTO;
-import com.example.pruebas.models.Empleado;
+import com.example.pruebas.dtos.VehiculoDTO;
 import com.example.pruebas.models.Prueba;
+import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.implementations.PruebaServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,7 +69,7 @@ public class PruebaController {
 
             // El empleado puede asignar el comentario y finaliza la prueba
             pruebaLocal.setComentario(prueba.getComentario());
-            pruebaLocal.setFechaHoraFin(prueba.getFechaHoraFin());
+            pruebaLocal.setFechaHoraFin(LocalDateTime.now());
 
             // Se actualiza la prueba como finalizada
             pruebaService.update(pruebaLocal);
@@ -76,7 +77,14 @@ public class PruebaController {
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
     }
+
+//    @GetMapping("/control/")
+//    public ResponseEntity<Object> getPruebasControl(@RequestBody VehiculoDTO vehiculo) {
+//        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(vehiculo.getIdVehiculo());
+//        try {
+//            pruebaService.controlarVehiculo(vehiculoLocal);
+//        }
+//    }
 
 }

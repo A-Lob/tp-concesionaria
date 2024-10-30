@@ -15,5 +15,7 @@ public interface PruebaService extends Service<Prueba, Integer> {
     Empleado AssignEmpleadoToPrueba(int id);
     List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora);
     Prueba findPruebaFin(int id);
+    void controlarVehiculo(Vehiculo vehiculo);
+
 
 }

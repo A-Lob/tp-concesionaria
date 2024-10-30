@@ -1,14 +1,12 @@
 package com.example.pruebas.services.implementations;
 
-import com.example.pruebas.models.Empleado;
-import com.example.pruebas.models.Interesado;
-import com.example.pruebas.models.Prueba;
-import com.example.pruebas.models.Vehiculo;
+import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.repositories.InteresadoRepository;
 import com.example.pruebas.repositories.PruebaRepository;
 import com.example.pruebas.repositories.VehiculoRepository;
 import com.example.pruebas.services.interfaces.PruebaService;
+import io.micrometer.core.instrument.observation.DefaultMeterObservationHandler;
 import jakarta.xml.bind.ValidationException;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +21,14 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     private final InteresadoRepository interesadoRepository;
     private final VehiculoRepository vehiculoRepository;
     private final EmpleadoRepository empleadoRepository;
+    private final DefaultMeterObservationHandler defaultMeterObservationHandler;
 
-    public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository, EmpleadoRepository empleadoRepository) {
+    public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository, EmpleadoRepository empleadoRepository, DefaultMeterObservationHandler defaultMeterObservationHandler) {
         this.pruebaRepository = pruebaRepository;
         this.interesadoRepository = interesadoRepository;
         this.vehiculoRepository = vehiculoRepository;
         this.empleadoRepository = empleadoRepository;
+        this.defaultMeterObservationHandler = defaultMeterObservationHandler;
     }
 
     @Override
@@ -94,6 +94,33 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     @Override
     public Prueba findPruebaFin(int id) {
         return this.pruebaRepository.findByIdAndFechaHoraFinIsNull(id);
+    }
+
+    @Override
+    public void controlarVehiculo(Vehiculo vehiculo) {
+        // Valido primero que el vehiculo este en alguna prueba
+        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo).isEmpty()) {
+            throw new RuntimeException("Vehiculo no esta en ninguna prueba");
+        }
+        // Si esta en alguna prueba, entonces obtengo su posicion actual
+        Posicion posicionActual = vehiculo.getPosiciones().get(vehiculo.getPosiciones().size() - 1);
+
+        // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
+        double latitudAgencia = 125.3796; // valor random
+        double longitudAgencia = 22.4379; // valor random
+        double distancia = Math.sqrt(Math.pow(posicionActual.getLatitud() - latitudAgencia, 2) +
+                Math.pow(posicionActual.getLongitud() - longitudAgencia, 2));
+        double radioPermitido = 55;
+        double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
+
+        // Si excede los limites permitidos se debe enviar una notificacion.
+        if (radioPermitido - distancia < 0) {
+            throw new RuntimeException("El vehiculo se encuentra fuera de los limites"); // Se deberia enviar la notificacion
+        }
+
+        if (zonaPeligrosa - distancia < 0) {
+            throw new RuntimeException("El vehiculo se encuentra en una zona peligrosa"); // Aca tambien notificar
+        }
     }
 
 
