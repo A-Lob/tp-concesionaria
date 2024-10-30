@@ -1,5 +1,6 @@
 package com.example.pruebas.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Empleado {
     // ------- Relacion: Empleado > Prueba -----------
     // Un empleado puede estar asociado a muchas pruebas (supervisar varias)
     @OneToMany(mappedBy = "empleado")
+    @JsonManagedReference
     private List<Prueba> pruebas;
 
 }

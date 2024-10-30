@@ -1,5 +1,6 @@
 package com.example.pruebas.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Vehiculo {
     // ------- Relacion: Vehiculo > Prueba -----------
     // Un vehículo puede tener muchas pruebas.
     @OneToMany(mappedBy = "vehiculo")
+    @JsonManagedReference
     private List<Prueba> pruebas;
 
     // ------- Relacion: Vehiculo > Posicion -----------
