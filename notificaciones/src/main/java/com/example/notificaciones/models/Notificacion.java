@@ -15,7 +15,6 @@ public class Notificacion {
     // Lo que se envia en cada notificacion
     private String contenido;
 
-    // Si es via sms, mail o whatsapp
-    private String tipoNotificacion;
+    private String detallePrueba;
 
 }

@@ -1,5 +1,6 @@
 package com.example.pruebas.services.implementations;
 
+import com.example.pruebas.dtos.NotificacionDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.repositories.InteresadoRepository;
@@ -8,7 +9,11 @@ import com.example.pruebas.repositories.VehiculoRepository;
 import com.example.pruebas.services.interfaces.PruebaService;
 import io.micrometer.core.instrument.observation.DefaultMeterObservationHandler;
 import jakarta.xml.bind.ValidationException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,14 +26,12 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     private final InteresadoRepository interesadoRepository;
     private final VehiculoRepository vehiculoRepository;
     private final EmpleadoRepository empleadoRepository;
-    private final DefaultMeterObservationHandler defaultMeterObservationHandler;
 
     public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository, EmpleadoRepository empleadoRepository, DefaultMeterObservationHandler defaultMeterObservationHandler) {
         this.pruebaRepository = pruebaRepository;
         this.interesadoRepository = interesadoRepository;
         this.vehiculoRepository = vehiculoRepository;
         this.empleadoRepository = empleadoRepository;
-        this.defaultMeterObservationHandler = defaultMeterObservationHandler;
     }
 
     @Override
@@ -106,16 +109,16 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         Posicion posicionActual = vehiculo.getPosiciones().get(vehiculo.getPosiciones().size() - 1);
 
         // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
-        double latitudAgencia = 125.3796; // valor random
-        double longitudAgencia = 22.4379; // valor random
+        double latitudAgencia = -34.603722; // valor random
+        double longitudAgencia = -58.381592; // valor random
         double distancia = Math.sqrt(Math.pow(posicionActual.getLatitud() - latitudAgencia, 2) +
                 Math.pow(posicionActual.getLongitud() - longitudAgencia, 2));
-        double radioPermitido = 55;
+        double radioPermitido = 0.05;
         double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
 
         // Si excede los limites permitidos se debe enviar una notificacion.
         if (radioPermitido - distancia < 0) {
-            throw new RuntimeException("El vehiculo se encuentra fuera de los limites"); // Se deberia enviar la notificacion
+            generarNotificacion("El vehiculo excede los limites", "Detalle no hay");
         }
 
         if (zonaPeligrosa - distancia < 0) {
@@ -123,5 +126,22 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         }
     }
 
-
+    public void generarNotificacion(String mensaje, String detallePrueba) {
+        // Creación de una instancia de RestTemplate
+        try {
+            RestTemplate template = new RestTemplate();
+            NotificacionDTO noti = new NotificacionDTO();
+            noti.setMensaje(mensaje);
+            noti.setDetallesPrueba(detallePrueba);
+            // Creación de la entidad a enviar
+            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(noti);
+            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
+            // notificacion.
+            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones", entity, NotificacionDTO.class
+            );
+        } catch (HttpClientErrorException exception) {
+            // La repuesta no es exitosa.
+            exception.printStackTrace();
+        }
+    }
 }

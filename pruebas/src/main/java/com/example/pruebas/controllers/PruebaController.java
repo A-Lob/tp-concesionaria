@@ -79,12 +79,15 @@ public class PruebaController {
         }
     }
 
-//    @GetMapping("/control/")
-//    public ResponseEntity<Object> getPruebasControl(@RequestBody VehiculoDTO vehiculo) {
-//        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(vehiculo.getIdVehiculo());
-//        try {
-//            pruebaService.controlarVehiculo(vehiculoLocal);
-//        }
-//    }
+    @GetMapping("/control/{idVehiculo}")
+    public ResponseEntity<Object> getPruebasControl(@PathVariable int idVehiculo) {
+        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(idVehiculo);
+        try {
+            pruebaService.controlarVehiculo(vehiculoLocal);
+            return new ResponseEntity<>(vehiculoLocal, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.pruebas.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,12 +35,14 @@ public class Vehiculo {
     // ------- Relacion: Vehiculo > Posicion -----------
     // Un vehículo puede tener muchas posiciones registradas
     @OneToMany(mappedBy = "vehiculo")
+    @JsonManagedReference
     private List<Posicion> posiciones;
 
     // ------- Relacion: Vehiculo > Modelo -----------
     // Varios vehículos puede estar asociados a un modelo.
     @ManyToOne
     @JoinColumn(name = "ID_MODELO", referencedColumnName = "ID")
+    @JsonBackReference
     private Modelo modelo;
 
 }

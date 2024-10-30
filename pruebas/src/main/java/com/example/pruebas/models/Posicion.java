@@ -1,5 +1,6 @@
 package com.example.pruebas.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,7 @@ public class Posicion {
     // Muchas posiciones están asociadas a un solo vehículo
     @ManyToOne
     @JoinColumn(name = "ID_VEHICULO", referencedColumnName = "ID")
+    @JsonBackReference
     private Vehiculo vehiculo;
 
 }
