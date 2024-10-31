@@ -15,14 +15,15 @@ public class NotificacionController {
 
     private NotificacionService notificacionService;
 
-    public NotificacionController(NotificacionService pruebaService) {
-        this.notificacionService = pruebaService;
+    public NotificacionController(NotificacionService notificacionService) {
+        this.notificacionService = notificacionService;
     }
 
     // Creacion de una nueva notificacion
     @PostMapping
     public ResponseEntity<Object> crearNotificacion(@RequestBody Notificacion notificacion) {
         try {
+            System.out.println(notificacion);
             Notificacion notiNueva = new Notificacion();
             notiNueva.setContenido(notificacion.getContenido());
             notiNueva.setDetallePrueba(notificacion.getDetallePrueba());

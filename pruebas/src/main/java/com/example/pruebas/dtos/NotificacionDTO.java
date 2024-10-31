@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class NotificacionDTO {
 
-    private String mensaje;
-    private String detallesPrueba;
+    private String contenido;
+    private String detallePrueba;
 
 }

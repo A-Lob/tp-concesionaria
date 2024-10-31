@@ -126,13 +126,15 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         }
     }
 
-    public void generarNotificacion(String mensaje, String detallePrueba) {
+    public void generarNotificacion(String contenido, String detallePrueba) {
         // Creación de una instancia de RestTemplate
         try {
             RestTemplate template = new RestTemplate();
             NotificacionDTO noti = new NotificacionDTO();
-            noti.setMensaje(mensaje);
-            noti.setDetallesPrueba(detallePrueba);
+            noti.setContenido(contenido);
+            noti.setDetallePrueba(detallePrueba);
+            System.out.println(noti.getDetallePrueba());
+            System.out.println(noti.getContenido());
             // Creación de la entidad a enviar
             HttpEntity<NotificacionDTO> entity = new HttpEntity<>(noti);
             // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
