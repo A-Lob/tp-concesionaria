@@ -13,7 +13,8 @@ public class GWconfig {
     @Bean
     public RouteLocator configurarRutas(RouteLocatorBuilder builder,
                                         @Value("${api-gateway.url-microservicio-pruebas}") String uriPruebas,
-                                        @Value("${api-gateway.url-microservicio-notificaciones") String uriNotificaciones){
+
+                                        @Value("${api-gateway.url-microservicio-notificaciones}") String uriNotificaciones){
         return builder.routes()
                 .route(serv -> serv.path("/api/pruebas/**").uri(uriPruebas))
                 .route(serv -> serv.path("/api/notificaciones/**").uri(uriNotificaciones)).build();
