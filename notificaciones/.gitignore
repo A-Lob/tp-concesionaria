@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Email-configuracion ###
-./src/main/resources/email.properties
+src/main/resources/email.properties
