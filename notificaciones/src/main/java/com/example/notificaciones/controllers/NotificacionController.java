@@ -20,14 +20,11 @@ public class NotificacionController {
     }
 
     // Creacion de una nueva notificacion
-    @PostMapping
+    @PostMapping("enviar-email")
     public ResponseEntity<Object> crearNotificacion(@RequestBody Notificacion notificacion) {
         try {
-            System.out.println(notificacion);
-            Notificacion notiNueva = new Notificacion();
-            notiNueva.setContenido(notificacion.getContenido());
-            notiNueva.setDetallePrueba(notificacion.getDetallePrueba());
             this.notificacionService.add(notificacion);
+            this.notificacionService.sendNotification(notificacion.getEmail(), notificacion.getAsunto(), notificacion.getContenido());
             return new ResponseEntity<>(notificacion, HttpStatus.CREATED);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);

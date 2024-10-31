@@ -99,51 +99,50 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         return this.pruebaRepository.findByIdAndFechaHoraFinIsNull(id);
     }
 
-    @Override
-    public void controlarVehiculo(Vehiculo vehiculo) {
-        // Valido primero que el vehiculo este en alguna prueba
-        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo).isEmpty()) {
-            throw new RuntimeException("Vehiculo no esta en ninguna prueba");
-        }
-        // Si esta en alguna prueba, entonces obtengo su posicion actual
-        Posicion posicionActual = vehiculo.getPosiciones().get(vehiculo.getPosiciones().size() - 1);
-
-        // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
-        double latitudAgencia = -34.603722; // valor random
-        double longitudAgencia = -58.381592; // valor random
-        double distancia = Math.sqrt(Math.pow(posicionActual.getLatitud() - latitudAgencia, 2) +
-                Math.pow(posicionActual.getLongitud() - longitudAgencia, 2));
-        double radioPermitido = 0.05;
-        double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
-
-        // Si excede los limites permitidos se debe enviar una notificacion.
-        if (radioPermitido - distancia < 0) {
-            generarNotificacion("El vehiculo excede los limites", "Detalle no hay");
-        }
-
-        if (zonaPeligrosa - distancia < 0) {
-            throw new RuntimeException("El vehiculo se encuentra en una zona peligrosa"); // Aca tambien notificar
-        }
-    }
-
-    public void generarNotificacion(String contenido, String detallePrueba) {
-        // Creación de una instancia de RestTemplate
-        try {
-            RestTemplate template = new RestTemplate();
-            NotificacionDTO noti = new NotificacionDTO();
-            noti.setContenido(contenido);
-            noti.setDetallePrueba(detallePrueba);
-            System.out.println(noti.getDetallePrueba());
-            System.out.println(noti.getContenido());
-            // Creación de la entidad a enviar
-            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(noti);
-            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
-            // notificacion.
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones", entity, NotificacionDTO.class
-            );
-        } catch (HttpClientErrorException exception) {
-            // La repuesta no es exitosa.
-            exception.printStackTrace();
-        }
-    }
+//    @Override
+//    public void controlarVehiculo(Vehiculo vehiculo) {
+//        // Valido primero que el vehiculo este en alguna prueba
+//        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo).isEmpty()) {
+//            throw new RuntimeException("Vehiculo no esta en ninguna prueba");
+//        }
+//        // Si esta en alguna prueba, entonces obtengo su posicion actual
+//        Posicion posicionActual = vehiculo.getPosiciones().get(vehiculo.getPosiciones().size() - 1);
+//
+//        // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
+//        double latitudAgencia = -34.603722; // valor random
+//        double longitudAgencia = -58.381592; // valor random
+//        double distancia = Math.sqrt(Math.pow(posicionActual.getLatitud() - latitudAgencia, 2) +
+//                Math.pow(posicionActual.getLongitud() - longitudAgencia, 2));
+//        double radioPermitido = 0.05;
+//        double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
+//
+//        // Si excede los limites permitidos se debe enviar una notificacion.
+//        if (radioPermitido - distancia < 0) {
+//            generarNotificacion("mail@gmail.com","El vehiculo excede los limites", "Detalle no hay");
+//        }
+//
+//        if (zonaPeligrosa - distancia < 0) {
+//            throw new RuntimeException("El vehiculo se encuentra en una zona peligrosa"); // Aca tambien notificar
+//        }
+//    }
+//
+//    public void generarNotificacion(String email, String asunto, String contenido) {
+//        // Creación de una instancia de RestTemplate
+//        try {
+//            RestTemplate template = new RestTemplate();
+//            NotificacionDTO notificacion = new NotificacionDTO();
+//            notificacion.setEmail(email);
+//            notificacion.setAsunto(asunto);
+//            notificacion.setContenido(contenido);
+//            // Creación de la entidad a enviar
+//            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
+//            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
+//            // notificacion.
+//            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-email", entity, NotificacionDTO.class
+//            );
+//        } catch (HttpClientErrorException exception) {
+//            // La repuesta no es exitosa.
+//            exception.printStackTrace();
+//        }
+//    }
 }

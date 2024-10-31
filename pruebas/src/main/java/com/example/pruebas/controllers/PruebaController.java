@@ -2,7 +2,6 @@ package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.FinPruebaDTO;
 import com.example.pruebas.dtos.PruebaDTO;
-import com.example.pruebas.dtos.VehiculoDTO;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.implementations.PruebaServiceImpl;
@@ -79,15 +78,15 @@ public class PruebaController {
         }
     }
 
-    @GetMapping("/control/{idVehiculo}")
-    public ResponseEntity<Object> getPruebasControl(@PathVariable int idVehiculo) {
-        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(idVehiculo);
-        try {
-            pruebaService.controlarVehiculo(vehiculoLocal);
-            return new ResponseEntity<>(vehiculoLocal, HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @GetMapping("/control/{idVehiculo}")
+//    public ResponseEntity<Object> getPruebasControl(@PathVariable int idVehiculo) {
+//        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(idVehiculo);
+//        try {
+//            pruebaService.controlarVehiculo(vehiculoLocal);
+//            return new ResponseEntity<>(vehiculoLocal, HttpStatus.OK);
+//        } catch (Exception exception) {
+//            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 }
