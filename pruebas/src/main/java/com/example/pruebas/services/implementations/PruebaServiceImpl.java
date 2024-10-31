@@ -1,6 +1,8 @@
 package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.dtos.NotificacionDTO;
+import com.example.pruebas.dtos.PosicionDTO;
+import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.repositories.InteresadoRepository;
@@ -8,7 +10,7 @@ import com.example.pruebas.repositories.PruebaRepository;
 import com.example.pruebas.repositories.VehiculoRepository;
 import com.example.pruebas.services.interfaces.PruebaService;
 import io.micrometer.core.instrument.observation.DefaultMeterObservationHandler;
-import jakarta.xml.bind.ValidationException;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
+public class PruebaServiceImpl implements PruebaService {
 
     private final PruebaRepository pruebaRepository;
     private final InteresadoRepository interesadoRepository;
@@ -35,22 +37,33 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     @Override
-    public void add(Prueba prueba) throws ValidationException {
-        // Obtengo el interesado de hacer la prueba
-        Interesado interesado = prueba.getInteresado();
+    public void add(PruebaDTO solicitudPrueba) {
+        // Se comienza una nueva prueba
+        Prueba nuevaPrueba = new Prueba();
+
+        // Obtengo el interesado en realizar la prueba
+        Interesado interesado = interesadoRepository.findById(solicitudPrueba.getIdInteresado());
 
         // Valido si el interesado tiene restricciones o bien si la licencia esta vencida
         if (interesado.isRestringido() || interesado.getFechaVencimientoLicencia().isBefore(LocalDate.now())) {
-            throw new ValidationException("El interesado tiene restricciones o la licencia esta vencida");
+            throw new RuntimeException ("El interesado tiene restricciones o la licencia esta vencida");
         }
 
-        // Valido que el vehiculo solicitado no este en una prueba en curso
-        List<Prueba> pruebas = pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(prueba.getVehiculo());
-        if (!pruebas.isEmpty()) {
-            throw new ValidationException("El vehiculo esta siendo utilizado en otra prueba");
+        // Obtengo el vehiculo que se requiere para la prueba
+        Vehiculo vehiculo = vehiculoRepository.findById(solicitudPrueba.getIdVehiculo());
+
+        // Valido que el vehiculo no este en alguna prueba y si esta que la prueba haya finalizado
+        Prueba prueba = pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo);
+        if (prueba != null) {
+            throw new RuntimeException("El vehiculo esta siendo utilizado en otra prueba");
         }
-        // Si no hay condiciones adversas, se procede a registrar la prueba.
-        this.pruebaRepository.save(prueba);
+
+        // Si no hay condiciones adversas, se procede a registrar la prueba asignando un empleado.
+        nuevaPrueba.setInteresado(interesado);
+        nuevaPrueba.setVehiculo(vehiculo);
+        nuevaPrueba.setEmpleado(empleadoRepository.findByLegajo(solicitudPrueba.getLegajoEmpleado()));
+        nuevaPrueba.setFechaHoraInicio(LocalDateTime.now());
+        this.pruebaRepository.save(nuevaPrueba);
     }
 
     @Override
@@ -58,36 +71,6 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         this.pruebaRepository.save(prueba);
     }
 
-    @Override
-    public void delete(Integer id) {
-        Prueba prueba = this.pruebaRepository.findById(id).orElseThrow();
-        this.pruebaRepository.delete(prueba);
-    }
-
-    @Override
-    public Prueba findById(Integer id) {
-        return this.pruebaRepository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public List<Prueba> findAll() {
-        return this.pruebaRepository.findAll();
-    }
-
-    @Override
-    public Interesado AssignInteresadoToPrueba(int id) {
-        return this.interesadoRepository.findById(id);
-    }
-
-    @Override
-    public Vehiculo AssignVehiculoToPrueba(int id) {
-        return this.vehiculoRepository.findById(id);
-    }
-
-    @Override
-    public Empleado AssignEmpleadoToPrueba(int legajo) {
-        return this.empleadoRepository.findByLegajo(legajo);
-    }
 
     @Override
     public List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora) {
@@ -99,50 +82,65 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         return this.pruebaRepository.findByIdAndFechaHoraFinIsNull(id);
     }
 
-//    @Override
-//    public void controlarVehiculo(Vehiculo vehiculo) {
-//        // Valido primero que el vehiculo este en alguna prueba
-//        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo).isEmpty()) {
-//            throw new RuntimeException("Vehiculo no esta en ninguna prueba");
-//        }
-//        // Si esta en alguna prueba, entonces obtengo su posicion actual
-//        Posicion posicionActual = vehiculo.getPosiciones().get(vehiculo.getPosiciones().size() - 1);
-//
-//        // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
-//        double latitudAgencia = -34.603722; // valor random
-//        double longitudAgencia = -58.381592; // valor random
-//        double distancia = Math.sqrt(Math.pow(posicionActual.getLatitud() - latitudAgencia, 2) +
-//                Math.pow(posicionActual.getLongitud() - longitudAgencia, 2));
-//        double radioPermitido = 0.05;
-//        double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
-//
-//        // Si excede los limites permitidos se debe enviar una notificacion.
-//        if (radioPermitido - distancia < 0) {
-//            generarNotificacion("mail@gmail.com","El vehiculo excede los limites", "Detalle no hay");
-//        }
-//
-//        if (zonaPeligrosa - distancia < 0) {
-//            throw new RuntimeException("El vehiculo se encuentra en una zona peligrosa"); // Aca tambien notificar
-//        }
-//    }
-//
-//    public void generarNotificacion(String email, String asunto, String contenido) {
-//        // Creación de una instancia de RestTemplate
-//        try {
-//            RestTemplate template = new RestTemplate();
-//            NotificacionDTO notificacion = new NotificacionDTO();
-//            notificacion.setEmail(email);
-//            notificacion.setAsunto(asunto);
-//            notificacion.setContenido(contenido);
-//            // Creación de la entidad a enviar
-//            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
-//            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
-//            // notificacion.
-//            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-email", entity, NotificacionDTO.class
-//            );
-//        } catch (HttpClientErrorException exception) {
-//            // La repuesta no es exitosa.
-//            exception.printStackTrace();
-//        }
-//    }
+    @Override
+    public void controlarVehiculo(PosicionDTO posicion) {
+        // Obtengo el vehiculo que esta siendo evaluado
+        Vehiculo vehiculo = vehiculoRepository.findById(posicion.getIdVehiculo());
+
+        // Valido que el vehiculo este en alguna prueba en curso
+        Prueba prueba = this.pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo);
+        if (prueba == null) {
+            throw new RuntimeException("El vehiculo no se encuentra en ninguna prueba");
+        }
+
+        // Calculo la distancia del vehiculo respecto de la ubicacion de la agencia
+        double latitudAgencia = -34.603722; // valor random
+        double longitudAgencia = -58.381592; // valor random
+        double distancia = Math.sqrt(Math.pow(posicion.getLatitud() - latitudAgencia, 2) +
+                Math.pow(posicion.getLongitud() - longitudAgencia, 2));
+        double radioPermitido = 0.05;
+        double zonaPeligrosa = 689; // Se debe realizar un calculo tambien para zonas peligrosas
+
+        // Si excede los limites permitidos se debe enviar una notificacion.
+        if (radioPermitido - distancia < 0) {
+            // Debo enviar una notificacion al empleado que supervisa la prueba para advertir la situacion
+            generarNotificacion(prueba.getEmpleado().getEmail(),
+                    "Aviso de restriccion",
+                    "El vehiculo con patente: " + vehiculo.getPatente()
+                            + " que inicio una prueba en el dia y hora: " + prueba.getFechaHoraInicio()
+                            + " excedio los limites permitidos, el vehiculo debe regresar de inmediato");
+
+            // Se establece al interesado como restringido para que no pueda relizar mas pruebas
+            Interesado interesado = prueba.getInteresado();
+            interesado.setRestringido(true);
+            interesadoRepository.save(interesado);
+        }
+
+        // Todavia nose las listas de zonas peligrosas
+        if (zonaPeligrosa - distancia < 0) {
+            throw new RuntimeException("El vehiculo se encuentra en una zona peligrosa"); // Aca tambien notificar
+        }
+    }
+
+    // Se debe enviar una peticion al microservicio de notificaciones para que procese la informacion,
+    // genere la notificacion y la envie a quien corresponda
+    public void generarNotificacion(String email, String asunto, String contenido) {
+        // Creación de una instancia de RestTemplate
+        try {
+            RestTemplate template = new RestTemplate();
+            NotificacionDTO notificacion = new NotificacionDTO();
+            notificacion.setEmail(email);
+            notificacion.setAsunto(asunto);
+            notificacion.setContenido(contenido);
+            // Creación de la entidad a enviar
+            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
+            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
+            // notificacion.
+            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-email", entity, NotificacionDTO.class
+            );
+        } catch (HttpClientErrorException exception) {
+            // La repuesta no es exitosa.
+            exception.printStackTrace();
+        }
+    }
 }

@@ -27,6 +27,9 @@ public class Empleado {
     @Column(name = "TELEFONO_CONTACTO")
     private int telefonoContacto;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     // ------- Relacion: Empleado > Prueba -----------
     // Un empleado puede estar asociado a muchas pruebas (supervisar varias)
     @OneToMany(mappedBy = "empleado")

@@ -12,8 +12,9 @@ import java.util.List;
 @Repository
 public interface PruebaRepository extends JpaRepository<Prueba, Integer> {
 
-    List<Prueba> findByVehiculoAndFechaHoraFinIsNull(Vehiculo vehiculo);
+    Prueba findByVehiculoAndFechaHoraFinIsNull(Vehiculo vehiculo);
     List<Prueba> findByFechaHoraInicioBeforeAndFechaHoraFinIsNull(LocalDateTime fechaHora);
     Prueba findByIdAndFechaHoraFinIsNull(Integer id);
+    Prueba findByVehiculo(Vehiculo vehiculo);
 
 }

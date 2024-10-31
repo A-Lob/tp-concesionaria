@@ -22,8 +22,7 @@ public class Interesado {
     private int id;
 
     @Column(name = "TIPO_DOCUMENTO")
-    private int tipoDocumento;
-
+    private String tipoDocumento = "DNI";
     @Column(name = "DOCUMENTO")
     private String documento;
 
@@ -32,7 +31,7 @@ public class Interesado {
     @Column(name = "APELLIDO")
     private String apellido;
     @Column(name = "RESTRINGIDO")
-    private boolean restringido;
+    private boolean restringido = false;
 
     @Column(name = "NRO_LICENCIA")
     private int numeroLicencia;

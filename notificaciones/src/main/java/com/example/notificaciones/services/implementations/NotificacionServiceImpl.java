@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class NotificacionServiceImpl extends ServiceImpl<Notificacion, Integer> implements NotificacionService {
+public class NotificacionServiceImpl implements NotificacionService {
 
     private final NotificacionRepository notificacionRepository;
     private final JavaMailSender mailSender;
@@ -23,27 +23,6 @@ public class NotificacionServiceImpl extends ServiceImpl<Notificacion, Integer> 
     @Override
     public void add(Notificacion notificacion) {
         this.notificacionRepository.save(notificacion);
-    }
-
-
-    @Override
-    public void update(Notificacion notificacion) {
-        this.notificacionRepository.save(notificacion);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        Notificacion notificacion = this.notificacionRepository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public Notificacion findById(Integer id) {
-        return this.notificacionRepository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public List<Notificacion> findAll() {
-        return this.notificacionRepository.findAll();
     }
 
     @Override

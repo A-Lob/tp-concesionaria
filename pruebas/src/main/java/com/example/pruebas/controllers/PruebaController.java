@@ -1,6 +1,7 @@
 package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.FinPruebaDTO;
+import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
@@ -24,22 +25,12 @@ public class PruebaController {
     }
 
     // 1.a) Crear una nueva prueba, haciendo las validaciones correspondientes
-    @PostMapping
-    public ResponseEntity<Object> crearPrueba(@RequestBody PruebaDTO prueba) {
+    @PostMapping("/nueva-prueba")
+    public ResponseEntity<Object> crearPrueba(@RequestBody PruebaDTO solicitudPrueba) {
         try {
-            // Se prepara una nueva prueba
-            Prueba nuevaPrueba = new Prueba();
-
-            // Se asigna el interesado, el vehiculo y el empleado correspondiente que supervisara
-            // la prueba.
-            nuevaPrueba.setInteresado(pruebaService.AssignInteresadoToPrueba(prueba.getIdInteresado()));
-            nuevaPrueba.setVehiculo(pruebaService.AssignVehiculoToPrueba(prueba.getIdVehiculo()));
-            nuevaPrueba.setEmpleado(pruebaService.AssignEmpleadoToPrueba(prueba.getLegajoEmpleado()));
-            nuevaPrueba.setFechaHoraInicio(LocalDateTime.now());
-
             // Se envian los datos a la bd y se realizan las validaciones correspondientes
-            this.pruebaService.add(nuevaPrueba);
-            return new ResponseEntity<>(prueba, HttpStatus.CREATED);
+            this.pruebaService.add(solicitudPrueba);
+            return new ResponseEntity<>(solicitudPrueba, HttpStatus.CREATED);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -47,7 +38,7 @@ public class PruebaController {
 
     // 1.b) Listar pruebas en curso en un momento dado
     // Se envia la fecha-hora en la ruta
-    @GetMapping("/{fechaHora}")
+    @GetMapping("/listar-pruebas/{fechaHora}")
     public ResponseEntity<List<Prueba>> getPruebas(@PathVariable String fechaHora) {
         try {
             // Obtengo las pruebas activas en el momento de la bd, es decir las que la fecha de fin no
@@ -58,12 +49,13 @@ public class PruebaController {
             return ResponseEntity.notFound().build();
         }
     }
+
     // 1.c) Finalizar una prueba, permitiéndole al empleado agregar un comentario
     // sobre la misma.
-    @PatchMapping("/{id}")
+    @PutMapping("/finalizar-prueba/{id}")
     public ResponseEntity<Object> finalizarPrueba(@PathVariable int id, @RequestBody FinPruebaDTO prueba) {
         try {
-            // Busco las prueba por su id en la bd y no debe estar finalizada.
+            // Busco la prueba por su id en la bd y no debe estar finalizada.
             Prueba pruebaLocal = this.pruebaService.findPruebaFin(id);
 
             // El empleado puede asignar el comentario y finaliza la prueba
@@ -78,15 +70,14 @@ public class PruebaController {
         }
     }
 
-//    @GetMapping("/control/{idVehiculo}")
-//    public ResponseEntity<Object> getPruebasControl(@PathVariable int idVehiculo) {
-//        Vehiculo vehiculoLocal = pruebaService.AssignVehiculoToPrueba(idVehiculo);
-//        try {
-//            pruebaService.controlarVehiculo(vehiculoLocal);
-//            return new ResponseEntity<>(vehiculoLocal, HttpStatus.OK);
-//        } catch (Exception exception) {
-//            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PostMapping("/controlar-vehiculo")
+    public ResponseEntity<Object> evaluarPosicion(@RequestBody PosicionDTO posicion) {
+        try {
+            this.pruebaService.controlarVehiculo(posicion);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }

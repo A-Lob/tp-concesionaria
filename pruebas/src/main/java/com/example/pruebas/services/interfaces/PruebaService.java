@@ -1,21 +1,18 @@
 package com.example.pruebas.services.interfaces;
 
-import com.example.pruebas.models.Empleado;
-import com.example.pruebas.models.Interesado;
+import com.example.pruebas.dtos.PosicionDTO;
+import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.Prueba;
-import com.example.pruebas.models.Vehiculo;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface PruebaService extends Service<Prueba, Integer> {
+public interface PruebaService {
 
-    Interesado AssignInteresadoToPrueba(int id);
-    Vehiculo AssignVehiculoToPrueba(int id);
-    Empleado AssignEmpleadoToPrueba(int id);
+    void add (PruebaDTO prueba);
+    void update (Prueba prueba);
     List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora);
     Prueba findPruebaFin(int id);
-    //void controlarVehiculo(Vehiculo vehiculo);
-
+    void controlarVehiculo(PosicionDTO posicion);
 
 }
