@@ -19,8 +19,8 @@ public class NotificacionController {
         this.notificacionService = notificacionService;
     }
 
-    // Creacion de una nueva notificacion
-    @PostMapping("enviar-email")
+    // Creacion de una nueva notificacion de alerta
+    @PostMapping("/enviar-alerta")
     public ResponseEntity<Object> crearNotificacion(@RequestBody Notificacion notificacion) {
         try {
             this.notificacionService.add(notificacion);

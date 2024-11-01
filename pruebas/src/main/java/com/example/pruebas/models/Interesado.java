@@ -39,6 +39,9 @@ public class Interesado {
     @Column(name = "FECHA_VENCIMIENTO_LICENCIA")
     private LocalDate fechaVencimientoLicencia;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     // Un interesado puede realizar muchas pruebas.
     @OneToMany(mappedBy = "interesado")
     @JsonManagedReference

@@ -2,6 +2,7 @@ package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.dtos.NotificacionDTO;
 import com.example.pruebas.dtos.PosicionDTO;
+import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.EmpleadoRepository;
@@ -105,7 +106,7 @@ public class PruebaServiceImpl implements PruebaService {
         if (radioPermitido - distancia < 0) {
             // Debo enviar una notificacion al empleado que supervisa la prueba para advertir la situacion
             generarNotificacion(prueba.getEmpleado().getEmail(),
-                    "Aviso de restriccion",
+                    "Alerta",
                     "El vehiculo con patente: " + vehiculo.getPatente()
                             + " que inicio una prueba en el dia y hora: " + prueba.getFechaHoraInicio()
                             + " excedio los limites permitidos, el vehiculo debe regresar de inmediato");
@@ -122,6 +123,21 @@ public class PruebaServiceImpl implements PruebaService {
         }
     }
 
+    @Override
+    public void enviarPromociones(PromocionDTO promocion) {
+        // Obtengo los interesados registrados en el sistema
+        List<Interesado> interesados = interesadoRepository.findAll();
+        if (interesados.isEmpty()) {
+            new RuntimeException("No hay interesados en pruebas");
+        } else {
+            interesados.forEach(interesado -> {
+                generarNotificacion(
+                        interesado.getEmail(), promocion.getAsunto(), promocion.getContenido());
+            });
+        }
+    }
+
+
     // Se debe enviar una peticion al microservicio de notificaciones para que procese la informacion,
     // genere la notificacion y la envie a quien corresponda
     public void generarNotificacion(String email, String asunto, String contenido) {
@@ -136,7 +152,7 @@ public class PruebaServiceImpl implements PruebaService {
             HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
             // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
             // notificacion.
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-email", entity, NotificacionDTO.class
+            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta", entity, NotificacionDTO.class
             );
         } catch (HttpClientErrorException exception) {
             // La repuesta no es exitosa.

@@ -1,8 +1,6 @@
 package com.example.pruebas.controllers;
 
-import com.example.pruebas.dtos.FinPruebaDTO;
-import com.example.pruebas.dtos.PosicionDTO;
-import com.example.pruebas.dtos.PruebaDTO;
+import com.example.pruebas.dtos.*;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.implementations.PruebaServiceImpl;
@@ -79,5 +77,15 @@ public class PruebaController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/promocionar-pruebas")
+    public ResponseEntity<Object> enviarPromociones(PromocionDTO promocion) {
+        try {
+            this.pruebaService.enviarPromociones(promocion);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    };
 
 }
