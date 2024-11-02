@@ -1,7 +1,9 @@
 package com.example.pruebas.services.interfaces;
 
-public interface InteresadoService {
+import com.example.pruebas.models.Interesado;
 
-    void update(int id);
+import java.util.List;
+
+public interface InteresadoService extends Service<Interesado, Integer> {
 
 }

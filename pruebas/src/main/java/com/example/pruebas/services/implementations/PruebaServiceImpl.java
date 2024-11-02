@@ -3,15 +3,11 @@ package com.example.pruebas.services.implementations;
 import com.example.pruebas.dtos.NotificacionDTO;
 import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.PromocionDTO;
-import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.*;
-import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.repositories.InteresadoRepository;
 import com.example.pruebas.repositories.PruebaRepository;
 import com.example.pruebas.repositories.VehiculoRepository;
 import com.example.pruebas.services.interfaces.PruebaService;
-import io.micrometer.core.instrument.observation.DefaultMeterObservationHandler;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,46 +19,32 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class PruebaServiceImpl implements PruebaService {
+public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
 
     private final PruebaRepository pruebaRepository;
     private final InteresadoRepository interesadoRepository;
     private final VehiculoRepository vehiculoRepository;
-    private final EmpleadoRepository empleadoRepository;
 
-    public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository, EmpleadoRepository empleadoRepository, DefaultMeterObservationHandler defaultMeterObservationHandler) {
+    public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository) {
         this.pruebaRepository = pruebaRepository;
         this.interesadoRepository = interesadoRepository;
         this.vehiculoRepository = vehiculoRepository;
-        this.empleadoRepository = empleadoRepository;
     }
 
     @Override
-    public void add(PruebaDTO solicitudPrueba) {
-        // Se comienza una nueva prueba
-        Prueba nuevaPrueba = new Prueba();
-
-        // Obtengo el interesado en realizar la prueba
-        Interesado interesado = interesadoRepository.findById(solicitudPrueba.getIdInteresado());
+    public void add(Prueba nuevaPrueba) {
 
         // Valido si el interesado tiene restricciones o bien si la licencia esta vencida
-        if (interesado.isRestringido() || interesado.getFechaVencimientoLicencia().isBefore(LocalDate.now())) {
+        if (nuevaPrueba.getInteresado().isRestringido() || nuevaPrueba.getInteresado().getFechaVencimientoLicencia().isBefore(LocalDate.now())) {
             throw new RuntimeException ("El interesado tiene restricciones o la licencia esta vencida");
         }
 
-        // Obtengo el vehiculo que se requiere para la prueba
-        Vehiculo vehiculo = vehiculoRepository.findById(solicitudPrueba.getIdVehiculo());
-
         // Valido que el vehiculo no este en alguna prueba y si esta que la prueba haya finalizado
-        Prueba prueba = pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo);
-        if (prueba != null) {
+        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(nuevaPrueba.getVehiculo()) != null) {
             throw new RuntimeException("El vehiculo esta siendo utilizado en otra prueba");
         }
 
-        // Si no hay condiciones adversas, se procede a registrar la prueba asignando un empleado.
-        nuevaPrueba.setInteresado(interesado);
-        nuevaPrueba.setVehiculo(vehiculo);
-        nuevaPrueba.setEmpleado(empleadoRepository.findByLegajo(solicitudPrueba.getLegajoEmpleado()));
+        // Si no hay condiciones adversas, se procede a registrar la prueba.
         nuevaPrueba.setFechaHoraInicio(LocalDateTime.now());
         this.pruebaRepository.save(nuevaPrueba);
     }
@@ -70,6 +52,21 @@ public class PruebaServiceImpl implements PruebaService {
     @Override
     public void update(Prueba prueba) {
         this.pruebaRepository.save(prueba);
+    }
+
+    @Override
+    public void delete(Integer id) {
+
+    }
+
+    @Override
+    public Prueba findById(Integer id) {
+        return this.pruebaRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public List<Prueba> findAll() {
+        return this.pruebaRepository.findAll();
     }
 
 

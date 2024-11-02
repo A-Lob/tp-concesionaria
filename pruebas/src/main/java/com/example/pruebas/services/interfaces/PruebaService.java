@@ -9,10 +9,8 @@ import com.example.pruebas.models.Prueba;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface PruebaService {
+public interface PruebaService extends Service<Prueba, Integer> {
 
-    void add (PruebaDTO prueba);
-    void update (Prueba prueba);
     List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora);
     Prueba findPruebaFin(int id);
     void controlarVehiculo(PosicionDTO posicion);
