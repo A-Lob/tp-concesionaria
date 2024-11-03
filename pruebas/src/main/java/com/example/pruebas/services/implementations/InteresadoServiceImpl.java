@@ -32,6 +32,7 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
         this.interesadoRepository.delete(interesado);
     }
 
+
     @Override
     public Interesado findById(Integer id) {
         return this.interesadoRepository.findById(id).orElseThrow();

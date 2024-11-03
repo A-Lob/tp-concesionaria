@@ -43,7 +43,7 @@ public class Interesado {
     private String email;
 
     // Un interesado puede realizar muchas pruebas.
-    @OneToMany(mappedBy = "interesado")
+    @OneToMany(mappedBy = "interesado", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Prueba> pruebas;
 
