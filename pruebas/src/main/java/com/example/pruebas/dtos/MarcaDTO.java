@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PruebaDTO {
-
-    private int idInteresado;
-    private int idVehiculo;
-    private int legajoEmpleado;
+public class MarcaDTO {
+    private String nombre;
+    //private List<ModeloDTO> modelos;
 
 }

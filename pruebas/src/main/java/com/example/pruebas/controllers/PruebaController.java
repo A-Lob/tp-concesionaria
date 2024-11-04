@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -66,6 +67,25 @@ public class PruebaController {
         }
     }
 
+    //ES PARA CREAR DTOS COMPUESTOS
+    @GetMapping("/todas")
+    public ResponseEntity<List<PruebaDTO>> getPruebasAll() {
+        try {
+            List<Prueba> pruebas = pruebaService.findAll();
+            List<PruebaDTO> dtos = pruebas.stream().map(p -> {
+                        PruebaDTO dto = new PruebaDTO();
+                        dto.setIdInteresado(p.getInteresado().getId());
+                        dto.setIdVehiculo(p.getVehiculo().getId());
+                        dto.setLegajoEmpleado(p.getEmpleado().getLegajo());
+                        return dto;
+                    }
+            ).toList();
+            return ResponseEntity.ok().body(dtos);
+        } catch (Exception exception) {
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
     // 1.c) Finalizar una prueba, permitiéndole al empleado agregar un comentario
     // sobre la misma.
     @PutMapping("/finalizar-prueba/{id}")
@@ -104,6 +124,6 @@ public class PruebaController {
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
-    };
+    }
 
 }
