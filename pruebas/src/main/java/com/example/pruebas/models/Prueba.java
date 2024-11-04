@@ -2,6 +2,7 @@ package com.example.pruebas.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +22,13 @@ public class Prueba {
     private int id;
 
     @Column(name = "FECHA_HORA_INICIO")
-    private LocalDateTime fechaHoraInicio;
+    private LocalDateTime fechaHoraInicio = LocalDateTime.now();
 
     @Column(name = "FECHA_HORA_FIN")
-    private LocalDateTime fechaHoraFin;
-    @Column(name = "COMENTARIOS")
+    private LocalDateTime fechaHoraFin = LocalDateTime.now();
+
+    @Column(name = "COMENTARIOS", nullable = false, length = 500)
+    @Size(max = 500, message = "Los comentarios no deben superar los 500 caracteres")
     private String comentario;
 
     // ------- Relacion: Prueba > Empleado -----------
