@@ -21,18 +21,18 @@ public class Posicion {
     private int id;
 
     @Column(name = "FECHA_HORA")
-    private LocalDateTime fechaHora;
+    private LocalDateTime fechaHora = LocalDateTime.now();
 
-    @Column(name = "LATITUD")
+    @Column(name = "LATITUD", nullable = false)
     private float latitud;
 
-    @Column(name="LONGITUD")
+    @Column(name="LONGITUD", nullable = false)
     private float longitud;
 
     // ------- Relacion: Posicion > Vehiculo -----------
     // Muchas posiciones están asociadas a un solo vehículo
     @ManyToOne
-    @JoinColumn(name = "ID_VEHICULO", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_VEHICULO", referencedColumnName = "ID", nullable = false)
     @JsonBackReference
     private Vehiculo vehiculo;
 

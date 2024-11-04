@@ -19,7 +19,7 @@ public class Modelo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
-    @Column(name="DESCRIPCION")
+    @Column(name="DESCRIPCION", nullable = false)
     private String descripcion;
 
     // ------- Relacion: Modelo > Vehiculo -----------

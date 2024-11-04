@@ -2,6 +2,7 @@ package com.example.pruebas.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,25 +22,33 @@ public class Interesado {
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "TIPO_DOCUMENTO")
+    @Column(name = "TIPO_DOCUMENTO", nullable = false, length = 3)
+    @Size(max = 3, message = "El tipo de Documento no debe superar los 3 caracteres")
     private String tipoDocumento = "DNI";
-    @Column(name = "DOCUMENTO")
+
+    @Column(name = "DOCUMENTO", nullable = false, length = 10)
+    @Size(max = 10, message = "El Documento no puede superar los 10 caracteres")
     private String documento;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", nullable = false, length = 50)
+    @Size(max = 50, message = "El Nombre no puede superar los 50 caracteres")
     private String nombre;
-    @Column(name = "APELLIDO")
+
+    @Column(name = "APELLIDO", nullable = false, length = 50)
+    @Size(max = 50, message = "El Apellido no puede superar los 50 caracteres")
     private String apellido;
+
     @Column(name = "RESTRINGIDO")
     private boolean restringido = false;
 
-    @Column(name = "NRO_LICENCIA")
+    @Column(name = "NRO_LICENCIA", nullable = false)
     private int numeroLicencia;
 
-    @Column(name = "FECHA_VENCIMIENTO_LICENCIA")
+    @Column(name = "FECHA_VENCIMIENTO_LICENCIA", nullable = false)
     private LocalDate fechaVencimientoLicencia;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", nullable = false)
+    @Size(max = 255, message = "El Mail no puede superar los 255 caracteres")
     private String email;
 
     // Un interesado puede realizar muchas pruebas.

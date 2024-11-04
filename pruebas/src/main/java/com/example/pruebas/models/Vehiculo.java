@@ -3,6 +3,7 @@ package com.example.pruebas.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,11 @@ public class Vehiculo {
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "PATENTE")
+    @Column(name = "PATENTE", nullable = false)
     private String patente;
-    @Column(name = "ANIO")
-    private int anio;
+    @Column(name = "ANIO", nullable = false, length = 4)
+    @Size(max = 4, message = "El año no debe superar los 4 caracteres")
+    private int anio = 2019;
 
     // ------- Relacion: Vehiculo > Prueba -----------
     // Un vehículo puede tener muchas pruebas.
