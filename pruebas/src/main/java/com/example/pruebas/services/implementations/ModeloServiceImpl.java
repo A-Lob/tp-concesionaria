@@ -32,7 +32,7 @@ public class ModeloServiceImpl extends ServiceImpl<Modelo, Integer> implements M
 
     @Override
     public Modelo findById(Integer id) {
-        return null;
+        return modeloRepository.findById(id).orElseThrow();
     }
 
     @Override

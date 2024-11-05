@@ -4,10 +4,13 @@ import com.example.pruebas.dtos.ModeloDTO;
 import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.dtos.VehiculoDTO;
+import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
+import com.example.pruebas.models.Modelo;
 import com.example.pruebas.models.Posicion;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
+import com.example.pruebas.repositories.ModeloRepository;
 import com.example.pruebas.repositories.PosicionRepository;
 import com.example.pruebas.repositories.PruebaRepository;
 import com.example.pruebas.repositories.VehiculoRepository;
@@ -23,12 +26,14 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     private final VehiculoRepository vehiculoRepository;
     private final PruebaRepository pruebaRepository;
     private final PosicionRepository posicionRepository;
+    private final ModeloRepository modeloRepository;
 
-
-    public VehiculoServiceImpl(VehiculoRepository vehiculoRepository, PruebaRepository pruebaRepository, PosicionRepository posicionRepository) {
+    public VehiculoServiceImpl(VehiculoRepository vehiculoRepository, PruebaRepository pruebaRepository,
+                               PosicionRepository posicionRepository, ModeloRepository modeloRepository) {
         this.vehiculoRepository = vehiculoRepository;
         this.pruebaRepository = pruebaRepository;
         this.posicionRepository = posicionRepository;
+        this.modeloRepository = modeloRepository;
 
     }
 
@@ -168,5 +173,20 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         }).toList();
         posicionDtos = posicionDtos.stream().filter(e -> e.getIdVehiculo() == id).toList();
         return posicionDtos;
+    }
+
+
+    public void actualizarVehiculo(int id, VehiculoDTO vehiculoDTO ) {
+        DetalleVehiculoDTO  detalleVehiculoDTO =  obtenerDetalleVehiculo(id);
+        detalleVehiculoDTO.setVehiculo(vehiculoDTO);
+        Vehiculo vehiculo = findById(id);
+        vehiculo.setPatente(detalleVehiculoDTO.getVehiculo().getPatente());
+        vehiculo.setAnio(detalleVehiculoDTO.getVehiculo().getAnio());
+
+        Modelo modelo = modeloRepository.findById(id);
+
+        update(vehiculo);
+
+
     }
 }
