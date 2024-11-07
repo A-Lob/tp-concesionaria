@@ -4,5 +4,5 @@ import com.example.notificaciones.models.Notificacion;
 
 public interface NotificacionService {
     void add(Notificacion notificacion);
-    public void sendNotification(String email, String asunto, String contenido);
+    public void sendNotification(Notificacion notificacion);
 }

@@ -24,7 +24,7 @@ public class NotificacionController {
     public ResponseEntity<Object> crearNotificacion(@RequestBody Notificacion notificacion) {
         try {
             this.notificacionService.add(notificacion);
-            this.notificacionService.sendNotification(notificacion.getEmail(), notificacion.getAsunto(), notificacion.getContenido());
+            this.notificacionService.sendNotification(notificacion);
             return new ResponseEntity<>(notificacion, HttpStatus.CREATED);
         } catch (Exception exception) {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
