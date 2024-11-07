@@ -30,7 +30,7 @@ public class Vehiculo {
 
     // ------- Relacion: Vehiculo > Prueba -----------
     // Un vehículo puede tener muchas pruebas.
-    @OneToMany(mappedBy = "vehiculo")
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Prueba> pruebas;
 
