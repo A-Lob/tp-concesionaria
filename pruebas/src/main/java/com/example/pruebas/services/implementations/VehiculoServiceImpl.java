@@ -114,7 +114,7 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         return dtoVehiculo;
     }
 
-    private List<PruebaDTO> listadoPruebasDto(List<Prueba> pruebas, List<Vehiculo> vehiculos) {
+    public List<PruebaDTO> listadoPruebasDto(List<Prueba> pruebas, List<Vehiculo> vehiculos) {
         List<PruebaDTO> pruebasDtos = pruebas.stream()
                 .map(p -> {
                     PruebaDTO dto = new PruebaDTO();
