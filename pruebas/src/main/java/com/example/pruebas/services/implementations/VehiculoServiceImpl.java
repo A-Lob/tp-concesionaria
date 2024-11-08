@@ -6,6 +6,7 @@ import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.dtos.VehiculoDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
+import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Modelo;
 import com.example.pruebas.models.Posicion;
 import com.example.pruebas.models.Prueba;
@@ -22,53 +23,45 @@ import java.util.Optional;
 
 @Service
 public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implements VehiculoService {
+    private GestorDTOS gestorDTOS;
+    public VehiculoServiceImpl(GestorDTOS gestorDTOS) {
+        this.gestorDTOS = gestorDTOS;
 
-    private final VehiculoRepository vehiculoRepository;
-    private final PruebaRepository pruebaRepository;
-    private final PosicionRepository posicionRepository;
-    private final ModeloRepository modeloRepository;
-
-    public VehiculoServiceImpl(VehiculoRepository vehiculoRepository, PruebaRepository pruebaRepository,
-                               PosicionRepository posicionRepository, ModeloRepository modeloRepository) {
-        this.vehiculoRepository = vehiculoRepository;
-        this.pruebaRepository = pruebaRepository;
-        this.posicionRepository = posicionRepository;
-        this.modeloRepository = modeloRepository;
 
     }
 
     @Override
     public void add(Vehiculo vehiculo) {
-        this.vehiculoRepository.save(vehiculo);
+        this.gestorDTOS.getVehiculoRepository().save(vehiculo);
     }
 
     public void update(Vehiculo vehiculo) {
-        this.vehiculoRepository.save(vehiculo);
+        this.gestorDTOS.getVehiculoRepository().save(vehiculo);
     }
 
     @Override
     public void delete(Integer id) {
-        Vehiculo vehiculo = this.vehiculoRepository.findById(id).orElseThrow();
-        this.vehiculoRepository.delete(vehiculo);
+        Vehiculo vehiculo = this.gestorDTOS.getVehiculoRepository().findById(id).orElseThrow();
+        this.gestorDTOS.getVehiculoRepository().delete(vehiculo);
     }
 
     @Override
     public Vehiculo findById(Integer id) {
-        return this.vehiculoRepository.findById(id).orElseThrow();
+        return this.gestorDTOS.getVehiculoRepository().findById(id).orElseThrow();
     }
 
     @Override
 
     public List<Vehiculo> findAll() {
-        return this.vehiculoRepository.findAll();
+        return this.gestorDTOS.getVehiculoRepository().findAll();
     }
 
     public List<DetalleVehiculoDTO> obtenerDetallesVehiculos() {
-        List<Vehiculo> vehiculos = vehiculoRepository.findAll();
-        List<Prueba> pruebas = pruebaRepository.findAll();
+        List<Vehiculo> vehiculos = findAll();
+        List<Prueba> pruebas = gestorDTOS.getPruebaRepository().findAll();
 
 
-        List<Posicion> posicion = posicionRepository.findAll();
+        List<Posicion> posicion = gestorDTOS.getPosicionRepository().findAll();
 
 
         List<DetalleVehiculoDTO> detalleVehiculoDTO = vehiculos.stream().map(e -> {
@@ -94,11 +87,11 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     }
 
     public DetalleVehiculoDTO obtenerDetalleVehiculo(Integer id) {
-        Vehiculo vehiculo = vehiculoRepository.findById(id).orElseThrow();
+        Vehiculo vehiculo = findById(id);
         DetalleVehiculoDTO dtoVehiculo = new DetalleVehiculoDTO();
-        List<Prueba> pruebas = pruebaRepository.findAll();
+        List<Prueba> pruebas = gestorDTOS.getPruebaRepository().findAll();
         List<PruebaDTO> pruebasDtos = this.listadoPruebasDto(pruebas, id);
-        List<Posicion> posicion = posicionRepository.findAll();
+        List<Posicion> posicion = gestorDTOS.getPosicionRepository().findAll();
         List<PosicionDTO> posicionDtos = this.listadoPosicionesDto(posicion, id);
 
 
@@ -183,10 +176,20 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         vehiculo.setPatente(detalleVehiculoDTO.getVehiculo().getPatente());
         vehiculo.setAnio(detalleVehiculoDTO.getVehiculo().getAnio());
 
-        Modelo modelo = modeloRepository.findById(id);
+        Modelo modelo = gestorDTOS.getModeloRepository().findById(id);
 
         update(vehiculo);
 
+
+    }
+    public void nuevoVehiculo(VehiculoDTO vehiculoDTO, int idModelo){
+        Vehiculo vehiculo = new Vehiculo();
+        Modelo modelo = gestorDTOS.getModeloRepository().findById(idModelo);
+
+        vehiculo.setPatente(vehiculoDTO.getPatente());
+        vehiculo.setAnio(vehiculoDTO.getAnio());
+        vehiculo.setModelo(modelo);
+        add(vehiculo);
 
     }
 }

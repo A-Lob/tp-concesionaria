@@ -1,5 +1,6 @@
 package com.example.pruebas.dtos.detallesDto;
 
+import com.example.pruebas.dtos.MarcaDTO;
 import com.example.pruebas.dtos.ModeloDTO;
 
 import lombok.AllArgsConstructor;
@@ -12,5 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DetalleMarcaDTO {
+    private MarcaDTO marca;
     private List<ModeloDTO> modelos;
 }

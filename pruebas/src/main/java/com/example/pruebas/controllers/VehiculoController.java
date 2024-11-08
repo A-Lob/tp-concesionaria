@@ -50,13 +50,26 @@ public class VehiculoController {
             return ResponseEntity.badRequest().body("ERROR AL ACTUALIZAR VEHICULO CON ID " + id);
         }
     }
- @DeleteMapping("/{id}/vehiculo/eliminar")
- public ResponseEntity<String> eliminarVehiculo(@PathVariable int id) {
-        try{
+
+    @DeleteMapping("/{id}/vehiculo/eliminar")
+    public ResponseEntity<String> eliminarVehiculo(@PathVariable int id) {
+        try {
             vehiculoService.delete(id);
             return ResponseEntity.ok().body("ELIMINADO CON EXITO");
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
- }
+    }
+
+    @PostMapping("/nuevo/vehiculo/{idModelo}/modelo")
+    public ResponseEntity<String> nuevoVehiculo(@RequestBody VehiculoDTO vehiculo, @PathVariable int idModelo) {
+        try {
+            vehiculoService.nuevoVehiculo(vehiculo, idModelo);
+
+
+            return ResponseEntity.ok().body("SE AGREGO NUEVO VEHICULO");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

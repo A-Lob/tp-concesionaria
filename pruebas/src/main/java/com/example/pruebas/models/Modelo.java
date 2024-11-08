@@ -24,7 +24,7 @@ public class Modelo {
 
     // ------- Relacion: Modelo > Vehiculo -----------
     // Un modelo puede estar asociado a varios vehículos.
-    @OneToMany(mappedBy = "modelo")
+    @OneToMany(mappedBy = "modelo",  cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Vehiculo> vehiculos;
 

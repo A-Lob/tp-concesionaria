@@ -5,6 +5,7 @@ import com.example.pruebas.dtos.ModeloDTO;
 import com.example.pruebas.dtos.VehiculoDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
+import com.example.pruebas.models.Marca;
 import com.example.pruebas.models.Modelo;
 import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.interfaces.ModeloService;
@@ -25,17 +26,19 @@ public class ModeloServiceImpl extends ServiceImpl<Modelo, Integer> implements M
 
     @Override
     public void add(Modelo modelo) {
+        gestorDTOS.getModeloRepository().save(modelo);
 
     }
 
     @Override
     public void update(Modelo modelo) {
+        gestorDTOS.getModeloRepository().save(modelo);
 
     }
 
     @Override
     public void delete(Integer id) {
-
+        gestorDTOS.getModeloRepository().deleteById(id);
     }
 
     @Override
@@ -66,5 +69,38 @@ public class ModeloServiceImpl extends ServiceImpl<Modelo, Integer> implements M
 
        return modeloDTOS;
 
+    }
+    public DetalleModeloDTO modelo(int id){
+        Modelo modelo = findById(id);
+        ModeloDTO modeloDTO = new ModeloDTO(modelo.getDescripcion());
+        MarcaDTO marcaDTO = new MarcaDTO(modelo.getMarca().getNombre());
+
+        DetalleModeloDTO detalleModeloDTO = new DetalleModeloDTO();
+
+        detalleModeloDTO.setVehiculos(gestorDTOS.listaVehiculosDtos(modelo));
+        detalleModeloDTO.setMarca(marcaDTO);
+        detalleModeloDTO.setModelo(modeloDTO);
+
+        return detalleModeloDTO;
+    }
+
+
+    public void nuevoModelo(ModeloDTO modeloDTO, int id){
+        Modelo modelo = new Modelo();
+        Marca marca  = gestorDTOS.getMarcaRepository().findById(id);
+
+        modelo.setMarca(marca);
+        modelo.setMarca(marca);
+        modelo.setDescripcion(modeloDTO.getDescripcion());
+        add(modelo);
+
+    }
+    public void eliminarModelo(int id){
+        delete(id);
+    }
+    public void modificar(int id, ModeloDTO modeloDTO){
+        Modelo modelo = findById(id);
+        modelo.setDescripcion(modeloDTO.getDescripcion());
+        update(modelo);
     }
 }
