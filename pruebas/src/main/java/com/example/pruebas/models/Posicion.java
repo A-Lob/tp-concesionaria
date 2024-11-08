@@ -24,10 +24,10 @@ public class Posicion {
     private LocalDateTime fechaHora = LocalDateTime.now();
 
     @Column(name = "LATITUD", nullable = false)
-    private float latitud;
+    private Double latitud;
 
     @Column(name="LONGITUD", nullable = false)
-    private float longitud;
+    private Double longitud;
 
     // ------- Relacion: Posicion > Vehiculo -----------
     // Muchas posiciones están asociadas a un solo vehículo

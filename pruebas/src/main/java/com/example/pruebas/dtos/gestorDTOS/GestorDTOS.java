@@ -1,11 +1,9 @@
 package com.example.pruebas.dtos.gestorDTOS;
 
 import com.example.pruebas.dtos.ModeloDTO;
+import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.VehiculoDTO;
-import com.example.pruebas.models.Marca;
-import com.example.pruebas.models.Modelo;
-import com.example.pruebas.models.Prueba;
-import com.example.pruebas.models.Vehiculo;
+import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.*;
 import com.example.pruebas.services.implementations.VehiculoServiceImpl;
 import lombok.AllArgsConstructor;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public  class GestorDTOS {
+public class GestorDTOS {
     private final VehiculoRepository vehiculoRepository;
     private final PruebaRepository pruebaRepository;
     private final PosicionRepository posicionRepository;
@@ -50,6 +48,7 @@ public  class GestorDTOS {
 
         }).toList();
     }
+
     public List<ModeloDTO> listarModelos(Marca marca) {
         List<Modelo> modelos = marca.getModelos();
         return modelos.stream().map(m -> {
@@ -60,6 +59,20 @@ public  class GestorDTOS {
 
         }).toList();
 
+    }
+
+    public List<PosicionDTO> listarPosiciones(int idVehiculo) {
+        List<Posicion> posiciones = vehiculoRepository.findById(idVehiculo).getPosiciones();
+        return posiciones.stream().map(p -> {
+
+                PosicionDTO posicionDTO = new PosicionDTO();
+                posicionDTO.setLatitud(p.getLatitud());
+                posicionDTO.setLongitud(p.getLongitud());
+                posicionDTO.setIdVehiculo(idVehiculo);
+                return posicionDTO;
+
+
+        }).toList();
     }
 
     public VehiculoRepository getVehiculoRepository() {
