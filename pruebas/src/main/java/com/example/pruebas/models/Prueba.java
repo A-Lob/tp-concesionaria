@@ -27,7 +27,7 @@ public class Prueba {
     @Column(name = "FECHA_HORA_FIN")
     private LocalDateTime fechaHoraFin = LocalDateTime.now();
 
-    @Column(name = "COMENTARIOS", nullable = false, length = 500)
+    @Column(name = "COMENTARIOS", length = 500)
     @Size(max = 500, message = "Los comentarios no deben superar los 500 caracteres")
     private String comentario;
 

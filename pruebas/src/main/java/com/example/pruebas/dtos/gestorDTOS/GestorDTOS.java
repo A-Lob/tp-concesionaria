@@ -37,7 +37,7 @@ public class GestorDTOS {
         this.marcaRepository = marcaRepository;
     }
 
-    // se lista los vehiculos segun el argumento osea la lista de vehicolos que tiene
+    // Se listan todos los vehiculos de un modelo
     public List<VehiculoDTO> listaVehiculosDtos(Modelo modelo) {
         List<Vehiculo> vehiculos = modelo.getVehiculos();
         return vehiculos.stream().map(p -> {

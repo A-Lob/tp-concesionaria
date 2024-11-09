@@ -27,7 +27,7 @@ public class Notificacion {
     @Column(name="ASUNTO", nullable = false, length = 20)
     @Size(max = 20, message = "El asunto no puede exceder los 20 caracteres")
     @NotBlank(message = "El asunto no debe estar vacío")
-    private String asunto = "Fuera de Radio";
+    private String asunto = "Vehiculo fuera de radio";
 
     // Lo que se envia en cada notificacion
     @Column(name="DESCRIPCION", length = 300)
