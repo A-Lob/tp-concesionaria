@@ -35,7 +35,7 @@ public class Empleado {
 
     // ------- Relacion: Empleado > Prueba -----------
     // Un empleado puede estar asociado a muchas pruebas (supervisar varias)
-    @OneToMany(mappedBy = "empleado")
+    @OneToMany(mappedBy = "empleado" , cascade =  CascadeType.ALL)
     @JsonManagedReference
     private List<Prueba> pruebas;
 
