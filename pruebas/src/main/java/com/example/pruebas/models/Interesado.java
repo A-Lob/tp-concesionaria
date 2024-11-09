@@ -56,7 +56,7 @@ public class Interesado {
     @JsonManagedReference
     private List<Prueba> pruebas;
 
-    @Column(name = "Estado", nullable = false)
+    @Column(name = "ESTADO", nullable = false)
     private String estado = "Habilitado";
 
 }
