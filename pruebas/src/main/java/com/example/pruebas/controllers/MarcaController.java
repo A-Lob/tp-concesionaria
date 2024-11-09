@@ -55,4 +55,13 @@ public class MarcaController {
             return  ResponseEntity.badRequest().build();
         }
     }
+    @PostMapping("/agregar/marca")
+    public ResponseEntity<String> agregar(@RequestBody MarcaDTO marcaDTO) {
+        try{
+            marcaService.agregar(marcaDTO);
+            return ResponseEntity.ok().body("SE AGREGO CON EXITO");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("NO SE PUEDO AGREGAR MARCA");
+        }
+    }
 }

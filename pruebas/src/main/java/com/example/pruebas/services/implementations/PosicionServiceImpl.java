@@ -72,14 +72,15 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
         return detallePosicionDTOS;
     }
 
-    public List<DetallePosicionDTO> posicionAll(double longitud, double latitud) {
+    public List<DetallePosicionDTO> posicionAll(double latitudMin,double longitudMin,
+                                                double longitudMax, double latitudMax) {
         List<DetallePosicionDTO> detallePosicionDTOS = posicionAll();
         List<DetallePosicionDTO> posiciones = detallePosicionDTOS.stream().filter(p -> {
             if (p.getPosicion() != null) {
                 double lati = p.getPosicion().getLatitud();
                 double longi = p.getPosicion().getLongitud();
                 // Puedes usar lati y longi aquí
-                if (lati <= latitud && longi <= longitud ) {
+                if ((lati <= latitudMax && longi <= longitudMax) && (lati >= latitudMin && longi >= longitudMin) ) {
                     return true;
                 }
             }

@@ -1,19 +1,19 @@
 package com.example.pruebas.dtos.gestorDTOS;
 
-import com.example.pruebas.dtos.ModeloDTO;
-import com.example.pruebas.dtos.PosicionDTO;
-import com.example.pruebas.dtos.VehiculoDTO;
+import com.example.pruebas.dtos.*;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.*;
 import com.example.pruebas.services.implementations.VehiculoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+@Getter
 
 @Component
 public class GestorDTOS {
@@ -22,19 +22,22 @@ public class GestorDTOS {
     private final PosicionRepository posicionRepository;
     private final ModeloRepository modeloRepository;
     private final MarcaRepository marcaRepository;
+    private final EmpleadoRepository empleadoRepository;
 
 
     @Autowired
     public GestorDTOS(VehiculoRepository vehiculoRepository, PruebaRepository pruebaRepository,
                       PosicionRepository posicionRepository,
                       ModeloRepository modeloRepository,
-                      MarcaRepository marcaRepository) {
+                      MarcaRepository marcaRepository,
+                      EmpleadoRepository empleadoRepository) {
 
         this.vehiculoRepository = vehiculoRepository;
         this.pruebaRepository = pruebaRepository;
         this.posicionRepository = posicionRepository;
         this.modeloRepository = modeloRepository;
         this.marcaRepository = marcaRepository;
+        this.empleadoRepository = empleadoRepository;
     }
 
     // Se listan todos los vehiculos de un modelo
@@ -54,6 +57,7 @@ public class GestorDTOS {
         return modelos.stream().map(m -> {
             ModeloDTO modeloDTO = new ModeloDTO();
             modeloDTO.setDescripcion(m.getDescripcion());
+
 
             return modeloDTO;
 
@@ -75,23 +79,21 @@ public class GestorDTOS {
         }).toList();
     }
 
+    public List<PruebaDTO> listarPruebas(Empleado empleado) {
+        List<Prueba> pruebas = empleado.getPruebas();
+        return pruebas.stream().map( p -> {
+            PruebaDTO pruebaDTO = new PruebaDTO();
+            pruebaDTO.setLegajoEmpleado(p.getEmpleado().getLegajo());
+            pruebaDTO.setIdInteresado(p.getInteresado().getId());
+            pruebaDTO.setIdVehiculo(p.getVehiculo().getId());
+            return pruebaDTO;
+                }
+
+        ).toList();
+    }
+
     public VehiculoRepository getVehiculoRepository() {
         return vehiculoRepository;
     }
 
-    public PruebaRepository getPruebaRepository() {
-        return pruebaRepository;
-    }
-
-    public PosicionRepository getPosicionRepository() {
-        return posicionRepository;
-    }
-
-    public ModeloRepository getModeloRepository() {
-        return modeloRepository;
-    }
-
-    public MarcaRepository getMarcaRepository() {
-        return marcaRepository;
-    }
 }
