@@ -84,10 +84,19 @@ public class MarcaServiceImpl extends ServiceImpl<Marca, Integer> implements Mar
         delete(id);
     }
 
-    public void modificar(MarcaDTO marcaDTO , int id){
+    public void modificar(MarcaDTO marcaDTO, int id) {
         Marca marca = findById(id);
 
         marca.setNombre(marcaDTO.getNombre());
         update(marca);
+    }
+
+    public void agregar(MarcaDTO marcaDTO) {
+        Marca marca = new Marca();
+
+        marca.setNombre(marcaDTO.getNombre());
+        add(marca);
+
+
     }
 }
