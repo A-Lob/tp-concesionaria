@@ -27,10 +27,11 @@ public class PosicionController{
         }
     }
 
-    @GetMapping("/{latitudMax}/{longitudMax}/posiciones")
-    public ResponseEntity<List<DetallePosicionDTO>> findAllCondicional(@PathVariable double latitudMax, @PathVariable double longitudMax){
+    @GetMapping("/{latitudMin}/{longitudMin}/{latitudMax}/{longitudMax}/posiciones")
+    public ResponseEntity<List<DetallePosicionDTO>> findAllCondicional(@PathVariable double latitudMax, @PathVariable double longitudMax,
+                                                                       @PathVariable double latitudMin, @PathVariable double longitudMin){
         try{
-           List<DetallePosicionDTO> posiciones =  posicionService.posicionAll(longitudMax, latitudMax);
+           List<DetallePosicionDTO> posiciones =  posicionService.posicionAll(latitudMin,longitudMin,longitudMax, latitudMax);
             return ResponseEntity.ok().body(posiciones);
         }catch (Exception e){
             return ResponseEntity.badRequest().build();
