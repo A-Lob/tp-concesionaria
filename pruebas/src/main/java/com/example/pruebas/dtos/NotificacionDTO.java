@@ -7,6 +7,6 @@ public class NotificacionDTO {
 
     private String email;
     private String asunto;
-    private String contenido;
+    private String descripcion;
 
 }

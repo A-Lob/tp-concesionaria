@@ -137,14 +137,14 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     // Se debe enviar una peticion al microservicio de notificaciones para que procese la informacion,
     // genere la notificacion y la envie a quien corresponda
-    public void generarNotificacion(String email, String asunto, String contenido) {
+    public void generarNotificacion(String email, String asunto, String descripcion) {
         // Creación de una instancia de RestTemplate
         try {
             RestTemplate template = new RestTemplate();
             NotificacionDTO notificacion = new NotificacionDTO();
             notificacion.setEmail(email);
             notificacion.setAsunto(asunto);
-            notificacion.setContenido(contenido);
+            notificacion.setDescripcion(descripcion);
             // Creación de la entidad a enviar
             HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
             // respuesta de la petición tendrá en su cuerpo a un objeto del tipo

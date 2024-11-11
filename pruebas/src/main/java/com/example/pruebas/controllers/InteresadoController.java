@@ -49,24 +49,24 @@ public class InteresadoController {
 
     }
 
-    @GetMapping("/interesadoId/{id}")
-    public ResponseEntity<Object> interesado(@PathVariable int id){
-        try {
-            Interesado interesado = this.interesadoService.findById(id);
-            InteresadoDTO interesadoDTO = new InteresadoDTO(
-                    interesado.getTipoDocumento(),
-                    Integer.parseInt(interesado.getDocumento()),
-                    interesado.getNombre(),
-                    interesado.getApellido(),
-                    interesado.getFechaVencimientoLicencia(),
-                    interesado.getNumeroLicencia()
-            );
-            return ResponseEntity.ok().body(interesadoDTO);
-        }catch (Exception e){
-            return ResponseEntity.badRequest().build();
-        }
-
-    }
+//    @GetMapping("/interesadoId/{id}")
+//    public ResponseEntity<Object> interesado(@PathVariable int id){
+//        try {
+//            Interesado interesado = this.interesadoService.findById(id);
+//            InteresadoDTO interesadoDTO = new InteresadoDTO(
+//                    interesado.getTipoDocumento(),
+//                    Integer.parseInt(interesado.getDocumento()),
+//                    interesado.getNombre(),
+//                    interesado.getApellido(),
+//                    interesado.getFechaVencimientoLicencia(),
+//                    interesado.getNumeroLicencia()
+//            );
+//            return ResponseEntity.ok().body(interesadoDTO);
+//        }catch (Exception e){
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//    }
 
     @DeleteMapping("/eliminar/{id}")
     public String deleteInteresado(@PathVariable int id) {
