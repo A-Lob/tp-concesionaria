@@ -2,9 +2,7 @@ package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.EmpleadoDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleEmpleadoDTO;
-import com.example.pruebas.models.Empleado;
 import com.example.pruebas.services.implementations.EmpleadoServiceImpl;
-import com.example.pruebas.services.interfaces.EmpleadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

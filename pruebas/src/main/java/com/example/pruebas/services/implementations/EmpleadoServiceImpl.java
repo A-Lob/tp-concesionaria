@@ -5,7 +5,6 @@ import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleEmpleadoDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Empleado;
-import com.example.pruebas.repositories.EmpleadoRepository;
 import com.example.pruebas.services.interfaces.EmpleadoService;
 import org.springframework.stereotype.Service;
 
