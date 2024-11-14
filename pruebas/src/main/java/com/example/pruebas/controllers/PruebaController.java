@@ -1,6 +1,7 @@
 package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.*;
+import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.services.interfaces.EmpleadoService;
 import com.example.pruebas.services.interfaces.InteresadoService;
@@ -117,7 +118,7 @@ public class PruebaController {
     }
 
     @PostMapping("/promocionar-pruebas")
-    public ResponseEntity<Object> enviarPromociones(PromocionDTO promocion) {
+    public ResponseEntity<Object> enviarPromociones(DetallePromocionDTO promocion) {
         try {
             this.pruebaService.enviarPromociones(promocion);
             return new ResponseEntity<>(HttpStatus.OK);

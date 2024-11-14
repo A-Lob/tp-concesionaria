@@ -1,8 +1,11 @@
 package com.example.pruebas.services.implementations;
 
+import com.example.pruebas.dtos.InteresadoDTO;
 import com.example.pruebas.dtos.NotificacionDTO;
 import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.PromocionDTO;
+import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
+import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.InteresadoRepository;
 import com.example.pruebas.repositories.PruebaRepository;
@@ -17,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
@@ -121,15 +125,17 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     @Override
-    public void enviarPromociones(PromocionDTO promocion) {
+    public void enviarPromociones(DetallePromocionDTO promocion) {
         // Obtengo los interesados registrados en el sistema
-        List<Interesado> interesados = interesadoRepository.findAll();
+        List<InteresadoDTO> interesados = promocion.getInteresados();
         if (interesados.isEmpty()) {
             new RuntimeException("No hay interesados en pruebas");
         } else {
             interesados.forEach(interesado -> {
                 generarNotificacion(
-                        interesado.getEmail(), promocion.getAsunto(), promocion.getContenido());
+                        interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
+                                .map(DetalleVehiculoDTO::getModelo).toString()
+                );
             });
         }
     }

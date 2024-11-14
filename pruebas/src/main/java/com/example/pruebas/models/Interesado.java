@@ -1,5 +1,6 @@
 package com.example.pruebas.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -56,7 +57,13 @@ public class Interesado {
     @JsonManagedReference
     private List<Prueba> pruebas;
 
-    //@Column(name="ESTADO", nullable = false)
-    //private String estado = "Habilitado";
+    @ManyToMany
+    @JoinTable(
+            name = "Interesado_Promocion",
+            joinColumns = @JoinColumn(name= "interesado_id"),
+            inverseJoinColumns = @JoinColumn(name = "promocion_id")
+    )
+    @JsonIgnore
+    private List<Promocion> promociones;
 
 }

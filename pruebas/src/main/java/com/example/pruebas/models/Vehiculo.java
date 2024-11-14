@@ -47,4 +47,9 @@ public class Vehiculo {
     @JsonBackReference
     private Modelo modelo;
 
+    @ManyToOne
+    @JoinColumn(name = "promocion_id")
+    @JsonBackReference
+    private Promocion promocion;
+
 }
