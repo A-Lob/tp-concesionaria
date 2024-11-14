@@ -17,6 +17,7 @@ public class InteresadoDTO {
     private String apellido;
     private LocalDate fechaVencimientoLicencia;
     private int numeroLicencia;
-    private String estado;
+    private String email;
+    private boolean restringido;
 
 }

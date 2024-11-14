@@ -2,7 +2,9 @@ package com.example.pruebas.controllers;
 
 
 import com.example.pruebas.dtos.InteresadoDTO;
+import com.example.pruebas.dtos.detallesDto.DetalleInteresadoDTO;
 import com.example.pruebas.models.Interesado;
+import com.example.pruebas.services.implementations.InteresadoServiceImpl;
 import com.example.pruebas.services.interfaces.InteresadoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,36 +15,28 @@ import java.util.List;
 @RequestMapping("/api/pruebas/interesado")
 public class InteresadoController {
 
-    private final InteresadoService interesadoService;
+    private final InteresadoServiceImpl interesadoService;
 
-    public InteresadoController(InteresadoService interesadoService) {
+    public InteresadoController(InteresadoServiceImpl interesadoService) {
         this.interesadoService = interesadoService;
     }
 
     @PostMapping("/nuevoInteresado")
-    public ResponseEntity<Object> nuevoInteresado(@RequestBody InteresadoDTO interesado) {
+    public ResponseEntity<String> nuevoInteresado(@RequestBody InteresadoDTO interesado) {
         try {
-            Interesado nuevo = new Interesado();
-            nuevo.setNombre(interesado.getNombre());
-            nuevo.setTipoDocumento(interesado.getTipoDocumento());
-            nuevo.setDocumento(String.valueOf(interesado.getNumDocumento()));
-            nuevo.setApellido(interesado.getApellido());
-            nuevo.setFechaVencimientoLicencia(interesado.getFechaVencimientoLicencia());
-            nuevo.setNumeroLicencia(interesado.getNumeroLicencia());
-
-            this.interesadoService.add(nuevo);
+            interesadoService.agregar(interesado);
             return ResponseEntity.ok().body("Nuevo Interesado");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/interesados")
-    public ResponseEntity<List<Interesado>> getAllInteresados() {
+    public ResponseEntity<List<DetalleInteresadoDTO>> getAllInteresados() {
         try {
-            List<Interesado> interesados = interesadoService.findAll();
+            List<DetalleInteresadoDTO> interesados = interesadoService.todos();
+            return ResponseEntity.ok().body(interesados);
 
-            return ResponseEntity.ok(interesados);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
@@ -50,19 +44,11 @@ public class InteresadoController {
     }
 
     @GetMapping("/interesadoId/{id}")
-    public ResponseEntity<Object> interesado(@PathVariable int id){
+    public ResponseEntity<DetalleInteresadoDTO> interesado(@PathVariable int id){
         try {
-            Interesado interesado = this.interesadoService.findById(id);
-            InteresadoDTO interesadoDTO = new InteresadoDTO(
-                    interesado.getTipoDocumento(),
-                    Integer.parseInt(interesado.getDocumento()),
-                    interesado.getNombre(),
-                    interesado.getApellido(),
-                    interesado.getFechaVencimientoLicencia(),
-                    interesado.getNumeroLicencia(),
-                    interesado.getEstado()
-            );
-            return ResponseEntity.ok().body(interesadoDTO);
+
+            DetalleInteresadoDTO interesado = interesadoService.interesado(id);
+            return ResponseEntity.ok().body(interesado);
         }catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
@@ -70,30 +56,22 @@ public class InteresadoController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public String deleteInteresado(@PathVariable int id) {
+    public ResponseEntity<String> deleteInteresado(@PathVariable int id) {
         try{
-            interesadoService.delete(id);
-            return "OK!";
+            interesadoService.eliminar(id);
+            return ResponseEntity.ok().body("Interesado eliminado");
 
         }catch (Exception e){
-            return "Error al eliminar el interesado";
+            return ResponseEntity.badRequest().build();
         }
 
     }
 
-    @PutMapping("/modificacionInteresado/{id}")
+    @PatchMapping("/modificacionInteresado/{id}")
     public ResponseEntity<Object> updateInteresado(@RequestBody InteresadoDTO interesado, @PathVariable int id) {
         try{
-            Interesado interesadoUpdate = interesadoService.findById(id);
-            interesadoUpdate.setTipoDocumento(interesado.getTipoDocumento());
-            interesadoUpdate.setDocumento(String.valueOf(interesado.getNumDocumento()));
-            interesadoUpdate.setNombre(interesado.getNombre());
-            interesadoUpdate.setApellido(interesado.getApellido());
-            interesadoUpdate.setFechaVencimientoLicencia(interesado.getFechaVencimientoLicencia());
-            interesadoUpdate.setNumeroLicencia(interesado.getNumeroLicencia());
-            interesadoUpdate.setEstado(interesado.getEstado());
 
-            interesadoService.update(interesadoUpdate);
+            interesadoService.actualizar(interesado, id);
             return ResponseEntity.ok().body("Interesado Actualizado");
 
         }catch (Exception e){

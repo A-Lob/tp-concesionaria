@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
-
 @Component
 public class GestorDTOS {
     private final VehiculoRepository vehiculoRepository;
@@ -23,14 +22,17 @@ public class GestorDTOS {
     private final ModeloRepository modeloRepository;
     private final MarcaRepository marcaRepository;
     private final EmpleadoRepository empleadoRepository;
+    private final InteresadoRepository interesadoRepository;
 
-
+//EL GESTOR  DEVUELVE DTOS PRIMITIVOS Y LISTAS DE ESOS DTOS EN BASE A ALGO....
     @Autowired
-    public GestorDTOS(VehiculoRepository vehiculoRepository, PruebaRepository pruebaRepository,
+    public GestorDTOS(VehiculoRepository vehiculoRepository,
+                      PruebaRepository pruebaRepository,
                       PosicionRepository posicionRepository,
                       ModeloRepository modeloRepository,
                       MarcaRepository marcaRepository,
-                      EmpleadoRepository empleadoRepository) {
+                      EmpleadoRepository empleadoRepository,
+                      InteresadoRepository interesadoRepository) {
 
         this.vehiculoRepository = vehiculoRepository;
         this.pruebaRepository = pruebaRepository;
@@ -38,7 +40,22 @@ public class GestorDTOS {
         this.modeloRepository = modeloRepository;
         this.marcaRepository = marcaRepository;
         this.empleadoRepository = empleadoRepository;
+        this.interesadoRepository = interesadoRepository;
     }
+
+    public InteresadoDTO interesadoDTO(Interesado interesado){
+        InteresadoDTO interesadoDTO = new InteresadoDTO();
+        interesadoDTO.setTipoDocumento(interesado.getTipoDocumento());
+        interesadoDTO.setNumDocumento(Integer.parseInt(interesado.getDocumento()));
+        interesadoDTO.setNombre(interesado.getNombre());
+        interesadoDTO.setApellido(interesado.getApellido());
+        interesadoDTO.setFechaVencimientoLicencia(interesado.getFechaVencimientoLicencia());
+        interesadoDTO.setNumeroLicencia(interesado.getNumeroLicencia());
+        interesadoDTO.setRestringido(interesado.isRestringido());
+        interesadoDTO.setEmail(interesado.getEmail());
+        return interesadoDTO;
+    }
+
 
     // Se listan todos los vehiculos de un modelo
     public List<VehiculoDTO> listaVehiculosDtos(Modelo modelo) {
@@ -91,9 +108,21 @@ public class GestorDTOS {
 
         ).toList();
     }
+    public List<PruebaDTO> listarPruebas(Interesado interesado) {
+        List<Prueba> pruebas = interesado.getPruebas();
+        return pruebas.stream().map( p -> {
+                    PruebaDTO pruebaDTO = new PruebaDTO();
+                    pruebaDTO.setLegajoEmpleado(p.getEmpleado().getLegajo());
+                    pruebaDTO.setIdInteresado(p.getInteresado().getId());
+                    pruebaDTO.setIdVehiculo(p.getVehiculo().getId());
+                    return pruebaDTO;
+                }
 
-    public VehiculoRepository getVehiculoRepository() {
-        return vehiculoRepository;
+        ).toList();
     }
+
+
+
+
 
 }
