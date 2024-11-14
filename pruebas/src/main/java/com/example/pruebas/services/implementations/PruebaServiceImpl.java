@@ -134,7 +134,8 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             interesados.forEach(interesado -> {
                 generarNotificacion(
                         interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
-                                .map(DetalleVehiculoDTO::getModelo).toString()
+                                .map(DetalleVehiculoDTO -> DetalleVehiculoDTO.getModelo().getDescripcion())
+                                .collect(Collectors.joining(", \n"))
                 );
             });
         }

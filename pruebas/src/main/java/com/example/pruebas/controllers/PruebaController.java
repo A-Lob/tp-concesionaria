@@ -118,7 +118,7 @@ public class PruebaController {
     }
 
     @PostMapping("/promocionar-pruebas")
-    public ResponseEntity<Object> enviarPromociones(DetallePromocionDTO promocion) {
+    public ResponseEntity<Object> enviarPromociones(@RequestBody DetallePromocionDTO promocion) {
         try {
             this.pruebaService.enviarPromociones(promocion);
             return new ResponseEntity<>(HttpStatus.OK);
