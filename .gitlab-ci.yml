@@ -1,0 +1,106 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    # Construir las imágenes
+    - docker build -t $CI_REGISTRY_IMAGE/api-gateway:$CI_COMMIT_SHA ./api-gateway
+    - docker build -t $CI_REGISTRY_IMAGE/notificaciones:$CI_COMMIT_SHA ./notificaciones
+    - docker build -t $CI_REGISTRY_IMAGE/pruebas:$CI_COMMIT_SHA ./pruebas
+
+    # Etiquetar también como latest
+    - docker tag $CI_REGISTRY_IMAGE/api-gateway:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/api-gateway:latest
+    - docker tag $CI_REGISTRY_IMAGE/notificaciones:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/notificaciones:latest
+    - docker tag $CI_REGISTRY_IMAGE/pruebas:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/pruebas:latest
+
+    # Subir las imágenes al registro
+    - docker push $CI_REGISTRY_IMAGE/api-gateway:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/notificaciones:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/pruebas:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/api-gateway:latest
+    - docker push $CI_REGISTRY_IMAGE/notificaciones:latest
+    - docker push $CI_REGISTRY_IMAGE/pruebas:latest
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  script:
+    # Copiar docker-compose.yml al servidor
+    - apk add --no-cache openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+    # Crear docker-compose.prod.yml con las imágenes del registro
+    - |
+      cat > docker-compose.prod.yml <<EOF
+      version: '3.8'
+      
+      services:
+        api-gateway:
+          image: $CI_REGISTRY_IMAGE/api-gateway:$CI_COMMIT_SHA
+          ports:
+            - "8080:8080"
+          networks:
+            - microservices-network
+          restart: unless-stopped
+          environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - JAVA_OPTS=-Xmx512m -Xms256m
+      
+        notificaciones:
+          image: $CI_REGISTRY_IMAGE/notificaciones:$CI_COMMIT_SHA
+          ports:
+            - "8081:8081"
+          networks:
+            - microservices-network
+          restart: unless-stopped
+          environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - JAVA_OPTS=-Xmx512m -Xms256m
+      
+        pruebas:
+          image: $CI_REGISTRY_IMAGE/pruebas:$CI_COMMIT_SHA
+          ports:
+            - "8082:8082"
+          networks:
+            - microservices-network
+          restart: unless-stopped
+          environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - JAVA_OPTS=-Xmx512m -Xms256m
+      
+      networks:
+        microservices-network:
+          driver: bridge
+          name: microservices-network
+      EOF
+
+    # Copiar el archivo al servidor y desplegar
+    - scp docker-compose.prod.yml $SERVER_USER@$SERVER_HOST:~/docker-compose.yml
+    - ssh $SERVER_USER@$SERVER_HOST "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+    - ssh $SERVER_USER@$SERVER_HOST "docker-compose down || true"
+    - ssh $SERVER_USER@$SERVER_HOST "docker-compose up -d"
+  only:
+    - main
+  environment:
+    name: production
+    url: http://$SERVER_HOST:8080

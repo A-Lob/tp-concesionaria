@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk-17-slim AS build
+FROM maven:3.9-eclipse-temurin-21-focal AS build
 WORKDIR /app
 
 COPY ./api-gateway/pom.xml .
@@ -10,7 +10,7 @@ COPY ./api-gateway/.mvn .mvn/
 
 RUN mvn clean package -DskipTests
 
-FROM openjdk:17-slim
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
 VOLUME /tmp
