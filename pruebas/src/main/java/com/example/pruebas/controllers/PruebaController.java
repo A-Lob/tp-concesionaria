@@ -75,7 +75,7 @@ public class PruebaController {
             pruebaService.eliminarPrueba(id);
             return ResponseEntity.ok().body("SE ELIMINO LA PRUEBA");
         }catch (Exception exception) {
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
     }
  /*
