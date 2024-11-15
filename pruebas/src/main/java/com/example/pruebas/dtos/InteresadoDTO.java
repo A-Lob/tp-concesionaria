@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class InteresadoDTO {
     private int numDocumento;
     private String nombre;
     private String apellido;
-    private LocalDate fechaVencimientoLicencia;
+    private LocalDateTime fechaVencimientoLicencia;
     private int numeroLicencia;
     private String email;
     private boolean restringido;

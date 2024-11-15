@@ -48,7 +48,7 @@ public class Vehiculo {
     private Modelo modelo;
 
     @ManyToOne
-    @JoinColumn(name = "promocion_id")
+    @JoinColumn(name = "promocion_id", referencedColumnName = "id")
     @JsonBackReference
     private Promocion promocion;
 

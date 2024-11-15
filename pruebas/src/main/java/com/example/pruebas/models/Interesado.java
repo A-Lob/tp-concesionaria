@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -46,7 +47,7 @@ public class Interesado {
     private int numeroLicencia;
 
     @Column(name = "FECHA_VENCIMIENTO_LICENCIA", nullable = false)
-    private LocalDate fechaVencimientoLicencia;
+    private LocalDateTime fechaVencimientoLicencia;
 
     @Column(name = "EMAIL", nullable = false)
     @Size(max = 255, message = "El Mail no puede superar los 255 caracteres")

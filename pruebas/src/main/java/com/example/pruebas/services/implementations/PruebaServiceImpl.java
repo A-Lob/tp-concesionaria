@@ -1,11 +1,9 @@
 package com.example.pruebas.services.implementations;
 
-import com.example.pruebas.dtos.InteresadoDTO;
-import com.example.pruebas.dtos.NotificacionDTO;
-import com.example.pruebas.dtos.PosicionDTO;
-import com.example.pruebas.dtos.PromocionDTO;
+import com.example.pruebas.dtos.*;
 import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
+import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.InteresadoRepository;
 import com.example.pruebas.repositories.PruebaRepository;
@@ -25,37 +23,22 @@ import java.util.stream.Collectors;
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
 
-    private final PruebaRepository pruebaRepository;
-    private final InteresadoRepository interesadoRepository;
-    private final VehiculoRepository vehiculoRepository;
 
-    public PruebaServiceImpl(PruebaRepository pruebaRepository, InteresadoRepository interesadoRepository, VehiculoRepository vehiculoRepository) {
-        this.pruebaRepository = pruebaRepository;
-        this.interesadoRepository = interesadoRepository;
-        this.vehiculoRepository = vehiculoRepository;
+    private final GestorDTOS gestorDTOS;
+
+    public PruebaServiceImpl(GestorDTOS gestorDTOS) {
+        this.gestorDTOS = gestorDTOS;
     }
 
     @Override
     public void add(Prueba nuevaPrueba) {
+        gestorDTOS.getPruebaRepository().save(nuevaPrueba);
 
-        // Valido si el interesado tiene restricciones o bien si la licencia esta vencida
-        if (nuevaPrueba.getInteresado().isRestringido() || nuevaPrueba.getInteresado().getFechaVencimientoLicencia().isBefore(LocalDate.now())) {
-            throw new RuntimeException ("El interesado tiene restricciones o la licencia esta vencida");
-        }
-
-        // Valido que el vehiculo no este en alguna prueba y si esta que la prueba haya finalizado
-        if (pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(nuevaPrueba.getVehiculo()) != null) {
-            throw new RuntimeException("El vehiculo esta siendo utilizado en otra prueba");
-        }
-
-        // Si no hay condiciones adversas, se procede a registrar la prueba.
-        nuevaPrueba.setFechaHoraInicio(LocalDateTime.now());
-        this.pruebaRepository.save(nuevaPrueba);
     }
 
     @Override
     public void update(Prueba prueba) {
-        this.pruebaRepository.save(prueba);
+        this.gestorDTOS.getPruebaRepository().save(prueba);
     }
 
     @Override
@@ -65,32 +48,40 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     @Override
     public Prueba findById(Integer id) {
-        return this.pruebaRepository.findById(id).orElseThrow();
+        return this.gestorDTOS.getPruebaRepository().findById(id).orElseThrow();
     }
 
     @Override
     public List<Prueba> findAll() {
-        return this.pruebaRepository.findAll();
+        return this.gestorDTOS.getPruebaRepository().findAll();
     }
 
 
     @Override
     public List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora) {
-        return this.pruebaRepository.findByFechaHoraInicioBeforeAndFechaHoraFinIsNull(fechaHora);
+        return this.gestorDTOS.getPruebaRepository().findByFechaHoraInicioBeforeAndFechaHoraFinIsNull(fechaHora);
     }
 
     @Override
     public Prueba findPruebaFin(int id) {
-        return this.pruebaRepository.findByIdAndFechaHoraFinIsNull(id);
+        return this.gestorDTOS.getPruebaRepository().findByIdAndFechaHoraFinIsNull(id);
     }
 
+    // SE HACE CON EL SERVICIO TAMBIEN
+
+    /*
+
+
+
+
+     */
     @Override
     public void controlarVehiculo(PosicionDTO posicion) {
         // Obtengo el vehiculo que esta siendo evaluado
-        Vehiculo vehiculo = vehiculoRepository.findById(posicion.getIdVehiculo());
+        Vehiculo vehiculo =gestorDTOS.getVehiculoRepository().findById(posicion.getIdVehiculo());
 
         // Valido que el vehiculo este en alguna prueba en curso
-        Prueba prueba = this.pruebaRepository.findByVehiculoAndFechaHoraFinIsNull(vehiculo);
+        Prueba prueba = this.gestorDTOS.getPruebaRepository().findByVehiculoAndFechaHoraFinIsNull(vehiculo);
         if (prueba == null) {
             throw new RuntimeException("El vehiculo no se encuentra en ninguna prueba");
         }
@@ -115,7 +106,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             // Se establece al interesado como restringido para que no pueda relizar mas pruebas
             Interesado interesado = prueba.getInteresado();
             interesado.setRestringido(true);
-            interesadoRepository.save(interesado);
+            this.gestorDTOS.getInteresadoRepository().save(interesado);
         }
 
         // Todavia nose las listas de zonas peligrosas
@@ -162,5 +153,74 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             // La repuesta no es exitosa.
             exception.printStackTrace();
         }
+    }
+
+    // Valido si el interesado tiene restricciones o bien si la licencia esta vencida
+    // Valido que el vehiculo no este en alguna prueba y si esta que la prueba haya finalizado
+    // Si no hay condiciones adversas, se procede a registrar la prueba.
+
+    //LOS VALIDADORES DEVUELVEN TRUE SI PASO LA VALIDACION
+    private boolean validadorID(PruebaDTO pruebaDTO){
+        List<Vehiculo> vehiculos = gestorDTOS.getVehiculoRepository().findAll();
+        List<Interesado> interesados = gestorDTOS.getInteresadoRepository().findAll();
+        List<Empleado> empleados = gestorDTOS.getEmpleadoRepository().findAll();
+
+        if(!vehiculos.stream().anyMatch(v -> v.getId() == pruebaDTO.getIdVehiculo())){
+            return false;
+        }
+        if(!interesados.stream().anyMatch(i -> i.getId() == pruebaDTO.getIdInteresado())){
+            return false;
+        }
+        if(!empleados.stream().anyMatch(e -> e.getLegajo() == pruebaDTO.getLegajoEmpleado())){
+            return false;
+        }
+        return true;
+
+    }
+    private boolean validorRestringcion(PruebaDTO pruebaDTO){
+        Interesado interesado = gestorDTOS.getInteresadoRepository().findById(pruebaDTO.getIdInteresado());
+        if(LocalDateTime.now().isAfter(interesado.getFechaVencimientoLicencia()) || interesado.isRestringido()){
+            return false;
+        }
+        return true;
+    }
+    private boolean validadorPrueba(PruebaDTO pruebaDTO){
+        List<Prueba> pruebas = findAll();
+        Vehiculo vehiculo = gestorDTOS.getVehiculoRepository().findById(pruebaDTO.getIdVehiculo());
+        List<Prueba> coicidencias = pruebas.stream().filter(p ->vehiculo.getId() == p.getVehiculo().getId()).toList();
+        if(coicidencias.isEmpty()){
+            return true;
+        }
+        if(coicidencias.stream().allMatch(c ->c.getFechaHoraFin().isAfter(LocalDateTime.now()) )){
+            return false;
+        }
+        return true;
+
+
+    }
+    public void agregar(PruebaDTO pruebaDTO){
+        if(!validadorID(pruebaDTO)){
+            new RuntimeException("NO EXISTE ALGUNA DE LAS ASIGNACIONES");
+        }
+        if(!validorRestringcion(pruebaDTO)){
+            new RuntimeException("LA LICENCIA DEL INTERESADO ESTA RESTRINGIDA O VENCIDA");
+        }
+
+        if(!validadorPrueba(pruebaDTO)){
+            new RuntimeException("EL VEHICULO ESTA EN UNA PRUEBA");
+        }
+
+        Prueba prueba = new Prueba();
+        Empleado empleado = gestorDTOS.getEmpleadoRepository().findByLegajo(pruebaDTO.getLegajoEmpleado());
+        Interesado interesado = gestorDTOS.getInteresadoRepository().findById(pruebaDTO.getIdInteresado());
+        Vehiculo vehiculo = gestorDTOS.getVehiculoRepository().findById(pruebaDTO.getIdVehiculo());
+
+        prueba.setVehiculo(vehiculo);
+        prueba.setInteresado(interesado);
+        prueba.setEmpleado(empleado);
+        prueba.setComentario("");
+
+        add(prueba);
+
     }
 }
