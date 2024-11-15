@@ -39,7 +39,7 @@ public class PruebaController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-}
+
  /*
     // 1.b) Listar pruebas en curso en un momento dado
     // Se envia la fecha-hora en la ruta
@@ -110,7 +110,7 @@ public class PruebaController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
+*/
     @PostMapping("/promocionar-pruebas")
     public ResponseEntity<Object> enviarPromociones(@RequestBody DetallePromocionDTO promocion) {
         try {
@@ -121,4 +121,5 @@ public class PruebaController {
         }
     }
 
-*/
+
+}
