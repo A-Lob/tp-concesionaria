@@ -223,4 +223,5 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         add(prueba);
 
     }
+
 }

@@ -58,11 +58,13 @@ public class Interesado {
     @JsonManagedReference
     private List<Prueba> pruebas;
 
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.LAZY
+    )
     @JoinTable(
-            name = "Interesado_Promocion",
-            joinColumns = @JoinColumn(name= "interesado_id"),
-            inverseJoinColumns = @JoinColumn(name = "promocion_id")
+            name = "interesado_promocion",
+            joinColumns = @JoinColumn(name= "interesado_ID"),
+            inverseJoinColumns = @JoinColumn(name = "promocion_ID")
     )
     @JsonIgnore
     private List<Promocion> promociones;
