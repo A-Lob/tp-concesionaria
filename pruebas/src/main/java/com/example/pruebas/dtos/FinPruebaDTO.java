@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 public class FinPruebaDTO {
 
     private String comentario;
-    private LocalDateTime fechaHoraFin;
+    private LocalDateTime fechaHoraFin = LocalDateTime.now();
 
 }

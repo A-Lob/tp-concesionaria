@@ -55,6 +55,20 @@ public class GestorDTOS {
         interesadoDTO.setEmail(interesado.getEmail());
         return interesadoDTO;
     }
+    public VehiculoDTO vehiculoDTO(Vehiculo vehiculo){
+        VehiculoDTO vehiculoDTO = new VehiculoDTO();
+        vehiculoDTO.setPatente(vehiculo.getPatente());
+        vehiculoDTO.setAnio(vehiculo.getAnio());
+        return vehiculoDTO;
+    }
+    public EmpleadoDTO empleadoDTO(Empleado empleado){
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
+        empleadoDTO.setNombre(empleado.getNombre());
+        empleadoDTO.setApellido(empleado.getApellido());
+        empleadoDTO.setEmail(empleado.getEmail());
+        empleadoDTO.setLegajo(empleado.getLegajo());
+        return empleadoDTO;
+    }
 
 
     // Se listan todos los vehiculos de un modelo
@@ -120,6 +134,8 @@ public class GestorDTOS {
 
         ).toList();
     }
+
+
 
 
 

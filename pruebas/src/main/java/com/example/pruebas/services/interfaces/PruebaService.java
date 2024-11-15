@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface PruebaService extends Service<Prueba, Integer> {
 
-    List<Prueba> findPruebasByFechaHora(LocalDateTime fechaHora);
-    Prueba findPruebaFin(int id);
+
+
     void controlarVehiculo(PosicionDTO posicion);
     void enviarPromociones(DetallePromocionDTO promocion);
 
