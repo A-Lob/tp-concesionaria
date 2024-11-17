@@ -84,12 +84,6 @@ public class PruebaController {
     //todos
 
 
-
-
-
-
-
-
     @PostMapping("/controlar-vehiculo")
     public ResponseEntity<Object> evaluarPosicion(@RequestBody PosicionDTO posicion) {
         try {
