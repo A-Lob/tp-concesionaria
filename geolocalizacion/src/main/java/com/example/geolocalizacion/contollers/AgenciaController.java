@@ -17,7 +17,7 @@ public class AgenciaController {
 
     @GetMapping("/datos")
     public ResponseEntity<Agencia> datos(){
-     return ResponseEntity.ok().body(   geolocalizacionServicion.obtenerDatosAgencia());
+     return ResponseEntity.ok().body(geolocalizacionServicion.obtenerDatosAgencia());
 
     }
 }
