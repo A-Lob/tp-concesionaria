@@ -1,11 +1,8 @@
 package com.example.geolocalizacion.servicios;
 
-import com.example.geolocalizacion.clientes.WebClientConfig;
-import com.example.geolocalizacion.entidades.Agencia;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.geolocalizacion.modelos.Agencia;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 
 @Service
 public class GeolocalizacionServicio{

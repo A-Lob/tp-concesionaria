@@ -1,14 +1,12 @@
-package com.example.geolocalizacion.entidades;
+package com.example.geolocalizacion.modelos;
 
-import com.example.geolocalizacion.entidades.Auxiliares.Coordenadas;
-import com.example.geolocalizacion.entidades.Auxiliares.Zona;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.geolocalizacion.modelos.Auxiliares.Coordenadas;
+import com.example.geolocalizacion.modelos.Auxiliares.Zona;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor

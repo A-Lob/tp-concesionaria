@@ -1,14 +1,11 @@
-package com.example.geolocalizacion.entidades.Auxiliares;
+package com.example.geolocalizacion.modelos.Auxiliares;
 
-import com.example.geolocalizacion.entidades.Agencia;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

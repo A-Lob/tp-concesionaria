@@ -1,11 +1,11 @@
-package com.example.geolocalizacion.entidades.Auxiliares;
+package com.example.geolocalizacion.modelos.Auxiliares;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
