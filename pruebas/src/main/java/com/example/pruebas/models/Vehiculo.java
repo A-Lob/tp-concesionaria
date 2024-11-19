@@ -47,8 +47,7 @@ public class Vehiculo {
     @JsonBackReference
     private Modelo modelo;
 
-    @ManyToOne
-    @JoinColumn(name = "promocion_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonBackReference
     private Promocion promocion;
 

@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
 
-
     private final GestorDTOS gestorDTOS;
 
     public PruebaServiceImpl(GestorDTOS gestorDTOS) {
@@ -105,22 +104,6 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         }
     }
 
-    @Override
-    public void enviarPromociones(DetallePromocionDTO promocion) {
-        // Obtengo los interesados registrados en el sistema
-        List<InteresadoDTO> interesados = promocion.getInteresados();
-        if (interesados.isEmpty()) {
-            new RuntimeException("No hay interesados en pruebas");
-        } else {
-            interesados.forEach(interesado -> {
-                generarNotificacion(
-                        interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
-                                .map(DetalleVehiculoDTO -> DetalleVehiculoDTO.getModelo().getDescripcion())
-                                .collect(Collectors.joining(", \n"))
-                );
-            });
-        }
-    }
 
 
     // Se debe enviar una peticion al microservicio de notificaciones para que procese la informacion,

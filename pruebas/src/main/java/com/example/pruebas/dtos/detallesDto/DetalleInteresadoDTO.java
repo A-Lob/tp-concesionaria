@@ -1,6 +1,7 @@
 package com.example.pruebas.dtos.detallesDto;
 
 import com.example.pruebas.dtos.InteresadoDTO;
+import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.models.Prueba;
 import lombok.AllArgsConstructor;
@@ -15,4 +16,5 @@ import java.util.List;
 public class DetalleInteresadoDTO {
     private InteresadoDTO interesado;
     private List<PruebaDTO> pruebas;
+    private List<DetallePromocionDTO> promociones;
 }

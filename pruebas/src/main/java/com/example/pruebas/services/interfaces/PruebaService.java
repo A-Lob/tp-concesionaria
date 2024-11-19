@@ -12,9 +12,6 @@ import java.util.List;
 
 public interface PruebaService extends Service<Prueba, Integer> {
 
-
-
     void controlarVehiculo(PosicionDTO posicion);
-    void enviarPromociones(DetallePromocionDTO promocion);
 
 }

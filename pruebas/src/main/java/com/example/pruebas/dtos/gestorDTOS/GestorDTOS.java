@@ -1,6 +1,7 @@
 package com.example.pruebas.dtos.gestorDTOS;
 
 import com.example.pruebas.dtos.*;
+import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.*;
 import com.example.pruebas.services.implementations.VehiculoServiceImpl;
@@ -23,6 +24,7 @@ public class GestorDTOS {
     private final MarcaRepository marcaRepository;
     private final EmpleadoRepository empleadoRepository;
     private final InteresadoRepository interesadoRepository;
+    private final PromocionRepository promocionRepository;
 
 //EL GESTOR  DEVUELVE DTOS PRIMITIVOS Y LISTAS DE ESOS DTOS EN BASE A ALGO....
     @Autowired
@@ -32,7 +34,8 @@ public class GestorDTOS {
                       ModeloRepository modeloRepository,
                       MarcaRepository marcaRepository,
                       EmpleadoRepository empleadoRepository,
-                      InteresadoRepository interesadoRepository) {
+                      InteresadoRepository interesadoRepository,
+                      PromocionRepository promocionRepository) {
 
         this.vehiculoRepository = vehiculoRepository;
         this.pruebaRepository = pruebaRepository;
@@ -41,6 +44,7 @@ public class GestorDTOS {
         this.marcaRepository = marcaRepository;
         this.empleadoRepository = empleadoRepository;
         this.interesadoRepository = interesadoRepository;
+        this.promocionRepository = promocionRepository;
     }
 
     public InteresadoDTO interesadoDTO(Interesado interesado){
@@ -122,6 +126,7 @@ public class GestorDTOS {
 
         ).toList();
     }
+
     public List<PruebaDTO> listarPruebas(Interesado interesado) {
         List<Prueba> pruebas = interesado.getPruebas();
         return pruebas.stream().map( p -> {
@@ -135,8 +140,33 @@ public class GestorDTOS {
         ).toList();
     }
 
+    public List<InteresadoDTO> listarInteresados(Promocion promocion){
+        List<Interesado> interesados = promocion.getInteresados();
+        return interesados.stream().map( p -> {
+            InteresadoDTO interesadoDTO = new InteresadoDTO();
+            interesadoDTO.setApellido(p.getApellido());
+            interesadoDTO.setNombre(p.getNombre());
+            interesadoDTO.setEmail(p.getEmail());
+            return interesadoDTO;
+        }).toList();
+    }
 
+    public List<DetalleVehiculoDTO> listarVehiculosPromocion(Promocion promocion) {
+        List<Vehiculo> vehiculos = promocion.getVehiculos();
+        return vehiculos.stream().map( p -> {
+            VehiculoDTO vehiculoDTO = new VehiculoDTO();
+            ModeloDTO modeloDTO = new ModeloDTO();
+            DetalleVehiculoDTO detalleVehiculoDTO = new DetalleVehiculoDTO();
 
+            vehiculoDTO.setAnio(p.getAnio());
+            vehiculoDTO.setPatente(p.getPatente());
+            modeloDTO.setDescripcion(p.getModelo().getDescripcion());
+            detalleVehiculoDTO.setVehiculo(vehiculoDTO);
+            detalleVehiculoDTO.setModelo(modeloDTO);
+
+            return detalleVehiculoDTO;
+        }).toList();
+    }
 
 
 

@@ -24,11 +24,17 @@ public class Promocion {
     @Column(name = "TIPO")
     private String tipo;
 
-    @ManyToMany(mappedBy = "promociones")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "interesado_promocion",
+            joinColumns = @JoinColumn(name = "promocion_ID"),
+            inverseJoinColumns = @JoinColumn(name = "interesado_ID")
+    )
     @JsonManagedReference
     private List<Interesado> interesados;
 
-    @OneToMany(mappedBy = "promocion")
+    @OneToMany
+    @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")
     @JsonManagedReference
     private List<Vehiculo> vehiculos;
 }

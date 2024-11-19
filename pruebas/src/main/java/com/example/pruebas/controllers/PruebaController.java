@@ -55,8 +55,8 @@ public class PruebaController {
             List<DetallePruebaDTO> pruebas = pruebaService.todas();
             return ResponseEntity.ok().body(pruebas);
         } catch (Exception exception) {
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.badRequest().build();
     }
     // 1.c) Finalizar una prueba, permitiéndole al empleado agregar un comentario
     // sobre la misma.
@@ -94,15 +94,7 @@ public class PruebaController {
         }
     }
 */
-    @PostMapping("/promocionar-pruebas")
-    public ResponseEntity<Object> enviarPromociones(@RequestBody DetallePromocionDTO promocion) {
-        try {
-            this.pruebaService.enviarPromociones(promocion);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+
 
 
 }
