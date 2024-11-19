@@ -27,7 +27,6 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     public VehiculoServiceImpl(GestorDTOS gestorDTOS) {
         this.gestorDTOS = gestorDTOS;
 
-
     }
 
     @Override
@@ -125,14 +124,9 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     }
 
     private List<PruebaDTO> listadoPruebasDto(List<Prueba> pruebas, int id) {
-        List<PruebaDTO> pruebasDtos = pruebas.stream()
-                .map(p -> {
-                    PruebaDTO dto = new PruebaDTO();
-                    dto.setIdInteresado(p.getInteresado().getId());
-                    dto.setIdVehiculo(p.getVehiculo().getId());
-                    dto.setLegajoEmpleado(p.getEmpleado().getLegajo());
-                    return dto;
-                }).toList();
+
+        List<PruebaDTO> pruebasDtos = gestorDTOS.listarPruebas(pruebas);
+
 
         pruebasDtos = pruebasDtos.stream().filter(p -> p.getIdVehiculo() == id).toList();
 
@@ -177,6 +171,7 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         vehiculo.setAnio(detalleVehiculoDTO.getVehiculo().getAnio());
 
         Modelo modelo = gestorDTOS.getModeloRepository().findById(id);
+        vehiculo.setModelo(modelo);
 
         update(vehiculo);
 

@@ -73,13 +73,7 @@ public class GestorDTOS {
     // Se listan todos los vehiculos de un modelo
     public List<VehiculoDTO> listaVehiculosDtos(Modelo modelo) {
         List<Vehiculo> vehiculos = modelo.getVehiculos();
-        return vehiculos.stream().map(p -> {
-            VehiculoDTO vehiculoDTO = new VehiculoDTO();
-            vehiculoDTO.setPatente(p.getPatente());
-            vehiculoDTO.setAnio(p.getAnio());
-            return vehiculoDTO;
-
-        }).toList();
+        return vehiculos.stream().map(this::vehiculoDTO).toList();
     }
 
     public List<ModeloDTO> listarModelos(Marca marca) {
@@ -133,6 +127,17 @@ public class GestorDTOS {
                 }
 
         ).toList();
+    }
+    public List<PruebaDTO> listarPruebas(List<Prueba> pruebas) {
+        List<PruebaDTO> pruebasDtos = pruebas.stream()
+                .map(p -> {
+                    PruebaDTO dto = new PruebaDTO();
+                    dto.setIdInteresado(p.getInteresado().getId());
+                    dto.setIdVehiculo(p.getVehiculo().getId());
+                    dto.setLegajoEmpleado(p.getEmpleado().getLegajo());
+                    return dto;
+                }).toList();
+        return pruebasDtos;
     }
 
     public List<InteresadoDTO> listarInteresados(Promocion promocion){
