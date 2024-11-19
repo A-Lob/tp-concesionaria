@@ -4,15 +4,10 @@ import com.example.pruebas.dtos.*;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
 import com.example.pruebas.models.*;
 import com.example.pruebas.repositories.*;
-import com.example.pruebas.services.implementations.VehiculoServiceImpl;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Component

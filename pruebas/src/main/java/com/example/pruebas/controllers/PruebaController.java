@@ -1,15 +1,12 @@
 package com.example.pruebas.controllers;
 
 import com.example.pruebas.dtos.*;
-import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.dtos.detallesDto.DetallePruebaDTO;
 import com.example.pruebas.services.implementations.PruebaServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController

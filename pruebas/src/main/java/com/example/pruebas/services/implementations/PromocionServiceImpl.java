@@ -95,13 +95,11 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
         if (interesados.isEmpty()) {
             new RuntimeException("No hay interesados en pruebas");
         } else {
-            interesados.forEach(interesado -> {
-                generarNotificacion(
-                        interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
-                                .map(DetalleVehiculoDTO -> DetalleVehiculoDTO.getModelo().getDescripcion())
-                                .collect(Collectors.joining(", \n"))
-                );
-            });
+            interesados.forEach(interesado -> generarNotificacion(
+                    interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
+                            .map(DetalleVehiculoDTO -> DetalleVehiculoDTO.getModelo().getDescripcion())
+                            .collect(Collectors.joining(", \n"))
+            ));
         }
     }
 

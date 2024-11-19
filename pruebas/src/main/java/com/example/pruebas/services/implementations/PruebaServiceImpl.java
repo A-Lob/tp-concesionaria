@@ -1,7 +1,6 @@
 package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.dtos.*;
-import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.dtos.detallesDto.DetallePruebaDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.*;
@@ -14,11 +13,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {

@@ -1,6 +1,5 @@
 package com.example.pruebas.controllers;
 
-import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.PromocionRequest;
 import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.services.implementations.PromocionServiceImpl;
@@ -26,7 +25,7 @@ public class PromocionController {
                     request.getPromocion(),
                     request.getInteresadosId(),
                     request.getVehiculosId()
-            );;
+            );
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception exception) {
