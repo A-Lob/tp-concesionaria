@@ -60,6 +60,7 @@ public class GestorDTOS {
         VehiculoDTO vehiculoDTO = new VehiculoDTO();
         vehiculoDTO.setPatente(vehiculo.getPatente());
         vehiculoDTO.setAnio(vehiculo.getAnio());
+        vehiculoDTO.setId(vehiculo.getId());
         return vehiculoDTO;
     }
 
@@ -69,6 +70,7 @@ public class GestorDTOS {
         empleadoDTO.setApellido(empleado.getApellido());
         empleadoDTO.setEmail(empleado.getEmail());
         empleadoDTO.setLegajo(empleado.getLegajo());
+
         return empleadoDTO;
     }
 
@@ -78,6 +80,16 @@ public class GestorDTOS {
         pruebaDTO.setLegajoEmpleado(prueba.getEmpleado().getLegajo());
         pruebaDTO.setIdInteresado(prueba.getInteresado().getId());
         return pruebaDTO;
+    }
+
+    public PosicionDTO posicionDTO(Posicion posicion) {
+
+        PosicionDTO posicionDTO = new PosicionDTO();
+
+        posicionDTO.setLatitud(posicion.getLatitud());
+        posicionDTO.setLongitud(posicion.getLongitud());
+        posicionDTO.setIdVehiculo(posicion.getVehiculo().getId());
+        return posicionDTO;
     }
 
 

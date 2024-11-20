@@ -50,22 +50,15 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
     }
 
     public List<DetallePosicionDTO> posicionAll() {
-        List<Vehiculo> vehiculos = gestorDTOS.getVehiculoRepository().findAll();
-        List<DetallePosicionDTO> detallePosicionDTOS = vehiculos.stream().map(v -> {
-            DetallePosicionDTO dto = new DetallePosicionDTO();
-            List<PosicionDTO> posiciones = gestorDTOS.listarPosiciones(v.getId());
-            VehiculoDTO vehiculoDTO = new VehiculoDTO();
+        List<Posicion> posiciones = findAll();
+        List<DetallePosicionDTO> detallePosicionDTOS = posiciones.stream().map(p -> {
+            DetallePosicionDTO detallePosicionDTO  = new DetallePosicionDTO();
+            detallePosicionDTO.setPosicion(gestorDTOS.posicionDTO(p));
+            detallePosicionDTO.setVehiculo(gestorDTOS.vehiculoDTO(p.getVehiculo()));
 
 
-            vehiculoDTO.setPatente(v.getPatente());
-            vehiculoDTO.setAnio(v.getAnio());
 
-            posiciones.stream().forEach(dto::setPosicion);
-
-            dto.setVehiculo(vehiculoDTO);
-
-
-            return dto;
+            return detallePosicionDTO;
 
 
         }).toList();

@@ -2,6 +2,7 @@ package com.example.geolocalizacion.services;
 
 
 import com.example.geolocalizacion.models.DetallePrueba;
+import com.example.geolocalizacion.models.DetalleVehiculo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -17,10 +18,16 @@ public class VehiculoService {
                 .baseUrl("http://localhost:8081/api/vehiculos").build();
     }
 
-    public List<DetallePrueba> obtenerDatosPrueba(){
+    public List<DetalleVehiculo> obtenerDatosVehiculos(){
         return  webClient.get()
                 .uri("/todos")
                 .retrieve()
-                .bodyToFlux(DetallePrueba.class).collectList().block();
+                .bodyToFlux(DetalleVehiculo.class).collectList().block();
+    }
+    public  DetalleVehiculo obtenerDatosVehiculo(String idVehiculo){
+        return  webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/buscar/{id}").build(idVehiculo))
+                .retrieve()
+                .bodyToMono(DetalleVehiculo.class).block();
     }
 }

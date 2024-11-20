@@ -63,7 +63,7 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         List<Posicion> posicion = gestorDTOS.getPosicionRepository().findAll();
 
 
-        List<DetalleVehiculoDTO> detalleVehiculoDTO = vehiculos.stream().map(e -> {
+        return vehiculos.stream().map(e -> {
                     DetalleVehiculoDTO dto = new DetalleVehiculoDTO();
                     VehiculoDTO vehiculoDTO = new VehiculoDTO();
                     List<PruebaDTO> pruebasDtos = this.listadoPruebasDto(pruebas, List.of(e));
@@ -75,14 +75,12 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
                     dto.setVehiculo(vehiculoDTO);
                     dto.setPruebas(pruebasDtos);
                     dto.setPosiciones(posicionDtos);
+                    dto.setVehiculo(gestorDTOS.vehiculoDTO(e));
                     ModeloDTO modelo = new ModeloDTO(e.getModelo().getDescripcion());
                     dto.setModelo(modelo);
                     return dto;
                 })
                 .toList();
-
-
-        return detalleVehiculoDTO;
     }
 
     public DetalleVehiculoDTO obtenerDetalleVehiculo(Integer id) {
@@ -136,11 +134,7 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     private List<PosicionDTO> listadoPosicionesDto(List<Posicion> posicion, List<Vehiculo> vehiculos) {
 
         List<PosicionDTO> posicionDtos = posicion.stream().map(pos -> {
-            PosicionDTO dto = new PosicionDTO();
-            dto.setIdVehiculo(pos.getVehiculo().getId());
-            dto.setLatitud(pos.getLatitud());
-            dto.setLongitud(pos.getLongitud());
-            return dto;
+            return gestorDTOS.posicionDTO(pos);
         }).toList();
 
         List<PosicionDTO> posicionDtosF = posicionDtos.stream()

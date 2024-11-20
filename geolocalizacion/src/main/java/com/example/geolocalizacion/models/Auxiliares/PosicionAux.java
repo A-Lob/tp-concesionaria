@@ -5,13 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class VehiculoAux {
-    private int id;
-    private String patente;
-    private int anio;
-
-
-
+@NoArgsConstructor
+public class PosicionAux {
+    private int idVehiculo;
+    private double latitud;
+    private double longitud;
 }

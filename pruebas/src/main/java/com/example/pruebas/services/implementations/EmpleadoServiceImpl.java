@@ -53,15 +53,9 @@ public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implemen
         List<Empleado> empleados = this.findAll();
         return empleados.stream().map(e -> {
             DetalleEmpleadoDTO detalleEmpleadoDTO = new DetalleEmpleadoDTO();
-            EmpleadoDTO empleadoDTO = new EmpleadoDTO();
             List<PruebaDTO> pruebaDTOS = gestorDTOS.listarPruebas(e);
 
-            empleadoDTO.setLegajo(e.getLegajo());
-            empleadoDTO.setNombre(e.getNombre());
-            empleadoDTO.setApellido(e.getApellido());
-            empleadoDTO.setEmail(e.getEmail());
-
-            detalleEmpleadoDTO.setEmpleado(empleadoDTO);
+            detalleEmpleadoDTO.setEmpleado(gestorDTOS.empleadoDTO(e));
             detalleEmpleadoDTO.setPruebas(pruebaDTOS);
             return detalleEmpleadoDTO;
         }).toList();

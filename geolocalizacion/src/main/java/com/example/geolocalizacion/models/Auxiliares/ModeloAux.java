@@ -5,13 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class VehiculoAux {
-    private int id;
-    private String patente;
-    private int anio;
+@NoArgsConstructor
 
 
+public class ModeloAux {
+    private String descripcion;
 
 }
