@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/api/geolocalizacion/incidentes")
-public class IncidenteController {
+@RestController("/api/geolocalizacion/reportes")
+public class ReportesController {
     private IncidentesService incidentesService;
-    public IncidenteController(IncidentesService incidentesService) {
+    public ReportesController(IncidentesService incidentesService) {
             this.incidentesService = incidentesService;
     }
 
-    @GetMapping("/pruebas")
+    @GetMapping("/indicente/pruebas")
     public ResponseEntity<List<DetallePrueba>> getPruebas() {
         try{
             List<DetallePrueba> pruebas = incidentesService.incidentes();
