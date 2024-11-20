@@ -2,23 +2,23 @@ package com.example.geolocalizacion.services;
 
 import com.example.geolocalizacion.models.Agencia;
 import com.example.geolocalizacion.models.Auxiliares.PosicionAux;
+import com.example.geolocalizacion.models.DetalleIncidente;
 import com.example.geolocalizacion.models.DetallePrueba;
 import com.example.geolocalizacion.models.DetalleVehiculo;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class IncidentesService {
+public class ReporteService {
 
     private PruebaService pruebaService;
     private GeolocalizacionService geolocalizacionService;
     private VehiculoService vehiculoService;
 
-    public IncidentesService(PruebaService pruebaService,
-                             GeolocalizacionService geolocalizacionService,
-                             VehiculoService vehiculoService) {
+    public ReporteService(PruebaService pruebaService,
+                          GeolocalizacionService geolocalizacionService,
+                          VehiculoService vehiculoService) {
         this.pruebaService = pruebaService;
         this.geolocalizacionService = geolocalizacionService;
         this.vehiculoService = vehiculoService;
@@ -64,8 +64,28 @@ public class IncidentesService {
         List<DetallePrueba> pruebasFinal = pruebas.stream().filter(p ->
                 posicionesFiltradas.stream().anyMatch(f -> f.getIdVehiculo() == p.getVehiculo().getId())).toList();
 
-      return pruebasFinal;
+        return pruebasFinal;
 
-}
+    }
 
+    public DetalleIncidente detalleIncidenteEmpleado(int legajo) {
+        List<DetallePrueba> incidentes = incidentes();
+        incidentes = incidentes.stream().filter(i -> i.getEmpleado().getLegajo() == legajo).toList();
+        DetalleIncidente incente = new DetalleIncidente();
+        incente.setIncidentes(incidentes);
+
+        return incente;
+
+     }
+
+     //Pendiente punto 3 de reportes
+
+    public  DetalleIncidente detalleIncidenteVehiculo(int vehiculoId) {
+        List<DetallePrueba> incidentes = incidentes();
+        incidentes = incidentes.stream().filter(i -> i.getVehiculo().getId() == vehiculoId).toList();
+        DetalleIncidente incente = new DetalleIncidente();
+        incente.setIncidentes(incidentes);
+
+        return incente;
+    }
 }
