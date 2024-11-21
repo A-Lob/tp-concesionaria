@@ -2,6 +2,7 @@ package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.dtos.InteresadoDTO;
 import com.example.pruebas.dtos.NotificacionDTO;
+import com.example.pruebas.dtos.NotificacionRequest;
 import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
@@ -17,14 +18,17 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 
-
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implements PromocionService {
 
     private final GestorDTOS gestorDTOS;
+    private final String banner = "/images/banner-promocion.png";
 
     public PromocionServiceImpl(GestorDTOS gestorDTOS) { this.gestorDTOS = gestorDTOS; }
 
@@ -95,28 +99,42 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
         if (interesados.isEmpty()) {
             new RuntimeException("No hay interesados en pruebas");
         } else {
-            interesados.forEach(interesado -> generarNotificacion(
-                    interesado.getEmail(), promocion.getPromocion().getTipo(), promocion.getVehiculos().stream()
-                            .map(DetalleVehiculoDTO -> DetalleVehiculoDTO.getModelo().getDescripcion())
-                            .collect(Collectors.joining(", \n"))
-            ));
+            interesados.forEach(interesado -> {
+                    Map<String, Object> model = modelarAsunto(interesado, promocion);
+                generarNotificacion(
+                    interesado.getEmail(), promocion.getPromocion().getTipo(), model, "promocion-template");
+            });
         }
     }
 
-    public void generarNotificacion(String email, String asunto, String descripcion) {
+    public void generarNotificacion(String email, String asunto, Map<String, Object> model, String mailTemplate) {
         try {
             RestTemplate template = new RestTemplate();
-            NotificacionDTO notificacion = new NotificacionDTO();
-            notificacion.setEmail(email);
-            notificacion.setAsunto(asunto);
-            notificacion.setDescripcion(descripcion);
-            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
+            NotificacionDTO notificacionDto = new NotificacionDTO();
+            notificacionDto.setEmail(email);
+            notificacionDto.setAsunto(asunto);
+            notificacionDto.setDescripcion("descripcion");
+            NotificacionRequest request = new NotificacionRequest(notificacionDto, model, mailTemplate);
+            HttpEntity<NotificacionRequest> entity = new HttpEntity<>(request);
 
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta", entity, NotificacionDTO.class
+            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
+                    entity, NotificacionDTO.class
             );
         } catch (HttpClientErrorException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public Map<String, Object> modelarAsunto(InteresadoDTO interesado, DetallePromocionDTO detallePromocionDTO) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("lastName", interesado.getApellido());
+        model.put("firstName", interesado.getNombre());
+        model.put("promotionType", detallePromocionDTO.getPromocion().getTipo());
+
+        model.put("vehicles", detallePromocionDTO.getVehiculos().stream().map(p ->
+                p.getModelo().getDescripcion()).collect(Collectors.toList()));
+
+        return model;
     }
 
 }

@@ -75,7 +75,6 @@ public class PruebaController {
             return ResponseEntity.badRequest().build();
         }
     }
- /*
 
 
     //todos
@@ -90,7 +89,7 @@ public class PruebaController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-*/
+
 
 
 

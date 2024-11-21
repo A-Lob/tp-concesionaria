@@ -11,11 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
@@ -85,9 +89,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             // Debo enviar una notificacion al empleado que supervisa la prueba para advertir la situacion
             generarNotificacion(prueba.getEmpleado().getEmail(),
                     "Alerta",
-                    "El vehiculo con patente: " + vehiculo.getPatente()
-                            + " que inicio una prueba en el dia y hora: " + prueba.getFechaHoraInicio()
-                            + " excedio los limites permitidos, el vehiculo debe regresar de inmediato");
+                    modelarAsunto(prueba), "alerta-template");
 
             // Se establece al interesado como restringido para que no pueda relizar mas pruebas
             Interesado interesado = prueba.getInteresado();
@@ -101,26 +103,41 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         }
     }
 
+    public Map<String, Object> modelarAsunto(Prueba prueba) {
+        Empleado empleado = prueba.getEmpleado();
+        Vehiculo vehiculo = prueba.getVehiculo();
 
+        Map<String, Object> model = new HashMap<>();
+        model.put("lastName", empleado.getApellido());
+        model.put("firstName", empleado.getNombre());
+        model.put("employeeId", empleado.getLegajo());
+        model.put("vehiclePlate", vehiculo.getPatente());
 
-    // Se debe enviar una peticion al microservicio de notificaciones para que procese la informacion,
-    // genere la notificacion y la envie a quien corresponda
-    public void generarNotificacion(String email, String asunto, String descripcion) {
-        // Creación de una instancia de RestTemplate
+        LocalDateTime fechaHoraInicio = prueba.getFechaHoraInicio();
+        long timestamp = fechaHoraInicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Instant instant = Instant.ofEpochMilli(timestamp);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
+        String formattedDateTime = formatter.format(instant);
+
+        model.put("testStartDateTime", formattedDateTime);
+
+        return model;
+    }
+
+    public void generarNotificacion(String email, String asunto, Map<String, Object> model, String mailTemplate) {
         try {
             RestTemplate template = new RestTemplate();
-            NotificacionDTO notificacion = new NotificacionDTO();
-            notificacion.setEmail(email);
-            notificacion.setAsunto(asunto);
-            notificacion.setDescripcion(descripcion);
-            // Creación de la entidad a enviar
-            HttpEntity<NotificacionDTO> entity = new HttpEntity<>(notificacion);
-            // respuesta de la petición tendrá en su cuerpo a un objeto del tipo
-            // notificacion.
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta", entity, NotificacionDTO.class
+            NotificacionDTO notificacionDto = new NotificacionDTO();
+            notificacionDto.setEmail(email);
+            notificacionDto.setAsunto(asunto);
+            notificacionDto.setDescripcion("descripcion");
+            NotificacionRequest request = new NotificacionRequest(notificacionDto, model, mailTemplate);
+            HttpEntity<NotificacionRequest> entity = new HttpEntity<>(request);
+
+            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
+                    entity, NotificacionDTO.class
             );
         } catch (HttpClientErrorException exception) {
-            // La repuesta no es exitosa.
             exception.printStackTrace();
         }
     }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alerta de Restricción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .banner {
+            width: 100%;
+            max-width: 600px;
+        }
+        .alert-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6F00;
+            margin-top: 20px;
+        }
+        .alert-text {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .alert-footer {
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!-- Banner de imagen -->
+    <a href="https://ibb.co/wd5Sh1t">
+        <img class="banner" src="https://i.ibb.co/YNHcBGg/banner-alerta.png" alt="banner-alerta" border="0" />
+    </a>
+
+    <!-- Contenido del correo -->
+    <p class="alert-header">
+        Hola <strong th:text="${lastName}">Apellido del Empleado</strong>, <strong th:text="${firstName}">Nombre del Empleado</strong><br>
+        Legajo: <strong th:text="${employeeId}">Número de Legajo</strong>
+    </p>
+
+    <p class="alert-text">
+        El vehículo con patente <strong th:text="${vehiclePlate}">Patente del Vehículo</strong>,
+        que inició una prueba el día y hora
+        <strong th:text="${testStartDateTime}">Fecha y Hora de Inicio</strong>, excedió los límites permitidos.<br>
+        El vehículo debe regresar de inmediato.
+    </p>
+
+    <p class="alert-footer">
+        Si tienes alguna duda, por favor contacta al soporte.
+    </p>
+</div>
+</body>
+</html>
