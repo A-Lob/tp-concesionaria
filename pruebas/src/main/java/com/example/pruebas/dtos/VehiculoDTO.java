@@ -12,11 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VehiculoDTO {
+    private int id;
     private String patente;
     private int anio;
-    //private List<PruebaDTO> pruebas;
-    //private List<PosicionDTO> posiciones;
-    //private ModeloDTO modelo;
+
 
 
 }

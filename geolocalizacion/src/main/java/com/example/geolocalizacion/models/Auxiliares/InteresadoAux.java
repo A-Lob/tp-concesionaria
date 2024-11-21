@@ -1,4 +1,4 @@
-package com.example.geolocalizacion.modelos.Auxiliares;
+package com.example.geolocalizacion.models.Auxiliares;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Interesado {
+public class InteresadoAux {
 
     private String tipoDocumento;
     private int numDocumento;

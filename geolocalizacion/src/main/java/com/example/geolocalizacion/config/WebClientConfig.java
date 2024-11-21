@@ -1,4 +1,4 @@
-package com.example.geolocalizacion.clientes;
+package com.example.geolocalizacion.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

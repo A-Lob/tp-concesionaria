@@ -1,4 +1,4 @@
-package com.example.geolocalizacion.modelos.Auxiliares;
+package com.example.geolocalizacion.models.Auxiliares;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Empleado {
+public class EmpleadoAux {
     private int legajo;
     private String nombre;
     private String apellido;

@@ -1,7 +1,7 @@
-package com.example.geolocalizacion.modelos;
+package com.example.geolocalizacion.models;
 
-import com.example.geolocalizacion.modelos.Auxiliares.Coordenadas;
-import com.example.geolocalizacion.modelos.Auxiliares.Zona;
+import com.example.geolocalizacion.models.Auxiliares.Coordenadas;
+import com.example.geolocalizacion.models.Auxiliares.Zona;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

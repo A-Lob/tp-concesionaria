@@ -222,6 +222,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         detallePruebaDTO.setEmpleado(gestorDTOS.empleadoDTO(p.getEmpleado()));
         detallePruebaDTO.setInteresado(gestorDTOS.interesadoDTO(p.getInteresado()));
         detallePruebaDTO.setVehiculo(gestorDTOS.vehiculoDTO(p.getVehiculo()));
+        detallePruebaDTO.setPrueba(gestorDTOS.pruebaDTO(p));
         detallePruebaDTO.setFinPrueba(finPruebaDTO);
         return detallePruebaDTO;
     }
@@ -266,4 +267,5 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     public void eliminarPrueba(int id){
         delete(id);
     }
+
 }

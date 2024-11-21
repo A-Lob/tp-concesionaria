@@ -48,6 +48,8 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
         return gestorDTOS.getInteresadoRepository().findAll();
     }
 
+
+
     private Interesado cargaInteresado(Interesado interesado, InteresadoDTO interesadoDTO){
         interesado.setTipoDocumento(interesadoDTO.getTipoDocumento());
         interesado.setDocumento(String.valueOf(interesadoDTO.getNumDocumento()));
