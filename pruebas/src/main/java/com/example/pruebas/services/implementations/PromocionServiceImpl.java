@@ -11,19 +11,19 @@ import com.example.pruebas.models.Promocion;
 import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.interfaces.PromocionService;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implements PromocionService {
 
@@ -47,7 +47,8 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
     @Override
     public List<Promocion> findAll() { return gestorDTOS.getPromocionRepository().findAll(); }
 
-    public List<DetallePromocionDTO> PromocionesAll() {
+    public List<DetallePromocionDTO> promocionesAll() {
+        log.info("Listando los detalles de todas las promociones");
         List<Promocion> promociones = gestorDTOS.getPromocionRepository().findAll();
         return promociones.stream().map(p -> {
             DetallePromocionDTO detallePromocionDTO = new DetallePromocionDTO();
@@ -78,6 +79,7 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
     }
 
     public DetallePromocionDTO obtenerDetallePromocion(Integer id) {
+        log.info("Listando detalles de la promocion");
         Promocion promocion = findById(id);
         PromocionDTO promocionDTO = new PromocionDTO();
         DetallePromocionDTO detallePromocionDTO = new DetallePromocionDTO();
@@ -108,6 +110,7 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
     }
 
     public void generarNotificacion(String email, String asunto, Map<String, Object> model, String mailTemplate) {
+        log.info("Generando notificacion");
         try {
             RestTemplate template = new RestTemplate();
             NotificacionDTO notificacionDto = new NotificacionDTO();
@@ -126,6 +129,7 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
     }
 
     public Map<String, Object> modelarAsunto(InteresadoDTO interesado, DetallePromocionDTO detallePromocionDTO) {
+        log.info("Modelando mail");
         Map<String, Object> model = new HashMap<>();
         model.put("lastName", interesado.getApellido());
         model.put("firstName", interesado.getNombre());

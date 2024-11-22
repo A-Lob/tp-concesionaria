@@ -4,29 +4,25 @@ import com.example.pruebas.dtos.ModeloDTO;
 import com.example.pruebas.dtos.PosicionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
 import com.example.pruebas.dtos.VehiculoDTO;
-import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleVehiculoDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Modelo;
 import com.example.pruebas.models.Posicion;
 import com.example.pruebas.models.Prueba;
 import com.example.pruebas.models.Vehiculo;
-import com.example.pruebas.repositories.ModeloRepository;
-import com.example.pruebas.repositories.PosicionRepository;
-import com.example.pruebas.repositories.PruebaRepository;
-import com.example.pruebas.repositories.VehiculoRepository;
 import com.example.pruebas.services.interfaces.VehiculoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+@Slf4j
 @Service
 public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implements VehiculoService {
     private GestorDTOS gestorDTOS;
+
     public VehiculoServiceImpl(GestorDTOS gestorDTOS) {
         this.gestorDTOS = gestorDTOS;
-
     }
 
     @Override
@@ -55,7 +51,8 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
         return this.gestorDTOS.getVehiculoRepository().findAll();
     }
 
-    public List<DetalleVehiculoDTO> obtenerDetallesVehiculos() {
+    public List<DetalleVehiculoDTO> vehiculosAll() {
+        log.info("Listando los detalles de todos los vehiculos");
         List<Vehiculo> vehiculos = findAll();
         List<Prueba> pruebas = gestorDTOS.getPruebaRepository().findAll();
 
@@ -84,6 +81,7 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     }
 
     public DetalleVehiculoDTO obtenerDetalleVehiculo(Integer id) {
+        log.info("Listando los detalles del vehiculo");
         Vehiculo vehiculo = findById(id);
         DetalleVehiculoDTO dtoVehiculo = new DetalleVehiculoDTO();
         List<Prueba> pruebas = gestorDTOS.getPruebaRepository().findAll();
@@ -124,7 +122,6 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
     private List<PruebaDTO> listadoPruebasDto(List<Prueba> pruebas, int id) {
 
         List<PruebaDTO> pruebasDtos = gestorDTOS.listarPruebas(pruebas);
-
 
         pruebasDtos = pruebasDtos.stream().filter(p -> p.getIdVehiculo() == id).toList();
 

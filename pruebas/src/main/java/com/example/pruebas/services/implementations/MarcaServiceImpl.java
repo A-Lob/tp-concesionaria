@@ -8,11 +8,13 @@ import com.example.pruebas.models.Marca;
 import com.example.pruebas.models.Modelo;
 import com.example.pruebas.repositories.MarcaRepository;
 import com.example.pruebas.services.interfaces.MarcaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class MarcaServiceImpl extends ServiceImpl<Marca, Integer> implements MarcaService {
     private final GestorDTOS gestorDTOS;
@@ -50,7 +52,8 @@ public class MarcaServiceImpl extends ServiceImpl<Marca, Integer> implements Mar
     }
 
 
-    public List<DetalleMarcaDTO> MarcasAll() {
+    public List<DetalleMarcaDTO> marcasAll() {
+        log.info("Listando detalles de todas las marcas");
         List<Marca> marcas = gestorDTOS.getMarcaRepository().findAll();
         return marcas.stream().map(m -> {
             DetalleMarcaDTO detalleMarcaDTO = new DetalleMarcaDTO();
@@ -67,7 +70,8 @@ public class MarcaServiceImpl extends ServiceImpl<Marca, Integer> implements Mar
 
     }
 
-    public DetalleMarcaDTO marca(int id) {
+    public DetalleMarcaDTO obtenerDetalleMarca(int id) {
+        log.info("Listando detalles de la marca");
         Marca marca = findById(id);
         DetalleMarcaDTO detalleMarcaDTO = new DetalleMarcaDTO();
 

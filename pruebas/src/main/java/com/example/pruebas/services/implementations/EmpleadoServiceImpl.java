@@ -6,29 +6,28 @@ import com.example.pruebas.dtos.detallesDto.DetalleEmpleadoDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Empleado;
 import com.example.pruebas.services.interfaces.EmpleadoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implements EmpleadoService {
 
     private final GestorDTOS gestorDTOS;
 
     public EmpleadoServiceImpl(GestorDTOS gestorDTOS) {
-
         this.gestorDTOS = gestorDTOS;
     }
 
     @Override
     public void add(Empleado empleado) {
-
         this.gestorDTOS.getEmpleadoRepository().save(empleado);
     }
 
     @Override
     public void update(Empleado empleado) {
-
         gestorDTOS.getEmpleadoRepository().save(empleado);
     }
 
@@ -49,7 +48,8 @@ public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implemen
         return gestorDTOS.getEmpleadoRepository().findAll();
     }
 
-  public List<DetalleEmpleadoDTO>  todos(){
+  public List<DetalleEmpleadoDTO> empleadosAll(){
+        log.info("Listando detalles de todos los empleados");
         List<Empleado> empleados = this.findAll();
         return empleados.stream().map(e -> {
             DetalleEmpleadoDTO detalleEmpleadoDTO = new DetalleEmpleadoDTO();
@@ -60,8 +60,8 @@ public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implemen
             return detalleEmpleadoDTO;
         }).toList();
   }
-  public DetalleEmpleadoDTO empleado(int id) {
-
+  public DetalleEmpleadoDTO obtenerDetalleEmpleado(int id) {
+        log.info("Obteniendo detalles del empleado");
       Empleado empleado = findById(id);
       DetalleEmpleadoDTO detalleEmpleadoDTO = new DetalleEmpleadoDTO();
       EmpleadoDTO empleadoDTO = new EmpleadoDTO();
@@ -90,6 +90,7 @@ public class EmpleadoServiceImpl extends ServiceImpl<Empleado, Integer> implemen
   public void eliminarEmpleado(int legajo){
         delete(legajo);
   }
+
   public void modificarEmpleado(int legajo, EmpleadoDTO empleadoDTO){
         Empleado empleado = findById(legajo);
         empleado.setNombre(empleadoDTO.getNombre());

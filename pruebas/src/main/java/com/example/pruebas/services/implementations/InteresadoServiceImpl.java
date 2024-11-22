@@ -7,11 +7,13 @@ import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Interesado;
 import com.example.pruebas.repositories.InteresadoRepository;
 import com.example.pruebas.services.interfaces.InteresadoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> implements InteresadoService {
     private final GestorDTOS gestorDTOS;
@@ -23,19 +25,16 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
     @Override
     public void add(Interesado interesado) {
         gestorDTOS.getInteresadoRepository().save(interesado);
-
     }
 
     @Override
     public void update(Interesado interesado) {
         gestorDTOS.getInteresadoRepository().save(interesado);
-
     }
 
     @Override
     public void delete(Integer id) {
         gestorDTOS.getInteresadoRepository().deleteById(id);
-
     }
 
     @Override
@@ -62,7 +61,8 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
 
         return interesado;
     }
-    public List<DetalleInteresadoDTO> todos() {
+    public List<DetalleInteresadoDTO> interesadosAll() {
+        log.info("Listando detalles de todos los Interesados");
         List<Interesado> interesados = findAll();
         return interesados.stream().map(i -> {
 
@@ -76,12 +76,12 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
 
             return detalleInteresadoDTO;
 
-
         }).toList();
 
     }
 
-    public DetalleInteresadoDTO interesado(int id) {
+    public DetalleInteresadoDTO obtenerDetalleInteresado(int id) {
+        log.info("Listando detalles del Interesado");
         Interesado interesado = findById(id);
         DetalleInteresadoDTO detalleInteresadoDTO = new DetalleInteresadoDTO();
         InteresadoDTO interesadoDTO = gestorDTOS.interesadoDTO(interesado);
@@ -89,8 +89,6 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
         detalleInteresadoDTO.setInteresado(interesadoDTO);
         detalleInteresadoDTO.setPruebas(pruebas);
         return detalleInteresadoDTO;
-
-
     }
 
     public void eliminar(int id) {
@@ -108,8 +106,6 @@ public class InteresadoServiceImpl extends ServiceImpl<Interesado, Integer> impl
         Interesado interesado = findById(id);
        Interesado interesado1 =  cargaInteresado(interesado, interesadoDTO);
        update(interesado1);
-
-
 
     }
 }

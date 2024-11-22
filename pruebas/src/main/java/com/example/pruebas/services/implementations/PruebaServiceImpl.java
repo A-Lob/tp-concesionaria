@@ -5,6 +5,7 @@ import com.example.pruebas.dtos.detallesDto.DetallePruebaDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.*;
 import com.example.pruebas.services.interfaces.PruebaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements PruebaService {
 
@@ -104,6 +106,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     public Map<String, Object> modelarAsunto(Prueba prueba) {
+        log.info("Modelando mail");
         Empleado empleado = prueba.getEmpleado();
         Vehiculo vehiculo = prueba.getVehiculo();
 
@@ -125,6 +128,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     public void generarNotificacion(String email, String asunto, Map<String, Object> model, String mailTemplate) {
+        log.info("Generando notificacion");
         try {
             RestTemplate template = new RestTemplate();
             NotificacionDTO notificacionDto = new NotificacionDTO();
@@ -148,6 +152,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     //LOS VALIDADORES DEVUELVEN TRUE SI PASO LA VALIDACION
     private boolean validadorID(PruebaDTO pruebaDTO) {
+        log.info("Validando Ids de Vehiculo, Interesado y Empleado");
         List<Vehiculo> vehiculos = gestorDTOS.getVehiculoRepository().findAll();
         List<Interesado> interesados = gestorDTOS.getInteresadoRepository().findAll();
         List<Empleado> empleados = gestorDTOS.getEmpleadoRepository().findAll();
@@ -165,7 +170,8 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     }
 
-    private boolean validorRestringcion(PruebaDTO pruebaDTO) {
+    private boolean validorRestriccion(PruebaDTO pruebaDTO) {
+        log.info("Validando Restriccion");
         Interesado interesado = gestorDTOS.getInteresadoRepository().findById(pruebaDTO.getIdInteresado());
         if (LocalDateTime.now().isAfter(interesado.getFechaVencimientoLicencia()) || interesado.isRestringido()) {
             return false;
@@ -174,6 +180,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     private boolean validadorPrueba(PruebaDTO pruebaDTO) {
+        log.info("Validando Prueba");
         List<Prueba> pruebas = findAll();
         Vehiculo vehiculo = gestorDTOS.getVehiculoRepository().findById(pruebaDTO.getIdVehiculo());
         List<Prueba> coicidencias = pruebas.stream().filter(p -> vehiculo.getId() == p.getVehiculo().getId()).toList();
@@ -192,7 +199,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
         if (!validadorID(pruebaDTO)) {
             new RuntimeException("NO EXISTE ALGUNA DE LAS ASIGNACIONES");
         }
-        if (!validorRestringcion(pruebaDTO)) {
+        if (!validorRestriccion(pruebaDTO)) {
             new RuntimeException("LA LICENCIA DEL INTERESADO ESTA RESTRINGIDA O VENCIDA");
         }
 
@@ -214,7 +221,8 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     }
 
-    private DetallePruebaDTO detallePruebaDTO(Prueba p) {
+    private DetallePruebaDTO obtenerDetallePruebaDTO(Prueba p) {
+        log.info("Listando detalle de la prueba");
         DetallePruebaDTO detallePruebaDTO = new DetallePruebaDTO();
         FinPruebaDTO finPruebaDTO = new FinPruebaDTO();
         finPruebaDTO.setComentario(p.getComentario());
@@ -228,6 +236,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
     }
 
     public List<DetallePruebaDTO> TodosPorFechas(String fechaStr, String horaStr) {
+        log.info("Listando todas las pruebas por fecha");
         // Convertir fecha y hora de String a LocalDate y LocalTime
         DateTimeFormatter fechaFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Ajusta el formato según tu necesidad
 
@@ -249,14 +258,15 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             return mal;
         }
 
-        return pruebaFiltradas.stream().map(this::detallePruebaDTO).toList();
+        return pruebaFiltradas.stream().map(this::obtenerDetallePruebaDTO).toList();
     }
 
     public List<DetallePruebaDTO> todas() {
         List<Prueba> pruebas = findAll();
-        return pruebas.stream().map(this::detallePruebaDTO).toList();
+        return pruebas.stream().map(this::obtenerDetallePruebaDTO).toList();
 
     }
+
     public void finalizarPrueba(int id, FinPruebaDTO finPruebaDTO){
         Prueba prueba = findById(id);
         prueba.setComentario(finPruebaDTO.getComentario());
@@ -264,6 +274,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
         update(prueba);
     }
+
     public void eliminarPrueba(int id){
         delete(id);
     }

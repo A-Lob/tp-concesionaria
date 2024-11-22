@@ -6,6 +6,7 @@ import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.models.Modelo;
 import com.example.pruebas.services.implementations.ModeloServiceImpl;
 import com.example.pruebas.services.interfaces.ModeloService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -13,64 +14,78 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/modelos")
 public class ModeloController {
     private ModeloServiceImpl modeloServiceImpl;
 
-
     public ModeloController(ModeloServiceImpl modeloServiceImpl) {
         this.modeloServiceImpl = modeloServiceImpl;
     }
 
-    @GetMapping("/todos/modelos")
-    public ResponseEntity<List<DetalleModeloDTO>> getAllModelos() {
+    @PostMapping("/nuevo/{idMarca}/modelo")
+    public ResponseEntity<String> crearModelo(@RequestBody ModeloDTO modeloDTO, @PathVariable int idMarca) {
+        log.info("Agregando Modelo");
         try{
-            return ResponseEntity.ok().body(modeloServiceImpl.modelosAll());
+            modeloServiceImpl.nuevoModelo(modeloDTO, idMarca);
+            log.info("Modelo agregado con exito");
+            return ResponseEntity.ok().body("SE CREO EL MODELO");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            log.error("Error al agregar Modelo {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().body("NO SE PUDO AGREGAR EL NUEVO MODELO");
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DetalleModeloDTO> getModelo(@PathVariable int id) {
+    public ResponseEntity<DetalleModeloDTO> findById(@PathVariable int id) {
+        log.info("Buscando Modelo por ID {}", id);
         try{
-           DetalleModeloDTO modelo =  modeloServiceImpl.modelo(id);
-           return ResponseEntity.ok().body(modelo);
-
-
-
+            DetalleModeloDTO modelo =  modeloServiceImpl.obtenerDetalleModelo(id);
+            log.info("Modelo encontrado: {}", modelo);
+            return ResponseEntity.ok().body(modelo);
         }catch (Exception e){
+            log.error("Error al buscar Modelo {}", e.getMessage(), e);
             return ResponseEntity.badRequest().build();
         }
     }
 
-    @PostMapping("/nuevo/{idMarca}/modelo")
-    public ResponseEntity<String> nuevoModelo(@RequestBody ModeloDTO modeloDTO, @PathVariable int idMarca) {
-        try{
-            modeloServiceImpl.nuevoModelo(modeloDTO, idMarca);
-            return ResponseEntity.ok().body("SE CREO EL MODELO");
+    @PatchMapping("/{id}/modificar/modelo")
+    public ResponseEntity<String> modificarModelo(@PathVariable int id, @RequestBody ModeloDTO modeloDTO) {
+        log.info("Modificando Modelo por id {}", id);
+        try {
+            modeloServiceImpl.modificar(id, modeloDTO);
+            log.info("Modelo modificado {}", id);
+            return ResponseEntity.ok().body("SE MODIFICO CON EXITO");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("NO SE PUDO AGREGAR EL NUEVO MODELO");
+            log.error("Error al modificar Modelo {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().body("NO SE PUDO MODIFICAR EL MODELO");
         }
     }
 
     @DeleteMapping("/eliminar/{id}/modelo")
     public ResponseEntity<String> eliminarModelo(@PathVariable int id) {
+        log.info("Eliminando Modelo por id {}", id);
         try{
             modeloServiceImpl.eliminarModelo(id);
+            log.info("Modelo eliminado {}", id);
             return ResponseEntity.ok().body("SE ELIMINO EL MODELO");
         } catch (Exception e) {
+            log.error("Error al eliminar Modelo {}", e.getMessage(), e);
             return ResponseEntity.badRequest().body("NO SE PUDO ELIMINAR MODELO");
         }
     }
-    @PatchMapping("/{id}/modificar/modelo")
-    public ResponseEntity<String> modificarModelo(@PathVariable int id, @RequestBody ModeloDTO modeloDTO) {
-        try {
-                modeloServiceImpl.modificar(id, modeloDTO);
-                return ResponseEntity.ok().body("SE MODIFICO CON EXITO");
+
+    @GetMapping("/todos/modelos")
+    public ResponseEntity<List<DetalleModeloDTO>> getAllModelos() {
+        log.info("Buscando todos los modelos");
+        try{
+            List<DetalleModeloDTO> modelos = modeloServiceImpl.modelosAll();
+            log.info("Encontrados {} modelos", modelos.size());
+            return ResponseEntity.ok().body(modelos);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("NO SE PUDO MODIFICAR EL MODELO");
+            log.error("Error al buscar Modelos {}", e.getMessage(), e);
+            return ResponseEntity.badRequest().build();
         }
     }
 

@@ -8,10 +8,12 @@ import com.example.pruebas.models.Posicion;
 
 import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.interfaces.PosicionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implements PosicionService {
     private final GestorDTOS gestorDTOS;
@@ -46,10 +48,10 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
     @Override
     public List<Posicion> findAll() {
         return gestorDTOS.getPosicionRepository().findAll();
-
     }
 
-    public List<DetallePosicionDTO> posicionAll() {
+    public List<DetallePosicionDTO> posicionesAll() {
+        log.info("Listando detalles de todas las posiciones");
         List<Posicion> posiciones = findAll();
         List<DetallePosicionDTO> detallePosicionDTOS = posiciones.stream().map(p -> {
             DetallePosicionDTO detallePosicionDTO  = new DetallePosicionDTO();
@@ -65,9 +67,10 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
         return detallePosicionDTOS;
     }
 
-    public List<DetallePosicionDTO> posicionAll(double latitudMin,double longitudMin,
+    public List<DetallePosicionDTO> posicionesAll(double latitudMin,double longitudMin,
                                                 double longitudMax, double latitudMax) {
-        List<DetallePosicionDTO> detallePosicionDTOS = posicionAll();
+        log.info("Listando detalles de todas las posiciones dentro de un area");
+        List<DetallePosicionDTO> detallePosicionDTOS = posicionesAll();
         List<DetallePosicionDTO> posiciones = detallePosicionDTOS.stream().filter(p -> {
             if (p.getPosicion() != null) {
                 double lati = p.getPosicion().getLatitud();

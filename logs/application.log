@@ -1,0 +1,177 @@
+2024-11-22 04:45:05 [main] INFO  c.example.pruebas.PruebasApplication - Starting PruebasApplication using Java 21.0.1 with PID 20172 (C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP\pruebas\target\classes started by alexa in C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP)
+2024-11-22 04:45:05 [main] INFO  c.example.pruebas.PruebasApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-22 04:45:06 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-22 04:45:06 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 8 JPA repository interfaces.
+2024-11-22 04:45:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2024-11-22 04:45:06 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:45:06 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-22 04:45:06 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-22 04:45:06 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-22 04:45:06 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1813 ms
+2024-11-22 04:45:07 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-22 04:45:07 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.1.Final
+2024-11-22 04:45:07 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-22 04:45:07 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-22 04:45:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-22 04:45:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@1a8b22b5
+2024-11-22 04:45:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-22 04:45:07 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.46.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-11-22 04:45:09 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-22 04:45:09 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:45:09 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-22 04:45:10 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2024-11-22 04:45:10 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:45:10 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2024-11-22 04:45:10 [main] INFO  c.example.pruebas.PruebasApplication - Started PruebasApplication in 6.468 seconds (process running for 7.251)
+2024-11-22 04:45:11 [RMI TCP Connection(3)-192.168.100.9] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-22 04:45:11 [RMI TCP Connection(3)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-22 04:45:11 [RMI TCP Connection(3)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-11-22 04:45:27 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:45:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-22 04:45:28 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-22 04:45:30 [main] INFO  c.example.pruebas.PruebasApplication - Starting PruebasApplication using Java 21.0.1 with PID 4300 (C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP\pruebas\target\classes started by alexa in C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP)
+2024-11-22 04:45:30 [main] INFO  c.example.pruebas.PruebasApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-22 04:45:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-22 04:45:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 71 ms. Found 8 JPA repository interfaces.
+2024-11-22 04:45:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2024-11-22 04:45:32 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:45:32 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-22 04:45:32 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-22 04:45:32 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-22 04:45:32 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1572 ms
+2024-11-22 04:45:32 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-22 04:45:32 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.1.Final
+2024-11-22 04:45:32 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-22 04:45:32 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-22 04:45:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-22 04:45:32 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@b3a8455
+2024-11-22 04:45:32 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-22 04:45:32 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.46.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-11-22 04:45:33 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-22 04:45:33 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:45:34 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-22 04:45:35 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2024-11-22 04:45:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:45:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2024-11-22 04:45:35 [main] INFO  c.example.pruebas.PruebasApplication - Started PruebasApplication in 5.344 seconds (process running for 6.04)
+2024-11-22 04:45:35 [RMI TCP Connection(1)-192.168.100.9] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-22 04:45:35 [RMI TCP Connection(1)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-22 04:45:35 [RMI TCP Connection(1)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-11-22 04:45:36 [http-nio-8081-exec-8] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 343 ms
+2024-11-22 04:45:47 [http-nio-8081-exec-3] INFO  c.e.p.c.PromocionController - Buscando todas las Promociones
+2024-11-22 04:45:47 [http-nio-8081-exec-3] INFO  c.e.p.c.PromocionController - Encontradas 1 Promociones
+2024-11-22 04:46:57 [http-nio-8081-exec-7] INFO  c.e.p.controllers.PosicionController - Buscando todas las posiciones
+2024-11-22 04:46:57 [http-nio-8081-exec-7] INFO  c.e.p.controllers.PosicionController - Encontradas 3 posiciones
+2024-11-22 04:47:04 [http-nio-8081-exec-9] INFO  c.e.p.controllers.MarcaController - Buscando todas las Marcas
+2024-11-22 04:47:04 [http-nio-8081-exec-9] INFO  c.e.p.controllers.MarcaController - Encontradas 3 Marcas
+2024-11-22 04:47:05 [http-nio-8081-exec-4] INFO  c.e.p.controllers.MarcaController - Buscando todas las Marcas
+2024-11-22 04:47:05 [http-nio-8081-exec-4] INFO  c.e.p.controllers.MarcaController - Encontradas 3 Marcas
+2024-11-22 04:47:10 [http-nio-8081-exec-10] INFO  c.e.p.controllers.ModeloController - Buscando todos los modelos
+2024-11-22 04:47:10 [http-nio-8081-exec-10] INFO  c.e.p.controllers.ModeloController - Encontrados 1 modelos
+2024-11-22 04:47:17 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:47:17 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-22 04:47:17 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-22 04:52:18 [main] INFO  c.example.pruebas.PruebasApplication - Starting PruebasApplication using Java 21.0.1 with PID 24672 (C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP\pruebas\target\classes started by alexa in C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP)
+2024-11-22 04:52:18 [main] INFO  c.example.pruebas.PruebasApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-22 04:52:19 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-22 04:52:19 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 86 ms. Found 8 JPA repository interfaces.
+2024-11-22 04:52:20 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2024-11-22 04:52:20 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:52:20 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-22 04:52:20 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-22 04:52:20 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-22 04:52:20 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1622 ms
+2024-11-22 04:52:20 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-22 04:52:20 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.1.Final
+2024-11-22 04:52:20 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-22 04:52:20 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-22 04:52:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-22 04:52:20 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@7b80af04
+2024-11-22 04:52:20 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-22 04:52:20 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.46.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-11-22 04:52:21 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-22 04:52:21 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:52:22 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-22 04:52:23 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2024-11-22 04:52:23 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2024-11-22 04:52:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2024-11-22 04:52:23 [main] INFO  c.example.pruebas.PruebasApplication - Started PruebasApplication in 5.077 seconds (process running for 5.726)
+2024-11-22 04:52:23 [RMI TCP Connection(2)-192.168.100.9] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-22 04:52:23 [RMI TCP Connection(2)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-22 04:52:23 [RMI TCP Connection(2)-192.168.100.9] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-11-22 04:52:27 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 04:52:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-22 04:52:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-22 06:10:29 [main] INFO  c.example.pruebas.PruebasApplication - Starting PruebasApplication using Java 21.0.1 with PID 10836 (C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP\pruebas\target\classes started by alexa in C:\Users\alexa\OneDrive\Documentos\backend\tpi\TP)
+2024-11-22 06:10:29 [main] INFO  c.example.pruebas.PruebasApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-22 06:10:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-22 06:10:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 70 ms. Found 8 JPA repository interfaces.
+2024-11-22 06:10:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2024-11-22 06:10:31 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2024-11-22 06:10:31 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-22 06:10:31 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-22 06:10:31 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-22 06:10:31 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1864 ms
+2024-11-22 06:10:31 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-22 06:10:31 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.1.Final
+2024-11-22 06:10:31 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-22 06:10:31 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-22 06:10:31 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-22 06:10:31 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@4f2544b0
+2024-11-22 06:10:31 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-22 06:10:31 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.46.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-11-22 06:10:32 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-22 06:10:32 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 06:10:33 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-22 06:10:34 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2024-11-22 06:10:34 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2024-11-22 06:10:34 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2024-11-22 06:10:34 [main] INFO  c.example.pruebas.PruebasApplication - Started PruebasApplication in 5.853 seconds (process running for 6.891)
+2024-11-22 06:10:34 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-22 06:10:34 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-22 06:10:34 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-22 06:10:35 [http-nio-8081-exec-6] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 649 ms
+2024-11-22 06:10:44 [http-nio-8081-exec-5] INFO  c.e.p.controllers.VehiculoController - Buscando todos los vehiculos
+2024-11-22 06:10:44 [http-nio-8081-exec-5] INFO  c.e.p.s.i.VehiculoServiceImpl - Listando los detalles de todos los vehiculos
+2024-11-22 06:10:44 [http-nio-8081-exec-5] INFO  c.e.p.controllers.VehiculoController - Encontrados 2 vehiculos
+2024-11-22 06:11:38 [http-nio-8081-exec-9] INFO  c.e.p.controllers.PruebaController - Buscando todas las pruebas
+2024-11-22 06:11:38 [http-nio-8081-exec-9] INFO  c.e.p.s.i.PruebaServiceImpl - Listando detalle de la prueba
+2024-11-22 06:11:38 [http-nio-8081-exec-9] INFO  c.e.p.s.i.PruebaServiceImpl - Listando detalle de la prueba
+2024-11-22 06:11:38 [http-nio-8081-exec-9] INFO  c.e.p.controllers.PruebaController - Encontradas 2 pruebas
+2024-11-22 06:11:48 [http-nio-8081-exec-10] INFO  c.e.p.c.PromocionController - Buscando todas las Promociones
+2024-11-22 06:11:48 [http-nio-8081-exec-10] INFO  c.e.p.s.i.PromocionServiceImpl - Listando los detalles de todas las promociones
+2024-11-22 06:11:48 [http-nio-8081-exec-10] INFO  c.e.p.c.PromocionController - Encontradas 1 Promociones
+2024-11-22 06:12:05 [http-nio-8081-exec-1] INFO  c.e.p.controllers.ModeloController - Buscando todos los modelos
+2024-11-22 06:12:05 [http-nio-8081-exec-1] INFO  c.e.p.s.i.ModeloServiceImpl - Listando detalles de todas las marcas
+2024-11-22 06:12:05 [http-nio-8081-exec-1] INFO  c.e.p.controllers.ModeloController - Encontrados 1 modelos
+2024-11-22 06:12:08 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-22 06:12:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-22 06:12:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
