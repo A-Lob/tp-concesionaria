@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/marcas")
 public class MarcaController {
-    private MarcaServiceImpl marcaService;
+    private final MarcaServiceImpl marcaService;
 
     public MarcaController(MarcaServiceImpl marcaService) {
         this.marcaService = marcaService;

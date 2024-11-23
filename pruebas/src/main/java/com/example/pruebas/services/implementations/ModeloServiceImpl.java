@@ -7,10 +7,8 @@ import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Marca;
 import com.example.pruebas.models.Modelo;
-import com.example.pruebas.models.Vehiculo;
 import com.example.pruebas.services.interfaces.ModeloService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

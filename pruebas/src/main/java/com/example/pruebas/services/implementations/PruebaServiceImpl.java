@@ -7,7 +7,6 @@ import com.example.pruebas.models.*;
 import com.example.pruebas.services.interfaces.PruebaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -138,10 +137,11 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
             NotificacionRequest request = new NotificacionRequest(notificacionDto, model, mailTemplate);
             HttpEntity<NotificacionRequest> entity = new HttpEntity<>(request);
 
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
+            template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
                     entity, NotificacionDTO.class
             );
         } catch (HttpClientErrorException exception) {
+            log.error("Error al generar la notificacion {}", exception.getMessage(), exception);
             exception.printStackTrace();
         }
     }
@@ -197,14 +197,14 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
 
     public void agregar(PruebaDTO pruebaDTO) {
         if (!validadorID(pruebaDTO)) {
-            new RuntimeException("NO EXISTE ALGUNA DE LAS ASIGNACIONES");
+            throw new RuntimeException("NO EXISTE ALGUNA DE LAS ASIGNACIONES");
         }
         if (!validorRestriccion(pruebaDTO)) {
-            new RuntimeException("LA LICENCIA DEL INTERESADO ESTA RESTRINGIDA O VENCIDA");
+            throw new RuntimeException("LA LICENCIA DEL INTERESADO ESTA RESTRINGIDA O VENCIDA");
         }
 
         if (!validadorPrueba(pruebaDTO)) {
-            new RuntimeException("EL VEHICULO ESTA EN UNA PRUEBA");
+            throw new RuntimeException("EL VEHICULO ESTA EN UNA PRUEBA");
         }
 
         Prueba prueba = new Prueba();
@@ -254,8 +254,7 @@ public class PruebaServiceImpl extends ServiceImpl<Prueba, Integer> implements P
                 )
                 .toList();
         if (pruebaFiltradas.isEmpty()) {
-            List<DetallePruebaDTO> mal = new ArrayList();
-            return mal;
+            return new ArrayList<>();
         }
 
         return pruebaFiltradas.stream().map(this::obtenerDetallePruebaDTO).toList();

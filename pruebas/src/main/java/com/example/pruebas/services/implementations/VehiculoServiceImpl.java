@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implements VehiculoService {
-    private GestorDTOS gestorDTOS;
+    private final GestorDTOS gestorDTOS;
 
     public VehiculoServiceImpl(GestorDTOS gestorDTOS) {
         this.gestorDTOS = gestorDTOS;
@@ -111,12 +111,11 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
                     dto.setLegajoEmpleado(p.getEmpleado().getLegajo());
                     return dto;
                 }).toList();
-        List<PruebaDTO> pruebasDtosF = pruebasDtos.stream()
+
+
+        return pruebasDtos.stream()
                 .filter(p1 -> vehiculos.stream().anyMatch(p2 -> p2.getId() == p1.getIdVehiculo()))
                 .toList();
-
-
-        return pruebasDtosF;
     }
 
     private List<PruebaDTO> listadoPruebasDto(List<Prueba> pruebas, int id) {
@@ -130,14 +129,11 @@ public class VehiculoServiceImpl extends ServiceImpl<Vehiculo, Integer> implemen
 
     private List<PosicionDTO> listadoPosicionesDto(List<Posicion> posicion, List<Vehiculo> vehiculos) {
 
-        List<PosicionDTO> posicionDtos = posicion.stream().map(pos -> {
-            return gestorDTOS.posicionDTO(pos);
-        }).toList();
+        List<PosicionDTO> posicionDtos = posicion.stream().map(gestorDTOS::posicionDTO).toList();
 
-        List<PosicionDTO> posicionDtosF = posicionDtos.stream()
+        return posicionDtos.stream()
                 .filter(p1 -> vehiculos.stream().anyMatch(p2 -> p2.getId() == p1.getIdVehiculo()))
-                .toList();;
-        return posicionDtosF;
+                .toList();
     }
 
     private List<PosicionDTO> listadoPosicionesDto(List<Posicion> posicion, int id) {

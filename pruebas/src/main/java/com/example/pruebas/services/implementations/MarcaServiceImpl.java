@@ -5,13 +5,10 @@ import com.example.pruebas.dtos.ModeloDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleMarcaDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Marca;
-import com.example.pruebas.models.Modelo;
-import com.example.pruebas.repositories.MarcaRepository;
 import com.example.pruebas.services.interfaces.MarcaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j

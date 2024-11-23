@@ -112,20 +112,6 @@ public class GestorDTOS {
 
     }
 
-    public List<PosicionDTO> listarPosiciones(int idVehiculo) {
-        List<Posicion> posiciones = vehiculoRepository.findById(idVehiculo).getPosiciones();
-        return posiciones.stream().map(p -> {
-
-            PosicionDTO posicionDTO = new PosicionDTO();
-            posicionDTO.setLatitud(p.getLatitud());
-            posicionDTO.setLongitud(p.getLongitud());
-            posicionDTO.setIdVehiculo(idVehiculo);
-            return posicionDTO;
-
-
-        }).toList();
-    }
-
     public List<PruebaDTO> listarPruebas(Empleado empleado) {
         List<Prueba> pruebas = empleado.getPruebas();
         return pruebas.stream().map(this::pruebaDTO
@@ -139,9 +125,8 @@ public class GestorDTOS {
     }
 
     public List<PruebaDTO> listarPruebas(List<Prueba> pruebas) {
-        List<PruebaDTO> pruebasDtos = pruebas.stream()
+        return pruebas.stream()
                 .map(this::pruebaDTO).toList();
-        return pruebasDtos;
     }
 
     public List<InteresadoDTO> listarInteresados(Promocion promocion) {

@@ -13,7 +13,6 @@ import com.example.pruebas.services.interfaces.PromocionService;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -28,7 +27,6 @@ import java.util.stream.Collectors;
 public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implements PromocionService {
 
     private final GestorDTOS gestorDTOS;
-    private final String banner = "/images/banner-promocion.png";
 
     public PromocionServiceImpl(GestorDTOS gestorDTOS) { this.gestorDTOS = gestorDTOS; }
 
@@ -99,7 +97,7 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
         DetallePromocionDTO promocion = obtenerDetallePromocion(id);
         List<InteresadoDTO> interesados = promocion.getInteresados();
         if (interesados.isEmpty()) {
-            new RuntimeException("No hay interesados en pruebas");
+            throw new RuntimeException("No hay interesados en pruebas");
         } else {
             interesados.forEach(interesado -> {
                     Map<String, Object> model = modelarAsunto(interesado, promocion);
@@ -120,10 +118,11 @@ public class PromocionServiceImpl extends ServiceImpl<Promocion, Integer> implem
             NotificacionRequest request = new NotificacionRequest(notificacionDto, model, mailTemplate);
             HttpEntity<NotificacionRequest> entity = new HttpEntity<>(request);
 
-            ResponseEntity<NotificacionDTO> res = template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
+            template.postForEntity("http://localhost:8082/api/notificaciones/enviar-alerta",
                     entity, NotificacionDTO.class
             );
         } catch (HttpClientErrorException exception) {
+            log.error("Error al generar la notificacion {}", exception.getMessage(), exception);
             exception.printStackTrace();
         }
     }

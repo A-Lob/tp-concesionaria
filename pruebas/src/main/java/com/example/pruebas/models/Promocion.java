@@ -20,7 +20,6 @@ public class Promocion {
     @Column(name = "ID")
     private int id;
 
-    // Las promociones tienen un tipo como Descuento, Financiamiento especial, Promociones en seguros, etc.
     @Column(name = "TIPO")
     private String tipo;
 

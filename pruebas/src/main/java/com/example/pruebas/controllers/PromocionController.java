@@ -1,6 +1,5 @@
 package com.example.pruebas.controllers;
 
-import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.PromocionRequest;
 import com.example.pruebas.dtos.detallesDto.DetallePromocionDTO;
 import com.example.pruebas.services.implementations.PromocionServiceImpl;

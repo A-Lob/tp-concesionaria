@@ -1,9 +1,7 @@
 package com.example.pruebas.dtos.detallesDto;
 
 import com.example.pruebas.dtos.InteresadoDTO;
-import com.example.pruebas.dtos.PromocionDTO;
 import com.example.pruebas.dtos.PruebaDTO;
-import com.example.pruebas.models.Prueba;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

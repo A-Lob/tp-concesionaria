@@ -1,7 +1,6 @@
 package com.example.pruebas.services.implementations;
 
 import com.example.pruebas.dtos.PosicionDTO;
-import com.example.pruebas.dtos.VehiculoDTO;
 import com.example.pruebas.dtos.detallesDto.DetallePosicionDTO;
 import com.example.pruebas.dtos.gestorDTOS.GestorDTOS;
 import com.example.pruebas.models.Posicion;
@@ -53,7 +52,7 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
     public List<DetallePosicionDTO> posicionesAll() {
         log.info("Listando detalles de todas las posiciones");
         List<Posicion> posiciones = findAll();
-        List<DetallePosicionDTO> detallePosicionDTOS = posiciones.stream().map(p -> {
+        return posiciones.stream().map(p -> {
             DetallePosicionDTO detallePosicionDTO  = new DetallePosicionDTO();
             detallePosicionDTO.setPosicion(gestorDTOS.posicionDTO(p));
             detallePosicionDTO.setVehiculo(gestorDTOS.vehiculoDTO(p.getVehiculo()));
@@ -64,26 +63,23 @@ public class PosicionServiceImpl extends ServiceImpl<Posicion, Integer> implemen
 
 
         }).toList();
-        return detallePosicionDTOS;
     }
 
     public List<DetallePosicionDTO> posicionesAll(double latitudMin,double longitudMin,
                                                 double longitudMax, double latitudMax) {
         log.info("Listando detalles de todas las posiciones dentro de un area");
         List<DetallePosicionDTO> detallePosicionDTOS = posicionesAll();
-        List<DetallePosicionDTO> posiciones = detallePosicionDTOS.stream().filter(p -> {
+        // Puedes usar lati y longi aquí
+        return detallePosicionDTOS.stream().filter(p -> {
             if (p.getPosicion() != null) {
                 double lati = p.getPosicion().getLatitud();
                 double longi = p.getPosicion().getLongitud();
                 // Puedes usar lati y longi aquí
-                if ((lati <= latitudMax && longi <= longitudMax) && (lati >= latitudMin && longi >= longitudMin) ) {
-                    return true;
-                }
+                return (lati <= latitudMax && longi <= longitudMax) && (lati >= latitudMin && longi >= longitudMin);
             }
             return false;
 
         }).toList();
-        return posiciones;
     }
 
     public void agregar(PosicionDTO posicionDTO) {

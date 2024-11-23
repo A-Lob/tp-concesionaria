@@ -1,17 +1,12 @@
 package com.example.pruebas.controllers;
 
-import com.example.pruebas.dtos.MarcaDTO;
 import com.example.pruebas.dtos.ModeloDTO;
 import com.example.pruebas.dtos.detallesDto.DetalleModeloDTO;
-import com.example.pruebas.models.Modelo;
 import com.example.pruebas.services.implementations.ModeloServiceImpl;
-import com.example.pruebas.services.interfaces.ModeloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
