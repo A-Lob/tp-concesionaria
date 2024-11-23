@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/api/notificaciones")
 public class NotificacionController {
 
-    private NotificacionService notificacionService;
+    private final NotificacionService notificacionService;
 
     public NotificacionController(NotificacionService notificacionService) {
         this.notificacionService = notificacionService;
