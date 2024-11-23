@@ -6,10 +6,10 @@
     </appender>
 
     <appender name="ROLLING-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/applicationPruebas.log</file>
+        <file>logs/applicationNotificaciones.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>logs/applicationPruebas.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>logs/applicationNotificaciones.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>1GB</totalSizeCap>

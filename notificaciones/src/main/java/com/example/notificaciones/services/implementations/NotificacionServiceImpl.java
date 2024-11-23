@@ -5,20 +5,18 @@ import com.example.notificaciones.repositories.NotificacionRepository;
 import com.example.notificaciones.services.interfaces.NotificacionService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
-import org.springframework.mail.javamail.MimeMessageHelper;
 
-import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class NotificacionServiceImpl implements NotificacionService {
 
@@ -26,8 +24,6 @@ public class NotificacionServiceImpl implements NotificacionService {
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine templateEngine;
 
-    @Value("${spring.mail.username}")
-    private String from;
 
     @Autowired
     public NotificacionServiceImpl(NotificacionRepository notificacionRepository,
@@ -44,11 +40,11 @@ public class NotificacionServiceImpl implements NotificacionService {
 
     @Override
     public void sendNotification(Notificacion notificacion, Map<String, Object> templateModel , String template) throws MessagingException {
+        log.info("Enviando notificacion");
         Context context = new Context();
         context.setVariables(templateModel);
 
-        System.out.println(templateModel);
-
+        log.info("Procesando plantilla : {}", templateModel);
         String htmlContent = templateEngine.process(template, context);
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
