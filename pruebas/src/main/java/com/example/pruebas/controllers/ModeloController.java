@@ -32,7 +32,7 @@ public class ModeloController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/modelo")
     public ResponseEntity<DetalleModeloDTO> findById(@PathVariable int id) {
         log.info("Buscando Modelo por ID {}", id);
         try{
@@ -58,7 +58,7 @@ public class ModeloController {
         }
     }
 
-    @DeleteMapping("/eliminar/{id}/modelo")
+    @DeleteMapping("{id}/eliminar/modelo")
     public ResponseEntity<String> eliminarModelo(@PathVariable int id) {
         log.info("Eliminando Modelo por id {}", id);
         try{
@@ -71,7 +71,7 @@ public class ModeloController {
         }
     }
 
-    @GetMapping("/todos/modelos")
+    @GetMapping("/todos")
     public ResponseEntity<List<DetalleModeloDTO>> getAllModelos() {
         log.info("Buscando todos los modelos");
         try{

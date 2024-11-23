@@ -34,7 +34,7 @@ public class InteresadoController {
         }
     }
 
-    @GetMapping("/interesadoId/{id}")
+    @GetMapping("id/interesado")
     public ResponseEntity<DetalleInteresadoDTO> findById(@PathVariable int id){
         log.info("Buscando Interesado por ID {}", id);
         try {
@@ -47,7 +47,7 @@ public class InteresadoController {
         }
     }
 
-    @PatchMapping("/modificacionInteresado/{id}")
+    @PatchMapping("{id}/modificar/interesado")
     public ResponseEntity<Object> updateInteresado(@RequestBody InteresadoDTO interesado, @PathVariable int id) {
         log.info("Modificando Interesado por id {}", id);
         try{
@@ -60,7 +60,7 @@ public class InteresadoController {
         }
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("{id}/eliminar/interesado")
     public ResponseEntity<String> deleteInteresado(@PathVariable int id) {
         log.info("Eliminando Interesado por id {}", id);
         try{
