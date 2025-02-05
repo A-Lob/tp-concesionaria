@@ -1,0 +1,1605 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8081",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/vehiculos/{id}/vehiculo/actualizar": {
+            "put": {
+                "tags": [
+                    "vehiculo-controller"
+                ],
+                "operationId": "actualizarVehiculo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehiculoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/vehiculos/nuevo/vehiculo/{idModelo}/modelo": {
+            "post": {
+                "tags": [
+                    "vehiculo-controller"
+                ],
+                "operationId": "nuevoVehiculo",
+                "parameters": [
+                    {
+                        "name": "idModelo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehiculoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/nueva-prueba": {
+            "post": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "crearPrueba",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PruebaDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/interesado/nuevoInteresado": {
+            "post": {
+                "tags": [
+                    "interesado-controller"
+                ],
+                "operationId": "crearInteresado",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InteresadoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/empleado/agregar/nuevoEmpleado": {
+            "post": {
+                "tags": [
+                    "empleado-controller"
+                ],
+                "operationId": "crearNuevoEmpleado",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmpleadoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/controlar-vehiculo": {
+            "post": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "evaluarPosicion",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PosicionDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/promociones/promocionar": {
+            "post": {
+                "tags": [
+                    "promocion-controller"
+                ],
+                "operationId": "enviarPromociones",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/promociones/nueva-promocion": {
+            "post": {
+                "tags": [
+                    "promocion-controller"
+                ],
+                "operationId": "crearPromocion",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PromocionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/modelos/nuevo/{idMarca}/modelo": {
+            "post": {
+                "tags": [
+                    "modelo-controller"
+                ],
+                "operationId": "crearModelo",
+                "parameters": [
+                    {
+                        "name": "idMarca",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModeloDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marcas/agregar/marca": {
+            "post": {
+                "tags": [
+                    "marca-controller"
+                ],
+                "operationId": "crearMarca",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MarcaDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Posiciones/agregar/posicion": {
+            "post": {
+                "tags": [
+                    "posicion-controller"
+                ],
+                "operationId": "crearPosicion",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PosicionDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/interesado/{id}/modificar/interesado": {
+            "patch": {
+                "tags": [
+                    "interesado-controller"
+                ],
+                "operationId": "updateInteresado",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InteresadoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/finalizar-prueba/{id}": {
+            "patch": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "finalizarPrueba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FinPruebaDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/empleado/{legajo}/modificar/empleado": {
+            "patch": {
+                "tags": [
+                    "empleado-controller"
+                ],
+                "operationId": "modificarEmpleado",
+                "parameters": [
+                    {
+                        "name": "legajo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EmpleadoDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/modelos/{id}/modificar/modelo": {
+            "patch": {
+                "tags": [
+                    "modelo-controller"
+                ],
+                "operationId": "modificarModelo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModeloDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marcas/{id}/modificar/marca": {
+            "patch": {
+                "tags": [
+                    "marca-controller"
+                ],
+                "operationId": "modificarMarca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MarcaDTO"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/vehiculos/todos": {
+            "get": {
+                "tags": [
+                    "vehiculo-controller"
+                ],
+                "operationId": "getVehiculo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleVehiculoDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/vehiculos/buscar/{id}": {
+            "get": {
+                "tags": [
+                    "vehiculo-controller"
+                ],
+                "operationId": "buscarVehiculo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleVehiculoDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/todas": {
+            "get": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "getPruebasAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetallePruebaDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/listar-pruebas/{fecha}/{hora}": {
+            "get": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "getPruebasCondicional",
+                "parameters": [
+                    {
+                        "name": "fecha",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hora",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetallePruebaDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/interesado/{id}/interesado": {
+            "get": {
+                "tags": [
+                    "interesado-controller"
+                ],
+                "operationId": "findById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleInteresadoDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/interesado/interesados": {
+            "get": {
+                "tags": [
+                    "interesado-controller"
+                ],
+                "operationId": "getAllInteresados",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleInteresadoDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/empleado/{legajo}/empleado": {
+            "get": {
+                "tags": [
+                    "empleado-controller"
+                ],
+                "operationId": "findByLegajo",
+                "parameters": [
+                    {
+                        "name": "legajo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleEmpleadoDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/empleado/todos": {
+            "get": {
+                "tags": [
+                    "empleado-controller"
+                ],
+                "operationId": "getAllEmpleados",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleEmpleadoDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/promociones/{id}/promocion": {
+            "get": {
+                "tags": [
+                    "promocion-controller"
+                ],
+                "operationId": "findById_1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetallePromocionDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/promociones/todas": {
+            "get": {
+                "tags": [
+                    "promocion-controller"
+                ],
+                "operationId": "getPromocionesAll",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetallePromocionDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/modelos/{id}/modelo": {
+            "get": {
+                "tags": [
+                    "modelo-controller"
+                ],
+                "operationId": "findById_2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleModeloDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/modelos/todos": {
+            "get": {
+                "tags": [
+                    "modelo-controller"
+                ],
+                "operationId": "getAllModelos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleModeloDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marcas/{id}/marca": {
+            "get": {
+                "tags": [
+                    "marca-controller"
+                ],
+                "operationId": "findById_3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DetalleMarcaDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marcas/todos": {
+            "get": {
+                "tags": [
+                    "marca-controller"
+                ],
+                "operationId": "getAllMarcas",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetalleMarcaDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Posiciones/{latitudMin}/{longitudMin}/{latitudMax}/{longitudMax}/posiciones": {
+            "get": {
+                "tags": [
+                    "posicion-controller"
+                ],
+                "operationId": "getAllCondicional",
+                "parameters": [
+                    {
+                        "name": "latitudMax",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    {
+                        "name": "longitudMax",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    {
+                        "name": "latitudMin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    {
+                        "name": "longitudMin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetallePosicionDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Posiciones/todos": {
+            "get": {
+                "tags": [
+                    "posicion-controller"
+                ],
+                "operationId": "getAllPosiciones",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DetallePosicionDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/vehiculos/{id}/vehiculo/eliminar": {
+            "delete": {
+                "tags": [
+                    "vehiculo-controller"
+                ],
+                "operationId": "eliminarVehiculo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/{id}/eliminar": {
+            "delete": {
+                "tags": [
+                    "prueba-controller"
+                ],
+                "operationId": "eliminar",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/interesado/{id}/eliminar/interesado": {
+            "delete": {
+                "tags": [
+                    "interesado-controller"
+                ],
+                "operationId": "deleteInteresado",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pruebas/empleado/{legajo}/eliminar/empleado": {
+            "delete": {
+                "tags": [
+                    "empleado-controller"
+                ],
+                "operationId": "eliminarEmpleado",
+                "parameters": [
+                    {
+                        "name": "legajo",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/promociones/{id}/eliminar": {
+            "delete": {
+                "tags": [
+                    "promocion-controller"
+                ],
+                "operationId": "eliminarPromocion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/modelos/{id}/eliminar/modelo": {
+            "delete": {
+                "tags": [
+                    "modelo-controller"
+                ],
+                "operationId": "eliminarModelo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/marcas/{id}/eliminar/marca": {
+            "delete": {
+                "tags": [
+                    "marca-controller"
+                ],
+                "operationId": "eliminarMarca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Posiciones/{id}/eliminar/posicion": {
+            "delete": {
+                "tags": [
+                    "posicion-controller"
+                ],
+                "operationId": "eliminarPosicion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "VehiculoDTO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "patente": {
+                        "type": "string"
+                    },
+                    "anio": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "PruebaDTO": {
+                "type": "object",
+                "properties": {
+                    "idInteresado": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "idVehiculo": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "legajoEmpleado": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "InteresadoDTO": {
+                "type": "object",
+                "properties": {
+                    "tipoDocumento": {
+                        "type": "string"
+                    },
+                    "numDocumento": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "apellido": {
+                        "type": "string"
+                    },
+                    "fechaVencimientoLicencia": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "numeroLicencia": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "restringido": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "EmpleadoDTO": {
+                "type": "object",
+                "properties": {
+                    "legajo": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "apellido": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PosicionDTO": {
+                "type": "object",
+                "properties": {
+                    "idVehiculo": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "latitud": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "longitud": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "PromocionDTO": {
+                "type": "object",
+                "properties": {
+                    "tipo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PromocionRequest": {
+                "type": "object",
+                "properties": {
+                    "promocion": {
+                        "$ref": "#/components/schemas/PromocionDTO"
+                    },
+                    "interesados": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    "vehiculos": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                }
+            },
+            "ModeloDTO": {
+                "type": "object",
+                "properties": {
+                    "descripcion": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MarcaDTO": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FinPruebaDTO": {
+                "type": "object",
+                "properties": {
+                    "comentario": {
+                        "type": "string"
+                    },
+                    "fechaHoraFin": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "DetalleVehiculoDTO": {
+                "type": "object",
+                "properties": {
+                    "vehiculo": {
+                        "$ref": "#/components/schemas/VehiculoDTO"
+                    },
+                    "pruebas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PruebaDTO"
+                        }
+                    },
+                    "posiciones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PosicionDTO"
+                        }
+                    },
+                    "modelo": {
+                        "$ref": "#/components/schemas/ModeloDTO"
+                    }
+                }
+            },
+            "DetallePruebaDTO": {
+                "type": "object",
+                "properties": {
+                    "prueba": {
+                        "$ref": "#/components/schemas/PruebaDTO"
+                    },
+                    "interesado": {
+                        "$ref": "#/components/schemas/InteresadoDTO"
+                    },
+                    "vehiculo": {
+                        "$ref": "#/components/schemas/VehiculoDTO"
+                    },
+                    "empleado": {
+                        "$ref": "#/components/schemas/EmpleadoDTO"
+                    },
+                    "finPrueba": {
+                        "$ref": "#/components/schemas/FinPruebaDTO"
+                    }
+                }
+            },
+            "DetalleInteresadoDTO": {
+                "type": "object",
+                "properties": {
+                    "interesado": {
+                        "$ref": "#/components/schemas/InteresadoDTO"
+                    },
+                    "pruebas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PruebaDTO"
+                        }
+                    },
+                    "promociones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DetallePromocionDTO"
+                        }
+                    }
+                }
+            },
+            "DetallePromocionDTO": {
+                "type": "object",
+                "properties": {
+                    "promocion": {
+                        "$ref": "#/components/schemas/PromocionDTO"
+                    },
+                    "interesados": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InteresadoDTO"
+                        }
+                    },
+                    "vehiculos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DetalleVehiculoDTO"
+                        }
+                    }
+                }
+            },
+            "DetalleEmpleadoDTO": {
+                "type": "object",
+                "properties": {
+                    "empleado": {
+                        "$ref": "#/components/schemas/EmpleadoDTO"
+                    },
+                    "pruebas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PruebaDTO"
+                        }
+                    }
+                }
+            },
+            "DetalleModeloDTO": {
+                "type": "object",
+                "properties": {
+                    "modelo": {
+                        "$ref": "#/components/schemas/ModeloDTO"
+                    },
+                    "vehiculos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/VehiculoDTO"
+                        }
+                    },
+                    "marca": {
+                        "$ref": "#/components/schemas/MarcaDTO"
+                    }
+                }
+            },
+            "DetalleMarcaDTO": {
+                "type": "object",
+                "properties": {
+                    "marca": {
+                        "$ref": "#/components/schemas/MarcaDTO"
+                    },
+                    "modelos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ModeloDTO"
+                        }
+                    }
+                }
+            },
+            "DetallePosicionDTO": {
+                "type": "object",
+                "properties": {
+                    "posicion": {
+                        "$ref": "#/components/schemas/PosicionDTO"
+                    },
+                    "vehiculo": {
+                        "$ref": "#/components/schemas/VehiculoDTO"
+                    }
+                }
+            }
+        }
+    }
+}
