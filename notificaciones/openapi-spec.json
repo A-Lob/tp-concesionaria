@@ -1,0 +1,80 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8082",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/notificaciones/enviar-alerta": {
+            "post": {
+                "tags": [
+                    "notificacion-controller"
+                ],
+                "operationId": "crearNotificacion",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificacionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "NotificacionDTO": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "asunto": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    }
+                }
+            },
+            "NotificacionRequest": {
+                "type": "object",
+                "properties": {
+                    "notificacion": {
+                        "$ref": "#/components/schemas/NotificacionDTO"
+                    },
+                    "templateModel": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    },
+                    "template": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
